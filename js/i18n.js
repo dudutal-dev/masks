@@ -466,6 +466,16 @@ const I18N = {
 "צילום": "Photos",
 "סצנות עם ״מצלמה״ מצלמות רק בטלפון שלכם, ומחליטים יחד מראש אם שומרים או מוחקים. התמונות והסרטונים שמעלים לאפליקציה נשמרים רק במכשיר.": "Scenes with a \"camera\" shoot only on your own phone, and you decide together in advance whether to keep or delete. Photos and videos uploaded to the app stay on the device only.",
 "תמיד. מים, אור חלש, מגע רך, ושלוש שאלות: מה היה הרגע הכי טוב, איפה כמעט יצאת מהדמות, ומה רוצים שוב. ״נפילה״ רגשית יום-יומיים אחרי סצנה חזקה היא נורמלית, מדברים עליה.": "Always. Water, low light, soft touch, and three questions: what was the best moment, where did you almost break character, and what do you want again. An emotional \"drop\" a day or two after a strong scene is normal; talk about it.",
+"ייבוא סצנות מקובץ JSON (נכתבו מחוץ לאפליקציה)": "Import scenes from a JSON file (written outside the app)",
+"ייבוא סצנות מקובץ": "Import scenes from a file",
+"קובץ JSON במבנה של התבנית (״הורדת תבנית״). סצנות עם אותו id מחליפות את הקיימות. הסצנות מצטרפות ל״כל הסצנות״ ולערב, עם קלפי תפקיד ושלבים כמו הסצנות המובנות.": "A JSON file in the template structure (\"Download template\"). Scenes with the same id replace existing ones. The scenes join \"All scenes\" and the evening, with role cards and beats like the built-in scenes.",
+"בחירת קובץ": "Choose file",
+"הורדת תבנית JSON": "Download JSON template",
+"ייצוא הסצנות שלכם": "Export your scenes",
+"הייבוא הושלם": "Import complete",
+"הייבוא נכשל": "Import failed",
+"לכל הסצנות": "To all scenes",
+"הקובץ צריך להכיל מערך scenes": "The file must contain a scenes array",
 "זרים ופיתוי": "Strangers and seduction",
 "בר, רכבת, מלון, דייט עיוור. להכיר מחדש מאפס.": "A bar, a train, a hotel, a blind date. Meeting again from zero.",
 "עבודה וכוח": "Work and power",
@@ -569,6 +579,14 @@ const I18N = {
 [
 "^(.+?) (?:יוזם|יוזמת), (.+?) (?:מגיב|מגיבה)$",
 "$1 initiates, $2 responds"
+],
+[
+"^(\\d+) סצנות חדשות, (\\d+) עודכנו\\.$",
+"$1 new scenes, $2 updated."
+],
+[
+"^נדחו (\\d+):$",
+"Rejected $1:"
 ],
 [
 "^מילת העצירה: (.+?) · (.+)$",

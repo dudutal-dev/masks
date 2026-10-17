@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const KEY = 'masks.v1';
-  const APP_VERSION = '2026.10.17.3';
+  const APP_VERSION = '2026.10.17.4';
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -19,7 +19,7 @@
     tts: { mode: 'off', key: '', voiceId: '', model: 'eleven_v3' },
     ai: { key: '', model: 'claude-opus-5-5', effort: 'medium' },
     showSafety: false, eveningAlt: false, vidPref: 'personal',
-    promptStyle: '', promptVideo: '', promptAct: '', promptKeep: '', promptImg: '', en: {},
+    promptStyle: '', promptVideo: '', promptAct: '', promptKeep: '', promptImg: '', en: {}, scenes: {}, shots: {},
     customIllus: {},
   });
   let S = load();
@@ -125,13 +125,15 @@
   function cardText(c) {
     if (isEn()) {
       if (typeof CARDS_EN !== 'undefined' && CARDS_EN[c.id]) return render(CARDS_EN[c.id]);
+      const sd = (S.scenes || {})[c.id]; if (sd && sd.en && sd.en.premise) return render(sd.en.premise);
       const e = (S.en || {})[c.id + ':' + (S.partners[S.dom].g === 'm' ? 'm' : 'f')]; if (e && e.t) return esc(e.t);
     }
     return render(c.text);
   }
 
   // ---------- סצנת תפקידים: במה → קלף תפקיד סודי לכל אחד → שלבים ----------
-  const sceneOf = (c) => (typeof SCENES !== 'undefined' && SCENES[c.id]) ? SCENES[c.id][isEn() ? 'en' : 'he'] : null;
+  const sceneData = (id) => (typeof SCENES !== 'undefined' && SCENES[id]) || (S.scenes || {})[id] || null;
+  const sceneOf = (c) => { const d = sceneData(c.id); if (!d) return null; return (isEn() && d.en) ? d.en : d.he; };
   let scn = S.scene && typeof S.scene === 'object' ? S.scene : { id: null, stage: 'brief', beat: 0, who: null, back: null };
   function scnSet(patch) { Object.assign(scn, patch); S.scene = scn; save(); }
   function scnFor(id) { if (scn.id !== id) { scn = { id, stage: 'brief', beat: 0, who: null, back: null }; S.scene = scn; save(); } }
@@ -725,6 +727,56 @@
     } catch (e) { dialog(`<h2>הגיבוי נכשל</h2><p class="muted">${esc(e.message || String(e))}</p>`, [{ label: 'סגירה' }]); }
   });
   let restoreMode = 'all';
+
+  // ---------- ייבוא סצנות מקובץ JSON (נכתבות מחוץ לאפליקציה) ----------
+  const SCENE_FIELDS = ['title', 'premise', 'setting', 'props', 'D', 'S', 'beats'];
+  function sceneTemplate() {
+    return { _help: 'מערך של סצנות. ids חייבים להיות ייחודיים (מקבלים קידומת u_ אוטומטית). cat: אחד ממזהי הקטגוריות. lvl: 1-3. min: דקות. he/en: אותו מבנה בשתי השפות, en לא חובה. {D}=שם היוזם/ת, {S}=שם המגיב/ה, {d:זכר|נקבה} לפי מין היוזם/ת, {s:זכר|נקבה} לפי מין המגיב/ה. shot: תיאור צילומי באנגלית לפרומפטים של תמונה וסרטון (לא חובה).',
+      categories: CATEGORIES.map((c) => ({ id: c.id, name: c.name })),
+      scenes: [{ id: 'my-scene-1', cat: CATEGORIES[0].id, lvl: 2, min: 25, img: 'mask',
+        he: { title: 'שם הסצנה', premise: 'תקציר של משפט-שניים: מי, איפה, מה קורה. {D} ו{S}.', setting: 'הבמה: החדר, האור, מי איפה בתחילת הסצנה.', props: 'אביזרים.', D: { who: 'מי הדמות של היוזם/ת', how: 'איך לשחק אותה', secret: 'המטרה הסודית: ...', opener: '״משפט פתיחה״' }, S: { who: 'מי הדמות של המגיב/ה', how: 'איך לשחק אותה', secret: 'המטרה הסודית: ...', opener: '״משפט פתיחה״' }, beats: ['שלב 1', 'שלב 2', 'שלב 3'] },
+        en: { title: 'Scene title', premise: 'One or two sentences. {D} and {S}.', setting: 'The stage.', props: 'Props.', D: { who: '', how: '', secret: '', opener: '' }, S: { who: '', how: '', secret: '', opener: '' }, beats: ['Beat 1', 'Beat 2', 'Beat 3'] },
+        shot: 'Cinematic description in English of the scene for image/video prompts: who stands where, what moves, how it ends. End frame: ...' }] };
+  }
+  function importScenes(json) {
+    let arr = Array.isArray(json) ? json : (json && Array.isArray(json.scenes) ? json.scenes : null);
+    if (!arr) throw new Error('הקובץ צריך להכיל מערך scenes');
+    S.scenes = S.scenes || {}; S.shots = S.shots || {};
+    let added = 0, updated = 0, bad = [];
+    arr.forEach((sc, i) => {
+      try {
+        const he = sc.he; if (!he || !he.title || !he.premise || !he.D || !he.S || !Array.isArray(he.beats) || !he.beats.length) throw new Error('חסר he.title / premise / D / S / beats');
+        for (const r of ['D', 'S']) for (const k of ['who', 'how', 'secret', 'opener']) if (typeof he[r][k] !== 'string') throw new Error(`he.${r}.${k} חסר`);
+        let id = String(sc.id || ('s' + (i + 1))).trim().replace(/[^\w-]/g, '_'); if (!id.startsWith('u_')) id = 'u_' + id;
+        const cat = CATEGORIES.some((c) => c.id === sc.cat) ? sc.cat : CATEGORIES[0].id;
+        const lvl = [1, 2, 3].includes(+sc.lvl) ? +sc.lvl : 2;
+        const img = (typeof ILLUSTRATIONS !== 'undefined' && ILLUSTRATIONS[sc.img]) ? sc.img : (catOf(cat) || {}).img || 'mask';
+        const card = { id, cat, lvl, to: 'B', img, min: +sc.min || 0, text: String(he.premise) };
+        const pick = (o) => o ? Object.fromEntries(SCENE_FIELDS.filter((k) => o[k] !== undefined).map((k) => [k, o[k]])) : null;
+        const ex = S.custom.findIndex((c) => c.id === id);
+        if (ex >= 0) { S.custom[ex] = card; updated++; } else { S.custom.push(card); added++; }
+        S.scenes[id] = { he: pick(he), en: sc.en && sc.en.premise ? pick(sc.en) : null };
+        if (sc.shot) S.shots[id] = String(sc.shot); else delete S.shots[id];
+        S.hidden = S.hidden.filter((h) => h !== id);
+      } catch (e) { bad.push(`#${i + 1}: ${e.message}`); }
+    });
+    save(); return { added, updated, bad };
+  }
+  function exportScenes() {
+    const scenes = S.custom.filter((c) => (S.scenes || {})[c.id]).map((c) => ({ id: c.id, cat: c.cat, lvl: c.lvl, min: c.min, img: c.img, he: S.scenes[c.id].he, en: S.scenes[c.id].en || undefined, shot: (S.shots || {})[c.id] || undefined }));
+    return { categories: CATEGORIES.map((c) => ({ id: c.id, name: c.name })), scenes };
+  }
+  const dlJson = (obj, name) => { const b = new Blob([JSON.stringify(obj, null, 1)], { type: 'application/json' }); Backup.download(b, name); };
+  $('#btn-scenes-import').addEventListener('click', () => dialog('<h2>ייבוא סצנות מקובץ</h2><p>קובץ JSON במבנה של התבנית (״הורדת תבנית״). סצנות עם אותו id מחליפות את הקיימות. הסצנות מצטרפות ל״כל הסצנות״ ולערב, עם קלפי תפקיד ושלבים כמו הסצנות המובנות.</p>', [
+    { label: 'בחירת קובץ', cls: 'primary', onClick: () => $('#scenes-file').click() },
+    { label: 'הורדת תבנית JSON', onClick: () => dlJson(sceneTemplate(), 'masks-scenes-template.json') },
+    { label: 'ייצוא הסצנות שלכם', onClick: () => dlJson(exportScenes(), 'masks-my-scenes.json') },
+    { label: 'סגירה' }]));
+  $('#scenes-file').addEventListener('change', async (e) => {
+    const f = e.target.files[0]; e.target.value = ''; if (!f) return;
+    try { const r = importScenes(JSON.parse(await f.text())); dialog(`<h2>הייבוא הושלם</h2><p>${r.added} סצנות חדשות, ${r.updated} עודכנו.</p>${r.bad.length ? `<p class="muted tiny">נדחו ${r.bad.length}:<br>${r.bad.map(esc).join('<br>')}</p>` : ''}`, [{ label: 'לכל הסצנות', cls: 'primary', onClick: () => show('editor') }, { label: 'סגירה' }]); }
+    catch (err) { dialog(`<h2>הייבוא נכשל</h2><p class="muted">${esc(err.message || String(err))}</p>`, [{ label: 'סגירה' }]); }
+  });
   $('#btn-restore').addEventListener('click', () => dialog('<h2>שחזור מגיבוי</h2><p>בחרו קובץ גיבוי (.zip) שנוצר באפליקציה. התמונות והסרטונים יתווספו למכשיר הזה.</p><p class="muted tiny">״הכול״ מחזיר גם הגדרות, שמות, גבולות וסצנות שהוספתם, ומחליף את מה שיש עכשיו. ״רק מדיה״ משאיר את ההגדרות הנוכחיות.</p>', [
     { label: 'שחזור הכול', cls: 'primary', onClick: () => { restoreMode = 'all'; $('#restore-file').click(); } },
     { label: 'רק תמונות וסרטונים', onClick: () => { restoreMode = 'media'; $('#restore-file').click(); } },
@@ -1399,9 +1451,10 @@ EXAMPLE corset:
   const hashStr = (t) => { let h = 0; for (let i = 0; i < t.length; i++) h = (h * 31 + t.charCodeAt(i)) | 0; return h.toString(36); };
   const EN_CTX = { m: { D: 'the man', S: 'the woman', dg: 'm', sg: 'f' }, f: { D: 'the woman', S: 'the man', dg: 'f', sg: 'm' } };
   const capEn = (t) => t.replace(/(^|[.!?:]\s+|["“(]\s*)(the (?:man|woman))/g, (m, p, w) => p + w[0].toUpperCase() + w.slice(1));
-  function shotFor(c, v) { return (typeof CARDS_SHOT !== 'undefined' && CARDS_SHOT[c.id]) ? capEn(toPlain(render(CARDS_SHOT[c.id], EN_CTX[v.key]))) : null; }
+  function shotFor(c, v) { const sh = (typeof CARDS_SHOT !== 'undefined' && CARDS_SHOT[c.id]) || (S.shots || {})[c.id]; return sh ? capEn(toPlain(render(sh, EN_CTX[v.key]))) : null; }
   function enFor(c, v) {
     if (typeof CARDS_EN !== 'undefined' && CARDS_EN[c.id]) return capEn(toPlain(render(CARDS_EN[c.id], EN_CTX[v.key])));
+    const sd = (S.scenes || {})[c.id]; if (sd && sd.en && sd.en.premise) return capEn(toPlain(render(sd.en.premise, EN_CTX[v.key])));
     const e = (S.en || {})[enKey(c, v)]; if (!e) return null; return e.h === hashStr(entryText(c, v).text) ? e.t : null;
   }
   async function translateEntries(items, onProgress) {

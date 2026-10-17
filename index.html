@@ -10,12 +10,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="מסכות">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="icons/icon-192.png">
-  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" href="icons/icon-192.png?v=2">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Heebo:wght@400;600;700&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=2026.10.17.3">
+  <link rel="stylesheet" href="css/style.css?v=2026.10.17.4">
 </head>
 <body>
 <div id="boot-error" hidden style="position:fixed;inset:0;z-index:9999;background:#120910;color:#f3e9e4;padding:28px 20px;font:16px/1.5 system-ui,sans-serif;direction:rtl;overflow:auto">
@@ -135,6 +135,8 @@
     <button class="menu-item" data-go="tts"><svg class="il"><use href="#il-music"/></svg><span id="tts-label">הקראת כרטיסים</span></button>
     <button class="menu-item" id="btn-media-usage"><svg class="il"><use href="#il-camera"/></svg><span id="media-usage">תמונות וסרטונים שלכם</span></button>
     <button class="menu-item" id="btn-backup"><svg class="il"><use href="#il-lock"/></svg><span>גיבוי מלא לקובץ: תמונות, סרטונים והגדרות</span></button>
+    <button class="menu-item" id="btn-scenes-import"><svg class="il"><use href="#il-mask"/></svg><span>ייבוא סצנות מקובץ JSON (נכתבו מחוץ לאפליקציה)</span></button>
+    <input type="file" id="scenes-file" accept=".json,application/json" hidden>
     <button class="menu-item" id="btn-restore"><svg class="il"><use href="#il-key"/></svg><span>שחזור מקובץ גיבוי</span></button>
     <input type="file" id="restore-file" accept=".zip,application/zip" hidden>
     <button class="menu-item" data-go="pin"><svg class="il"><use href="#il-lock"/></svg><span id="pin-label">קוד נעילה</span></button>
@@ -368,13 +370,13 @@
   <button data-tab="more"><svg class="il"><use href="#il-gear"/></svg><span>עוד</span></button>
 </nav>
 
-<script src="js/illustrations.js?v=2026.10.17.3"></script>
-<script src="js/media.js?v=2026.10.17.3"></script>
-<script src="js/cards-data.js?v=2026.10.17.3"></script>
-<script src="js/cards-en.js?v=2026.10.17.3"></script>
-<script src="js/scenes.js?v=2026.10.17.3"></script>
-<script src="js/backup.js?v=2026.10.17.3"></script>
-<script src="js/i18n.js?v=2026.10.17.3"></script>
-<script src="js/app.js?v=2026.10.17.3"></script>
+<script src="js/illustrations.js?v=2026.10.17.4"></script>
+<script src="js/media.js?v=2026.10.17.4"></script>
+<script src="js/cards-data.js?v=2026.10.17.4"></script>
+<script src="js/cards-en.js?v=2026.10.17.4"></script>
+<script src="js/scenes.js?v=2026.10.17.4"></script>
+<script src="js/backup.js?v=2026.10.17.4"></script>
+<script src="js/i18n.js?v=2026.10.17.4"></script>
+<script src="js/app.js?v=2026.10.17.4"></script>
 </body>
 </html>
