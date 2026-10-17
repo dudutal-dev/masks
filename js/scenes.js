@@ -768,5 +768,677 @@ const SCENES = {
     "Waking up: someone counts down. From here the scene continues wherever the two of you take it, in character. The limits you marked on the \"Limits\" screen apply to the characters too, and the stop word ends the scene in a second. When it is over, move on to \"Out of character\"."
    ]
   }
+ },
+ "sw01": {
+  "he": {
+   "title": "אני את/ה",
+   "premise": "הערב כל אחד משחק את השני. {D} {d:הוא|היא} {S}, ו{S} {s:הוא|היא} {D}: הקול, ההרגלים, הדרך שבה כל אחד מפלרטט. מוגזם מותר.",
+   "setting": "הסלון. כל אחד לובש פריט אחד של השני. מתחילים מחיבוק ״רגיל״ של ערב רגיל, ומשם הכול הפוך.",
+   "props": "פריט לבוש של השני, הטלפון של השני (לצילום סלפי אחד במצב דמות), משקה שהשני אוהב.",
+   "D": {
+    "who": "{S}. בדיוק {S}: הביטויים, הנדנודים הקטנים, מה שהוא/היא עושה כשרוצה.",
+    "how": "לחקות באהבה ובהגזמה. לפתוח במשפט שהשני אומר תמיד. ליזום בדיוק כמו שהשני יוזם, כולל הדברים שהוא/היא ״אף פעם לא עושה״.",
+    "secret": "המטרה הסודית: לגרום ל{S} להגיד ״אני לא ככה!״ ואז להוכיח שכן, עם דוגמה מהשבוע האחרון.",
+    "opener": "המשפט ש{S} אומר/ת הכי הרבה בערב רגיל."
+   },
+   "S": {
+    "who": "{D}. בדיוק {D}: הביטחון או הביישנות, הקצב, הידיים.",
+    "how": "לשחק את השני כפי שהיית רוצה שיהיה, לא רק כפי שהוא. להגיב למה שהשני עושה ״בתור את/ה״ בלי לשבור.",
+    "secret": "המטרה הסודית: לעשות משהו ש{D} תמיד רוצה שתעשה/י ולא עושה/ה, ״כי ככה {D} עושה״. לראות אם הוא/היא שם/ה לב.",
+    "opener": "המשפט ש{D} אומר/ת כשהוא/היא רוצה משהו."
+   },
+   "beats": [
+    "ערב רגיל, הפוך: שיחה על היום, כל אחד בתור השני. מי שצוחק ראשון מקבל ״הערה״ מהדמות שלו.",
+    "הפיתוי ההפוך: כל אחד מפתה כמו שהשני מפתה. ההגזמה מותרת, הדיוק מרגש יותר.",
+    "הרגע שבו שניכם מבינים משהו על עצמכם. מכאן הסצנה ממשיכה לאן ששניכם לוקחים אותה, בתוך הדמויות. הגבולות שסימנתם במסך ״גבולות״ תקפים גם לדמויות, ומילת העצירה מוציאה מהסצנה בשנייה. כשנגמר, עוברים ל״יציאה מהדמות״."
+   ]
+  },
+  "en": {
+   "title": "I am you",
+   "premise": "Tonight each of you plays the other. {D} is {S}, and {S} is {D}: the voice, the habits, the way each one flirts. Exaggeration allowed.",
+   "setting": "The living room. Each wears one item of the other's clothes. Start from a \"regular\" hug of a regular evening, and from there everything is reversed.",
+   "props": "An item of the other's clothing, the other's phone (for one selfie in character), a drink the other likes.",
+   "D": {
+    "who": "{S}. Exactly {S}: the expressions, the little nags, what they do when they want something.",
+    "how": "Imitate with love and exaggeration. Open with the sentence the other always says. Initiate exactly as the other initiates, including the things they \"never do\".",
+    "secret": "Secret goal: make {S} say \"I am not like that!\" and then prove they are, with an example from the past week.",
+    "opener": "The sentence {S} says most on a regular evening."
+   },
+   "S": {
+    "who": "{D}. Exactly {D}: the confidence or the shyness, the pace, the hands.",
+    "how": "Play the other as you wish they were, not only as they are. React to what the other does \"as you\" without breaking.",
+    "secret": "Secret goal: do something {D} always wants you to do and you don't, \"because that is how {D} does it\". See if they notice.",
+    "opener": "The sentence {D} says when they want something."
+   },
+   "beats": [
+    "A regular evening, reversed: talk about the day, each as the other. Whoever laughs first gets a \"remark\" from their character.",
+    "The reversed seduction: each seduces the way the other seduces. Exaggeration is allowed, accuracy is more exciting.",
+    "The moment you both understand something about yourselves. From here the scene continues wherever the two of you take it, in character. The limits you marked on the \"Limits\" screen apply to the characters too, and the stop word ends the scene in a second. When it is over, move on to \"Out of character\"."
+   ]
+  }
+ },
+ "sw02": {
+  "he": {
+   "title": "התאומ/ה המרושע/ת",
+   "premise": "{S} {s:חוזר|חוזרת} הביתה, אבל מי שמחכה הוא לא {D}. זה/זו התאומ/ה, שמעולם לא סיפרו עליו/ה, וההבדל היחיד: בלי שום עכבות.",
+   "setting": "{D} מחכה בבית בבגד או בתסרוקת ששונים מהרגיל. {S} ״נכנס/ת הביתה״ מהדלת. אור אחר מהרגיל.",
+   "props": "פריט לבוש שלא לובשים, שפתון או בושם אחר, כוס שכבר מזוגה.",
+   "D": {
+    "who": "התאומ/ה: אותם פנים, אפס עכבות, מדבר/ת על {D} בגוף שלישי.",
+    "how": "להכחיש בשלווה שאת/ה {D}. לספר ״סודות״ על {D} (מה הוא/היא באמת רוצה). להיות ישיר/ה במקומות ש{D} מהסס/ת. בלי מגע עד שהשני/ה מבקש/ת בקול.",
+    "secret": "המטרה הסודית: ש{S} יגיד/תגיד בקול דבר אחד שהוא/היא מעדיף/ה בתאומ/ה על פני {D}. ואז לממש בדיוק את זה.",
+    "opener": "״{D}? לא, הוא/היא יצא/ה. אני נשארתי לחכות לך.״"
+   },
+   "S": {
+    "who": "בן/בת הזוג שחוזר/ת הביתה ומבין/ה מהר, ומחליט/ה לשתף פעולה.",
+    "how": "לפקפק, לחקור, לשאול שאלות על {D} שאף פעם לא שאלת. להתמסר רק אחרי שהתאומ/ה הוכיח/ה שהוא/היא ״אחר/ת״.",
+    "secret": "המטרה הסודית: לגרום לתאומ/ה להודות במשהו ש{D} ״אף פעם לא היה/תה מודה בו״. אז ההחלטה מי נשאר בבית הלילה היא שלך.",
+    "opener": "״מה עשית עם ה{d:בן|בת} זוג שלי?״"
+   },
+   "beats": [
+    "הפגישה: הכחשות, סודות על {D}, שאלות שלא שואלים. המרחק נשמר.",
+    "ההוכחה: התאומ/ה עושה דבר אחד ש{D} מהסס/ת לעשות. {S} מבקש/ת בקול את ההמשך.",
+    "מי נשאר הלילה: מכאן הסצנה ממשיכה לאן ששניכם לוקחים אותה, בתוך הדמויות. הגבולות שסימנתם במסך ״גבולות״ תקפים גם לדמויות, ומילת העצירה מוציאה מהסצנה בשנייה. כשנגמר, עוברים ל״יציאה מהדמות״."
+   ]
+  },
+  "en": {
+   "title": "The evil twin",
+   "premise": "{S} comes home, but the one waiting is not {D}. It is the twin nobody ever mentioned, and the only difference: no inhibitions at all.",
+   "setting": "{D} waits at home in clothes or a hairstyle unlike the usual. {S} \"comes home\" through the door. Different light than usual.",
+   "props": "An item of clothing you never wear, a different lipstick or perfume, a glass already poured.",
+   "D": {
+    "who": "The twin: the same face, zero inhibitions, speaks of {D} in the third person.",
+    "how": "Calmly deny being {D}. Tell \"secrets\" about {D} (what they really want). Be direct where {D} hesitates. No touching until the other asks out loud.",
+    "secret": "Secret goal: {S} says out loud one thing they prefer in the twin over {D}. Then do exactly that.",
+    "opener": "\"{D}? No, they went out. I stayed to wait for you.\""
+   },
+   "S": {
+    "who": "The partner who comes home, understands quickly, and decides to play along.",
+    "how": "Doubt, investigate, ask questions about {D} you never asked. Give in only after the twin has proven they are \"different\".",
+    "secret": "Secret goal: make the twin admit something {D} \"would never admit\". Then the decision of who stays home tonight is yours.",
+    "opener": "\"What did you do with my partner?\""
+   },
+   "beats": [
+    "The meeting: denials, secrets about {D}, questions nobody asks. The distance is kept.",
+    "The proof: the twin does one thing {D} hesitates to do. {S} asks out loud for the continuation.",
+    "Who stays tonight: From here the scene continues wherever the two of you take it, in character. The limits you marked on the \"Limits\" screen apply to the characters too, and the stop word ends the scene in a second. When it is over, move on to \"Out of character\"."
+   ]
+  }
+ },
+ "si01": {
+  "he": {
+   "title": "נשף מסכות אילם",
+   "premise": "נשף שבו אסור לדבר. שתי מסכות, מוזיקה, ואף מילה. כל מה שרוצים להגיד עובר דרך העיניים והידיים.",
+   "setting": "אור נר, מוזיקה איטית, מסכות (גם צעיף קשור על העיניים העליונות עובד). מהרגע שהמסכות עולות, שתיקה מוחלטת. מילה = עונש קטן שמוסכם מראש.",
+   "props": "שתי מסכות או צעיפים, מוזיקה, משקה.",
+   "D": {
+    "who": "אורח/ת בנשף שבחר/ה דווקא את האדם שלא מכיר/ה.",
+    "how": "להזמין לריקוד ביד מושטת, לא במילה. להוביל את הקצב. לגעת רק איפה שהשני/ה ״מרשה״ במבט. ללמד את השני/ה סימן אחד.",
+    "secret": "המטרה הסודית: שהשני/ה יסיר/תסיר את המסכה בעצמו/ה, בלי שביקשת. רק אז מותר לדבר, במשפט אחד.",
+    "opener": "יד מושטת, בלי מילה."
+   },
+   "S": {
+    "who": "אורח/ת שהגיע/ה לבד ומחליט/ה שהלילה לא מדברים.",
+    "how": "לענות רק בגוף. להמציא שני סימנים: ״כן״ ו״לאט״. להשתמש בהם הרבה. להישאר עם המסכה כמה שיותר.",
+    "secret": "המטרה הסודית: לגרום לשני/ה לפלוט מילה אחת לפני שהמסכה יורדת. אם הצלחת, את/ה בוחר/ת מה קורה אחרי.",
+    "opener": "מבט ארוך, ואז להסיט את העיניים ראשון/ה."
+   },
+   "beats": [
+    "הריקוד: יד מושטת, גוף צמוד, אפס מילים. סימנים מומצאים ל״כן״ ול״לאט״.",
+    "המגע: ידיים שמבקשות רשות במבט ומקבלות אותה בעיניים. המסכות נשארות.",
+    "המסכה יורדת, או המילה נפלטת. מכאן הסצנה ממשיכה לאן ששניכם לוקחים אותה, בתוך הדמויות. הגבולות שסימנתם במסך ״גבולות״ תקפים גם לדמויות, ומילת העצירה מוציאה מהסצנה בשנייה. כשנגמר, עוברים ל״יציאה מהדמות״."
+   ]
+  },
+  "en": {
+   "title": "Silent masquerade",
+   "premise": "A ball where talking is forbidden. Two masks, music, and not a word. Everything you want to say passes through the eyes and the hands.",
+   "setting": "Candlelight, slow music, masks (a scarf tied over the upper face works too). From the moment the masks go on, total silence. A word = a small penalty agreed in advance.",
+   "props": "Two masks or scarves, music, a drink.",
+   "D": {
+    "who": "A guest at the ball who chose the one person they do not know.",
+    "how": "Invite to dance with an offered hand, not a word. Lead the pace. Touch only where the other \"allows\" with a look. Teach the other one sign.",
+    "secret": "Secret goal: the other removes their own mask, without you asking. Only then may you speak, one sentence.",
+    "opener": "An offered hand, without a word."
+   },
+   "S": {
+    "who": "A guest who came alone and decides that tonight nobody speaks.",
+    "how": "Answer only with the body. Invent two signs: \"yes\" and \"slower\". Use them a lot. Keep the mask on as long as possible.",
+    "secret": "Secret goal: make the other let slip one word before the mask comes off. If you succeed, you choose what happens after.",
+    "opener": "A long look, then be the first to look away."
+   },
+   "beats": [
+    "The dance: an offered hand, bodies close, zero words. Invented signs for \"yes\" and \"slower\".",
+    "The touch: hands that ask permission with a look and receive it with the eyes. The masks stay on.",
+    "The mask comes off, or the word slips out. From here the scene continues wherever the two of you take it, in character. The limits you marked on the \"Limits\" screen apply to the characters too, and the stop word ends the scene in a second. When it is over, move on to \"Out of character\"."
+   ]
+  }
+ },
+ "si02": {
+  "he": {
+   "title": "שפה זרה",
+   "premise": "{D} {d:תייר|תיירת} שלא {d:מדבר|מדברת} מילה בשפה שלכם. {S} {s:מנסה|מנסה} לעזור. ג׳יבריש, ידיים, ופנטומימה שהולכת ונעשית ברורה מדי.",
+   "setting": "״רחוב״: {S} עומד/ת, {D} ניגש/ת עם מפה או טלפון. {D} מדבר/ת רק בשפה מומצאת כל הסצנה.",
+   "props": "מפה או טלפון, תיק, כובע של תייר.",
+   "D": {
+    "who": "תייר/ת אבוד/ה שמבין/ה הכול ומעמיד/ה פנים שלא.",
+    "how": "לדבר רק ג׳יבריש, עם אינטונציה אמיתית. להסביר בפנטומימה מה את/ה ״מחפש/ת״: מלון, אוכל, ואז דברים אחרים. להתקרב ״כדי להראות במפה״.",
+    "secret": "המטרה הסודית: שהשני/ה יבין/תבין בלי אף מילה משותפת מה את/ה באמת מבקש/ת, ויגיד/תגיד את זה בקול בשפה שלו/ה.",
+    "opener": "משפט ארוך בג׳יבריש, בטון של שאלה, עם המפה הפוכה."
+   },
+   "S": {
+    "who": "מקומי/ת אדיב/ה שהולך/ת רחוק מדי כדי לעזור.",
+    "how": "לדבר רק בשפה שלך, לאט ובקול, כאילו זה עוזר. לנחש בקול מה התייר/ת רוצה. לנחש לא נכון בכוונה כמה פעמים.",
+    "secret": "המטרה הסודית: ללמד את התייר/ת מילה אחת בשפה שלך, מילה שקשורה למה שאת/ה רוצה שיקרה, ולגרום לו/לה להשתמש בה.",
+    "opener": "״צריך/ה עזרה? איפה את/ה צריך/ה להגיע?״"
+   },
+   "beats": [
+    "האבוד/ה: מפה, ג׳יבריש, ניחושים לא נכונים בכוונה. הפנטומימה מתחילה תמימה.",
+    "השיעור: מילה אחת נלמדת, בקול, עם חזרות. הפנטומימה כבר לא תמימה.",
+    "ההבנה: מה שמבקשים נאמר בקול, בשפה אחת לפחות. מכאן הסצנה ממשיכה לאן ששניכם לוקחים אותה, בתוך הדמויות. הגבולות שסימנתם במסך ״גבולות״ תקפים גם לדמויות, ומילת העצירה מוציאה מהסצנה בשנייה. כשנגמר, עוברים ל״יציאה מהדמות״."
+   ]
+  },
+  "en": {
+   "title": "Foreign language",
+   "premise": "{D} is a tourist who does not speak a word of your language. {S} tries to help. Gibberish, hands, and a pantomime that becomes far too clear.",
+   "setting": "\"A street\": {S} stands, {D} approaches with a map or a phone. {D} speaks only an invented language for the whole scene.",
+   "props": "A map or a phone, a bag, a tourist hat.",
+   "D": {
+    "who": "A lost tourist who understands everything and pretends not to.",
+    "how": "Speak only gibberish, with real intonation. Explain in pantomime what you are \"looking for\": a hotel, food, then other things. Come closer \"to point on the map\".",
+    "secret": "Secret goal: the other understands, without a single shared word, what you are really asking for, and says it out loud in their language.",
+    "opener": "A long sentence of gibberish, in a questioning tone, with the map upside down."
+   },
+   "S": {
+    "who": "A kind local who goes much too far to help.",
+    "how": "Speak only your language, slowly and loudly, as if that helps. Guess out loud what the tourist wants. Guess wrong on purpose a few times.",
+    "secret": "Secret goal: teach the tourist one word in your language, a word connected to what you want to happen, and make them use it.",
+    "opener": "\"Need help? Where do you need to get to?\""
+   },
+   "beats": [
+    "The lost one: a map, gibberish, deliberately wrong guesses. The pantomime starts innocent.",
+    "The lesson: one word is taught, out loud, with repetitions. The pantomime is no longer innocent.",
+    "The understanding: what is being asked is said out loud, in at least one language. From here the scene continues wherever the two of you take it, in character. The limits you marked on the \"Limits\" screen apply to the characters too, and the stop word ends the scene in a second. When it is over, move on to \"Out of character\"."
+   ]
+  }
+ },
+ "sp01": {
+  "he": {
+   "title": "פגישה עם סיסמה",
+   "premise": "שני סוכנים שלא נפגשו מעולם. סיסמה, תשובה, ומסירת ״חבילה״. אף אחד לא בטוח שהשני הוא מי שהוא אומר, ולכן בודקים. ביסודיות.",
+   "setting": "״בית קפה״ או ״ספסל״: שני כיסאות גב אל גב בהתחלה. כל אחד מחזיק ״חבילה״ (מעטפה) שבה כתוב מה הוא רוצה מהערב.",
+   "props": "שתי מעטפות עם פתק בפנים, משקפי שמש, עיתון או ספר.",
+   "D": {
+    "who": "סוכן/ת שהגיע/ה למסור, וחושד/ת שזו מלכודת.",
+    "how": "להגיד את הסיסמה בלי להסתכל. לבדוק את השני/ה: שאלות מכשילות, ״תוכיח/י שאת/ה אמיתי/ת״. למסור את המעטפה רק אחרי בדיקה גופנית ״לנשק״.",
+    "secret": "המטרה הסודית: שהשני/ה יפתח/תפתח את המעטפה שלך ויקרא/תקרא בקול מה כתוב בה, לפני שאת/ה פותח/ת את שלו/ה.",
+    "opener": "״הקפה כאן גרוע.״ (הסיסמה. התשובה הנכונה: ״אבל הנוף טוב.״)"
+   },
+   "S": {
+    "who": "סוכן/ת כפול/ה שבא/ה לקחת את החבילה ולא למסור.",
+    "how": "לענות על הסיסמה נכון, ואז לטעות ״בטעות״ בפרט אחד כדי לראות מה קורה. להסכים לבדיקה גופנית ולהחזיר אחת, יסודית יותר.",
+    "secret": "המטרה הסודית: להחליף את המעטפות בלי שהשני/ה ישים/תשים לב, כך שמה שייקרא בקול יהיה מה שאת/ה רוצה.",
+    "opener": "״אבל הנוף טוב.״ ואז, בלחש: ״עוקבים אחריי.״"
+   },
+   "beats": [
+    "הסיסמה: גב אל גב, סיסמה ותשובה, חשד. ״תוכיח/י.״",
+    "הבדיקה: חיפוש ״נשק״ הדדי, איטי, מקצועי לגמרי, עד שהוא כבר לא.",
+    "המעטפות נפתחות, או מוחלפות. מה שכתוב נקרא בקול. מכאן הסצנה ממשיכה לאן ששניכם לוקחים אותה, בתוך הדמויות. הגבולות שסימנתם במסך ״גבולות״ תקפים גם לדמויות, ומילת העצירה מוציאה מהסצנה בשנייה. כשנגמר, עוברים ל״יציאה מהדמות״."
+   ]
+  },
+  "en": {
+   "title": "Meeting with a password",
+   "premise": "Two agents who have never met. A password, a reply, and a \"package\" handover. Neither is sure the other is who they say, so they check. Thoroughly.",
+   "setting": "\"A café\" or \"a bench\": two chairs back to back at first. Each holds a \"package\" (an envelope) with what they want from the evening written inside.",
+   "props": "Two envelopes with a note inside, sunglasses, a newspaper or a book.",
+   "D": {
+    "who": "An agent who came to deliver and suspects a trap.",
+    "how": "Say the password without looking. Test the other: trick questions, \"prove you are real\". Hand over the envelope only after a physical \"weapons\" check.",
+    "secret": "Secret goal: the other opens your envelope and reads out loud what is written in it, before you open theirs.",
+    "opener": "\"The coffee here is bad.\" (The password. The right reply: \"But the view is good.\")"
+   },
+   "S": {
+    "who": "A double agent who came to take the package, not to deliver.",
+    "how": "Answer the password correctly, then \"accidentally\" get one detail wrong to see what happens. Agree to the physical check and return one, more thorough.",
+    "secret": "Secret goal: swap the envelopes without the other noticing, so that what is read out loud is what you want.",
+    "opener": "\"But the view is good.\" Then, in a whisper: \"I am being followed.\""
+   },
+   "beats": [
+    "The password: back to back, password and reply, suspicion. \"Prove it.\"",
+    "The check: a mutual \"weapons\" search, slow, entirely professional, until it is not.",
+    "The envelopes are opened, or swapped. What is written is read out loud. From here the scene continues wherever the two of you take it, in character. The limits you marked on the \"Limits\" screen apply to the characters too, and the stop word ends the scene in a second. When it is over, move on to \"Out of character\"."
+   ]
+  }
+ },
+ "sp02": {
+  "he": {
+   "title": "הסוד שבכספת",
+   "premise": "{D} {d:פורץ|פורצת} כספות שנתפס/ה בעבודה. {S} {s:הוא בעל|היא בעלת} הבית שחזר/ה מוקדם. במקום להזעיק מישהו, {S} מציע/ה עסקה.",
+   "setting": "חדר השינה חשוך, פנס. {D} ״בעיצומה של פריצה״ ליד ארון או מגירה. {S} מדליק/ה אור פתאום.",
+   "props": "פנס, ״כספת״ (קופסה) עם פתק בפנים, חבל או צעיף, כובע כהה.",
+   "D": {
+    "who": "פורץ/ת מקצועי/ת, קר/ת רוח, שלא רגיל/ה להיתפס.",
+    "how": "לא להתנצל. להציע ללכת ״בלי רעש״. להתמקח. להסכים לתנאים של בעל/ת הבית לאט, אחד אחד, כאילו זה מחיר.",
+    "secret": "המטרה הסודית: לגרום לבעל/ת הבית לפתוח את ה״כספת״ בעצמו/ה ולהראות לך מה בפנים (הפתק: מה הוא/היא רוצה הערב). ואז זה שלך.",
+    "opener": "״את/ה אמור/ה לחזור רק מחר. בלי להזעיק אף אחד, בוא/י נדבר.״"
+   },
+   "S": {
+    "who": "בעל/ת בית שחזר/ה מוקדם ומוצא/ת שזה מעניין יותר מלקרוא למישהו.",
+    "how": "להיות רגוע/ה מדי. לשאול מה חיפשו. להציע עסקה: הפורץ/ת נשאר/ת, ובתמורה עושה/ה מה שמבקשים. להכתיב תנאים בביטחון.",
+    "secret": "המטרה הסודית: לגרום לפורץ/ת להודות מה באמת בא/ה לקחת, במילים. לפי הכלל: הפורץ/ת לא עוזב/ת לפני שהודה/תה.",
+    "opener": "״אור. אל תזוז/י. אתה/את יודע/ת שאני יכול/ה להזעיק משטרה. אני לא אעשה את זה. עדיין.״"
+   },
+   "beats": [
+    "התפיסה: אור פתאום, ידיים למעלה, שאלות. ההצעה לעסקה.",
+    "התנאים: בעל/ת הבית מכתיב/ה, הפורץ/ת מתמקח/ת ומסכים/ה לאט. הכספת נשארת סגורה.",
+    "הכספת נפתחת, או ההודאה נאמרת. מכאן הסצנה ממשיכה לאן ששניכם לוקחים אותה, בתוך הדמויות. הגבולות שסימנתם במסך ״גבולות״ תקפים גם לדמויות, ומילת העצירה מוציאה מהסצנה בשנייה. כשנגמר, עוברים ל״יציאה מהדמות״."
+   ]
+  },
+  "en": {
+   "title": "The secret in the safe",
+   "premise": "{D} is a safecracker caught at work. {S} is the homeowner who came back early. Instead of calling anyone, {S} proposes a deal.",
+   "setting": "The bedroom dark, a torch. {D} \"in the middle of a break-in\" by a closet or a drawer. {S} switches on the light suddenly.",
+   "props": "A torch, a \"safe\" (a box) with a note inside, a rope or a scarf, a dark hat.",
+   "D": {
+    "who": "A professional burglar, cool-headed, not used to getting caught.",
+    "how": "Do not apologize. Offer to leave \"without noise\". Negotiate. Agree to the homeowner's terms slowly, one by one, as if it were a price.",
+    "secret": "Secret goal: make the homeowner open the \"safe\" themselves and show you what is inside (the note: what they want tonight). Then it is yours.",
+    "opener": "\"You were supposed to be back tomorrow. Without calling anyone, let's talk.\""
+   },
+   "S": {
+    "who": "A homeowner who came back early and finds this more interesting than calling anyone.",
+    "how": "Be far too calm. Ask what they were looking for. Offer a deal: the burglar stays, and in return does what is asked. Dictate terms with confidence.",
+    "secret": "Secret goal: make the burglar admit what they really came to take, in words. By the rule: the burglar does not leave before confessing.",
+    "opener": "\"Light. Don't move. You know I could call the police. I won't. Yet.\""
+   },
+   "beats": [
+    "The catch: sudden light, hands up, questions. The deal is proposed.",
+    "The terms: the homeowner dictates, the burglar negotiates and agrees slowly. The safe stays closed.",
+    "The safe opens, or the confession is said. From here the scene continues wherever the two of you take it, in character. The limits you marked on the \"Limits\" screen apply to the characters too, and the stop word ends the scene in a second. When it is over, move on to \"Out of character\"."
+   ]
+  }
+ },
+ "ar01": {
+  "he": {
+   "title": "צייר/ת ודוגמן/ית",
+   "premise": "{D} {d:צייר|ציירת} ו{S} {s:דוגמן|דוגמנית} לציור. הדוגמן/ית לא זז/ה, הצייר/ת מתאר/ת בקול כל קו, והמכחול הוא טוש רחיץ על העור.",
+   "setting": "{S} על כיסא או על המיטה, בתנוחה שנקבעת. {D} עם ״מכחול״ (טוש רחיץ או אצבע עם שמן) ו״בד״ (הגוף). אור אחד חזק.",
+   "props": "טוש רחיץ לגוף או שמן, מגבת, אור.",
+   "D": {
+    "who": "אמן/ית עם עין איטית ובלי בושה לתאר מה הוא/היא רואה.",
+    "how": "לקבוע תנוחה ולא לתת לזוז. לתאר בקול כל קו לפני שמציירים אותו על העור. לצייר לאט, במקומות שהולכים ונהיים אישיים.",
+    "secret": "המטרה הסודית: שהדוגמן/ית יבקש/תבקש לצייר במקום שאת/ה ״עוד לא הגעת אליו״. רק אז מציירים שם.",
+    "opener": "״אל תזוז/י. אני מתחיל/ה מהצוואר.״"
+   },
+   "S": {
+    "who": "דוגמן/ית שמנסה לא לזוז ולא להגיב, ונכשל/ת לאט.",
+    "how": "להחזיק תנוחה. להגיב בנשימה, לא במילים. ״לזוז״ רק כשבאמת אי אפשר, ואז לבקש סליחה כדמות.",
+    "secret": "המטרה הסודית: לגרום לאמן/ית להניח את המכחול ולהשתמש בידיים. ברגע שזה קורה, הציור נגמר ואת/ה קובע/ת את התנוחה הבאה.",
+    "opener": "״איפה את/ה רוצה אותי?״"
+   },
+   "beats": [
+    "הקווים הראשונים: תנוחה נקבעת, הצוואר, הכתפיים, תיאור בקול. הדוגמן/ית לא זז/ה.",
+    "הציור יורד: מקומות אישיים יותר, קווים איטיים יותר. בקשה אחת של הדוגמן/ית.",
+    "המכחול מונח. מכאן הסצנה ממשיכה לאן ששניכם לוקחים אותה, בתוך הדמויות. הגבולות שסימנתם במסך ״גבולות״ תקפים גם לדמויות, ומילת העצירה מוציאה מהסצנה בשנייה. כשנגמר, עוברים ל״יציאה מהדמות״. הציור נשטף יחד אחר כך."
+   ]
+  },
+  "en": {
+   "title": "Painter and model",
+   "premise": "{D} is a painter and {S} a model for a painting. The model does not move, the painter describes every line out loud, and the brush is a washable marker on the skin.",
+   "setting": "{S} on a chair or on the bed, in a pose that is set. {D} with a \"brush\" (a washable marker or an oiled finger) and a \"canvas\" (the body). One strong light.",
+   "props": "A washable body marker or oil, a towel, a light.",
+   "D": {
+    "who": "An artist with a slow eye and no shame about describing what they see.",
+    "how": "Set a pose and do not let them move. Describe every line out loud before drawing it on the skin. Draw slowly, in places that get more and more personal.",
+    "secret": "Secret goal: the model asks you to draw in a place you \"have not reached yet\". Only then draw there.",
+    "opener": "\"Don't move. I am starting from the neck.\""
+   },
+   "S": {
+    "who": "A model trying not to move and not to react, and slowly failing.",
+    "how": "Hold the pose. React with breath, not words. \"Move\" only when it is truly impossible, then apologize in character.",
+    "secret": "Secret goal: make the artist put down the brush and use their hands. The moment it happens, the painting is over and you set the next pose.",
+    "opener": "\"Where do you want me?\""
+   },
+   "beats": [
+    "The first lines: a pose is set, the neck, the shoulders, description out loud. The model does not move.",
+    "The painting travels: more personal places, slower lines. One request from the model.",
+    "The brush is put down. From here the scene continues wherever the two of you take it, in character. The limits you marked on the \"Limits\" screen apply to the characters too, and the stop word ends the scene in a second. When it is over, move on to \"Out of character\". The painting is washed off together afterwards."
+   ]
+  }
+ },
+ "ar02": {
+  "he": {
+   "title": "הפסל/ת והפסל",
+   "premise": "{S} {s:הוא|היא} פסל שיש. {D} {d:הפסל|הפסלת} שמעצב/ת אותו, איבר אחר איבר, ומגלה שהפסל מתחמם תחת הידיים.",
+   "setting": "{S} עומד/ת או יושב/ת, עיניים עצומות, ״לא יכול/ה לזוז״ עד שמזיזים אותו/ה. {D} מסדר/ת את התנוחה ביד.",
+   "props": "סדין לבן, אור חזק אחד, מוזיקה קלאסית.",
+   "D": {
+    "who": "פסל/ת שמאמין/ה שהחומר מגיב למגע.",
+    "how": "להזיז את הפסל רק בידיים: זרוע, סנטר, ברך. לדבר אל הפסל כאילו הוא לא שומע. לשבח את ״החומר״. להתקרב אט אט ל״פרטים העדינים״.",
+    "secret": "המטרה הסודית: שהפסל ״יתעורר״ ויזוז מעצמו פעם אחת, ואז להעמיד פנים שלא קרה ולהמשיך לפסל, קרוב יותר.",
+    "opener": "״עוד לא מוכן. הזרוע לא נכונה.״"
+   },
+   "S": {
+    "who": "פסל שיש שמתחיל להרגיש ולא אמור.",
+    "how": "לא לזוז בכלל. להישאר בכל תנוחה שמסדרים. ״להתעורר״ רק פעם אחת, לרגע, במקום שבו המגע חזק מדי. ואז לחזור להיות שיש.",
+    "secret": "המטרה הסודית: לגרום לפסל/ת לנשק את הפסל ״כדי לבדוק אם הוא חם״. אחרי הנשיקה הפסל חי ועושה מה שהוא רוצה.",
+    "opener": "שתיקה. פסלים לא מדברים."
+   },
+   "beats": [
+    "הפיסול: תנוחה שמסתדרת ביד, איבר אחרי איבר, דיבור אל החומר. הפסל קפוא.",
+    "הפרטים העדינים: מגע קרוב יותר, הפסל ״מתעורר״ לרגע ונעשה שיש שוב.",
+    "הבדיקה אם הוא חם. מכאן הסצנה ממשיכה לאן ששניכם לוקחים אותה, בתוך הדמויות. הגבולות שסימנתם במסך ״גבולות״ תקפים גם לדמויות, ומילת העצירה מוציאה מהסצנה בשנייה. כשנגמר, עוברים ל״יציאה מהדמות״."
+   ]
+  },
+  "en": {
+   "title": "The sculptor and the statue",
+   "premise": "{S} is a marble statue. {D} is the sculptor shaping it, limb by limb, and discovers the statue warming under their hands.",
+   "setting": "{S} stands or sits, eyes closed, \"unable to move\" until moved. {D} arranges the pose by hand.",
+   "props": "A white sheet, one strong light, classical music.",
+   "D": {
+    "who": "A sculptor who believes the material responds to touch.",
+    "how": "Move the statue only with your hands: an arm, the chin, a knee. Talk to the statue as if it cannot hear. Praise the \"material\". Slowly approach the \"fine details\".",
+    "secret": "Secret goal: the statue \"wakes\" and moves by itself once, then pretend it did not happen and keep sculpting, closer.",
+    "opener": "\"Not ready yet. The arm is wrong.\""
+   },
+   "S": {
+    "who": "A marble statue that starts to feel and is not supposed to.",
+    "how": "Do not move at all. Stay in any pose you are arranged in. \"Wake\" only once, for a moment, where the touch is too strong. Then be marble again.",
+    "secret": "Secret goal: make the sculptor kiss the statue \"to check if it is warm\". After the kiss the statue is alive and does what it wants.",
+    "opener": "Silence. Statues do not speak."
+   },
+   "beats": [
+    "The sculpting: a pose arranged by hand, limb by limb, talking to the material. The statue is frozen.",
+    "The fine details: closer touch, the statue \"wakes\" for a moment and becomes marble again.",
+    "The check whether it is warm. From here the scene continues wherever the two of you take it, in character. The limits you marked on the \"Limits\" screen apply to the characters too, and the stop word ends the scene in a second. When it is over, move on to \"Out of character\"."
+   ]
+  }
+ },
+ "ga01": {
+  "he": {
+   "title": "קלפים על וידויים",
+   "premise": "משחק קלפים פשוט (מלחמה או הגבוה מנצח). מי שמפסיד סיבוב בוחר: וידוי אמיתי, או פריט לבוש, או ״משימה״ שהמנצח/ת כותב/ת בפתק.",
+   "setting": "שולחן או מיטה, חפיסת קלפים, פתקים ועט. שלוש ערימות: ״וידוי״, ״בגד״, ״משימה״.",
+   "props": "חפיסת קלפים, פתקים, עט, משקה.",
+   "D": {
+    "who": "קלפן/ית ותיק/ה שיודע/ת שהמשחק הוא רק תירוץ.",
+    "how": "לשחק באמת ולהפסיד לפעמים בכוונה. לכתוב משימות שמסלימות לאט: הראשונות תמימות, האחרונות לא. לשאול שאלות וידוי שאף פעם לא שאלת.",
+    "secret": "המטרה הסודית: שהשני/ה יבחר/תבחר ״וידוי״ שלוש פעמים ברצף. אז מותר לך לקבוע את המשימה האחרונה של הערב.",
+    "opener": "״הגבוה מנצח. המפסיד/ה בוחר/ת: וידוי, בגד, או משימה. את/ה ראשון/ה.״"
+   },
+   "S": {
+    "who": "שחקן/ית שמעדיף/ה להפסיד בחוכמה.",
+    "how": "להפסיד כשמתאים לך. לבחור ״משימה״ מוקדם כדי לראות לאן הפתקים הולכים. לכתוב משימות שמחייבות את השני/ה להגיד משהו, לא רק לעשות.",
+    "secret": "המטרה הסודית: לגרום ל{D} להתוודות על דבר אחד שהוא/היא ״אף פעם לא היה/תה מספר/ת״. ברגע שזה נאמר, המשחק נגמר ואת/ה מנצח/ת.",
+    "opener": "״אני אף פעם לא מפסיד/ה. חוץ מכשאני רוצה.״"
+   },
+   "beats": [
+    "הסיבובים הראשונים: וידויים קטנים, פריט אחד, משימות תמימות. הפתקים נשמרים.",
+    "ההסלמה: המשימות כבר לא תמימות, הווידויים כבר לא קטנים. אחד מכם מפסיד בכוונה.",
+    "המשימה האחרונה של הערב נקראת בקול. מכאן הסצנה ממשיכה לאן ששניכם לוקחים אותה, בתוך הדמויות. הגבולות שסימנתם במסך ״גבולות״ תקפים גם לדמויות, ומילת העצירה מוציאה מהסצנה בשנייה. כשנגמר, עוברים ל״יציאה מהדמות״."
+   ]
+  },
+  "en": {
+   "title": "Cards for confessions",
+   "premise": "A simple card game (war, or highest wins). Whoever loses a round chooses: a real confession, an item of clothing, or a \"dare\" the winner writes on a note.",
+   "setting": "A table or the bed, a deck of cards, notes and a pen. Three piles: \"confession\", \"clothing\", \"dare\".",
+   "props": "A deck of cards, notes, a pen, a drink.",
+   "D": {
+    "who": "A veteran card player who knows the game is just an excuse.",
+    "how": "Really play and sometimes lose on purpose. Write dares that escalate slowly: the first innocent, the last not. Ask confession questions you never asked.",
+    "secret": "Secret goal: the other chooses \"confession\" three times in a row. Then you set the last dare of the evening.",
+    "opener": "\"Highest wins. The loser chooses: confession, clothing or dare. You first.\""
+   },
+   "S": {
+    "who": "A player who prefers to lose wisely.",
+    "how": "Lose when it suits you. Choose \"dare\" early to see where the notes are going. Write dares that make the other say something, not just do.",
+    "secret": "Secret goal: make {D} confess one thing they \"would never tell\". The moment it is said, the game is over and you win.",
+    "opener": "\"I never lose. Except when I want to.\""
+   },
+   "beats": [
+    "The first rounds: small confessions, one item, innocent dares. The notes are kept.",
+    "The escalation: the dares are no longer innocent, the confessions no longer small. One of you loses on purpose.",
+    "The last dare of the evening is read out loud. From here the scene continues wherever the two of you take it, in character. The limits you marked on the \"Limits\" screen apply to the characters too, and the stop word ends the scene in a second. When it is over, move on to \"Out of character\"."
+   ]
+  }
+ },
+ "ga02": {
+  "he": {
+   "title": "קזינו של טובות",
+   "premise": "{D} {d:מנהל|מנהלת} קזינו פרטי, {S} {s:שחקן|שחקנית} שנגמר לו/לה הכסף. מכאן מהמרים על טובות, והבית תמיד מנצח. כמעט.",
+   "setting": "שולחן, ״ז׳יטונים״ (מטבעות, גפרורים), קוביות או קלפים. {D} עומד/ת, {S} יושב/ת. כל ז׳יטון = טובה אחת שנכתבת מראש.",
+   "props": "מטבעות או גפרורים, קוביות, פתקים, משקה.",
+   "D": {
+    "who": "בעל/ת הקזינו, חייכן/ית, לא מפסיד/ה אף פעם, עד שמשתלם להפסיד.",
+    "how": "לנהל את המשחק בביטחון. לקבוע מה שווה כל ז׳יטון. לגבות ״חובות״ מיד, במקום, בחיוך. להפסיד פעם אחת גדולה בכוונה, מאוחר.",
+    "secret": "המטרה הסודית: שהשחקן/ית יהמר/תהמר על ״הכול״ בעצמו/ה, במילים. אז הבית גובה הכול, לאט.",
+    "opener": "״נגמר לך הכסף? יש מטבע אחר. שב/י.״"
+   },
+   "S": {
+    "who": "שחקן/ית שמהמר/ת כי אוהב/ת להפסיד לאדם הזה.",
+    "how": "להמר בזהירות בהתחלה, לשלם חובות בלי להתווכח, ואז להמר בגדול. לדרוש לגבות כשמנצחים, בלי בושה.",
+    "secret": "המטרה הסודית: לנצח פעם אחת ולגבות מהבית טובה שהבית ״לא נותן אף פעם״. להחליט מראש מה היא, ולהגיד אותה בקול רק כשזוכים.",
+    "opener": "״מה המטבע? ומה שווה ז׳יטון אחד כאן?״"
+   },
+   "beats": [
+    "הכללים: ערך הז׳יטונים נכתב, ההימורים קטנים, החובות נגבים מיד ובחיוך.",
+    "ההימור הגדול: ״הכול״ נאמר בקול, או הבית מפסיד פעם אחת וטובה ״שלא נותנים״ נגבית.",
+    "הגבייה האחרונה: מכאן הסצנה ממשיכה לאן ששניכם לוקחים אותה, בתוך הדמויות. הגבולות שסימנתם במסך ״גבולות״ תקפים גם לדמויות, ומילת העצירה מוציאה מהסצנה בשנייה. כשנגמר, עוברים ל״יציאה מהדמות״."
+   ]
+  },
+  "en": {
+   "title": "Casino of favors",
+   "premise": "{D} runs a private casino, {S} is a player who ran out of money. From here you bet favors, and the house always wins. Almost.",
+   "setting": "A table, \"chips\" (coins, matches), dice or cards. {D} stands, {S} sits. Every chip = one favor written in advance.",
+   "props": "Coins or matches, dice, notes, a drink.",
+   "D": {
+    "who": "The casino owner, smiling, never loses, until losing pays.",
+    "how": "Run the game with confidence. Set what each chip is worth. Collect \"debts\" immediately, on the spot, with a smile. Lose one big round on purpose, late.",
+    "secret": "Secret goal: the player bets \"everything\" by themselves, in words. Then the house collects everything, slowly.",
+    "opener": "\"Out of money? There is another currency. Sit.\""
+   },
+   "S": {
+    "who": "A player who gambles because they love losing to this person.",
+    "how": "Bet carefully at first, pay debts without arguing, then bet big. Demand to collect when you win, without shame.",
+    "secret": "Secret goal: win once and collect from the house a favor the house \"never gives\". Decide in advance what it is, and say it out loud only when you win.",
+    "opener": "\"What is the currency? And what is one chip worth here?\""
+   },
+   "beats": [
+    "The rules: the value of the chips is written, the bets are small, debts are collected immediately with a smile.",
+    "The big bet: \"everything\" is said out loud, or the house loses once and a favor \"never given\" is collected.",
+    "The last collection: From here the scene continues wherever the two of you take it, in character. The limits you marked on the \"Limits\" screen apply to the characters too, and the stop word ends the scene in a second. When it is over, move on to \"Out of character\"."
+   ]
+  }
+ },
+ "re01": {
+  "he": {
+   "title": "מספר לא מזוהה",
+   "premise": "{S} לבד בחדר אחד, {D} בחדר אחר. הטלפון מצלצל ממספר לא מזוהה. קול זר, שיודע עליך יותר מדי, ומבקש דברים קטנים.",
+   "setting": "שני חדרים, דלת סגורה, שיחת טלפון (או וידאו בלי פנים). {D} משנה קצת את הקול.",
+   "props": "שני טלפונים, חדר עם דלת, אור חלש.",
+   "D": {
+    "who": "קול בטלפון. לא מזדהה. יודע פרטים שרק אדם קרוב יודע.",
+    "how": "לדבר לאט, בשקט. להוכיח שאת/ה ״רואה״ (לתאר מה השני/ה לובש/ת). לבקש דברים קטנים: לכבות אור, לפתוח כפתור, לתאר בקול. לא לבוא לחדר עד שמזמינים.",
+    "secret": "המטרה הסודית: שהשני/ה יגיד/תגיד ״תבוא/י״ בקול, לטלפון. רק אז הדלת נפתחת.",
+    "opener": "״אל תנתק/י. את/ה לא מכיר/ה אותי, אבל אני יודע/ת איפה את/ה יושב/ת עכשיו.״"
+   },
+   "S": {
+    "who": "מי שעונה/ה לשיחה ולא מנתק/ת, בניגוד לכל היגיון.",
+    "how": "להיות חשדן/ית, ואז סקרן/ית. לציית לבקשות קטנות ולתאר בקול מה את/ה עושה. לשאול ״מי זה״ ולא לקבל תשובה. לא להזמין מהר.",
+    "secret": "המטרה הסודית: לגרום לקול להסגיר את עצמו: לצחוק, או להגיד את השם שלך בטון שרק {D} אומר. אז את/ה קובע/ת מה קורה כשהדלת נפתחת.",
+    "opener": "״הלו? מי זה?״"
+   },
+   "beats": [
+    "השיחה: קול זר, פרטים שרק קרוב יודע, חשד שהופך לסקרנות. בקשה קטנה ראשונה.",
+    "ההוראות מרחוק: דברים קטנים שנעשים ומתוארים בקול, דלת סגורה, נשימה בטלפון.",
+    "״תבוא/י.״ הדלת נפתחת. מכאן הסצנה ממשיכה לאן ששניכם לוקחים אותה, בתוך הדמויות. הגבולות שסימנתם במסך ״גבולות״ תקפים גם לדמויות, ומילת העצירה מוציאה מהסצנה בשנייה. כשנגמר, עוברים ל״יציאה מהדמות״."
+   ]
+  },
+  "en": {
+   "title": "Unknown number",
+   "premise": "{S} alone in one room, {D} in another. The phone rings from an unknown number. A strange voice that knows too much about you, and asks for small things.",
+   "setting": "Two rooms, a closed door, a phone call (or video without faces). {D} changes their voice a little.",
+   "props": "Two phones, a room with a door, low light.",
+   "D": {
+    "who": "A voice on the phone. Does not identify. Knows details only someone close knows.",
+    "how": "Speak slowly, quietly. Prove you \"see\" (describe what the other is wearing). Ask for small things: turn off a light, open a button, describe out loud. Do not come to the room until invited.",
+    "secret": "Secret goal: the other says \"come\" out loud, into the phone. Only then the door opens.",
+    "opener": "\"Don't hang up. You don't know me, but I know where you are sitting right now.\""
+   },
+   "S": {
+    "who": "The one who answers the call and does not hang up, against all logic.",
+    "how": "Be suspicious, then curious. Obey small requests and describe out loud what you are doing. Ask \"who is this\" and get no answer. Do not invite quickly.",
+    "secret": "Secret goal: make the voice give itself away: laugh, or say your name in the tone only {D} uses. Then you decide what happens when the door opens.",
+    "opener": "\"Hello? Who is this?\""
+   },
+   "beats": [
+    "The call: a strange voice, details only someone close knows, suspicion turning into curiosity. A first small request.",
+    "Orders from afar: small things done and described out loud, a closed door, breathing into the phone.",
+    "\"Come.\" The door opens. From here the scene continues wherever the two of you take it, in character. The limits you marked on the \"Limits\" screen apply to the characters too, and the stop word ends the scene in a second. When it is over, move on to \"Out of character\"."
+   ]
+  }
+ },
+ "re02": {
+  "he": {
+   "title": "הודעות מחדר לחדר",
+   "premise": "אסור לדבר ואסור להיפגש. שני חדרים, שני טלפונים, ורק הודעות כתובות. כל הודעה היא הוראה או וידוי. הפגישה מגיעה רק בסוף.",
+   "setting": "כל אחד בחדר אחר. שיחה בהודעות בלבד. כל הודעה: או הוראה קטנה לשני/ה, או וידוי. לא עונים על שאלות בקול.",
+   "props": "שני טלפונים, שני חדרים, טיימר ל-20 דקות.",
+   "D": {
+    "who": "מי ששולח/ת את ההודעה הראשונה, ומכתיב/ת את הקצב.",
+    "how": "להתחיל בהוראה קטנה (״תכבה/י אור״). לדרוש תמונה של ״הוכחה״ לכל הוראה (צילום של האור הכבוי, של היד, של הכתף). להסלים לאט. לכתוב וידוי אחד על כל שתי הוראות.",
+    "secret": "המטרה הסודית: שהשני/ה ישלח/תשלח תמונה שלא ביקשת. אז מותר לך לכתוב את ההוראה האחרונה: איפה נפגשים ואיך.",
+    "opener": "הודעה: ״אל תדבר/י. רק תקרא/י. תכבה/י את האור ותשלח/י לי תמונה.״"
+   },
+   "S": {
+    "who": "מי שמקבל/ת הוראות בכתב ומגלה שזה קל יותר מבקול.",
+    "how": "לבצע ולשלוח הוכחה. לענות על כל וידוי בווידוי. לשאול שאלה אחת בכתב שבקול לא היית שואל/ת.",
+    "secret": "המטרה הסודית: לגרום ל{D} לכתוב הודעה שהוא/היא לא היה/תה אומר/ת בקול לעולם. לשמור אותה. ואז להזמין לחדר שלך, לא ללכת לשלו/ה.",
+    "opener": "הודעה: ״קראתי. מה עכשיו?״"
+   },
+   "beats": [
+    "ההודעות הראשונות: הוראות קטנות, הוכחות מצולמות, וידוי אחד.",
+    "ההסלמה בכתב: מה שלא אומרים בקול נכתב. שאלה אחת, תשובה אחת.",
+    "ההוראה האחרונה: איפה נפגשים. הדלת. מכאן הסצנה ממשיכה לאן ששניכם לוקחים אותה, בתוך הדמויות. הגבולות שסימנתם במסך ״גבולות״ תקפים גם לדמויות, ומילת העצירה מוציאה מהסצנה בשנייה. כשנגמר, עוברים ל״יציאה מהדמות״. התמונות נמחקות יחד."
+   ]
+  },
+  "en": {
+   "title": "Messages from room to room",
+   "premise": "No talking and no meeting. Two rooms, two phones, and only written messages. Every message is an order or a confession. The meeting comes only at the end.",
+   "setting": "Each in a different room. A conversation in messages only. Every message: either a small order to the other, or a confession. No questions answered out loud.",
+   "props": "Two phones, two rooms, a 20-minute timer.",
+   "D": {
+    "who": "The one who sends the first message and sets the pace.",
+    "how": "Start with a small order (\"turn off the light\"). Demand a \"proof\" photo for every order (the light off, a hand, a shoulder). Escalate slowly. Write one confession per two orders.",
+    "secret": "Secret goal: the other sends a photo you did not ask for. Then you may write the last order: where you meet and how.",
+    "opener": "Message: \"Don't talk. Just read. Turn off the light and send me a photo.\""
+   },
+   "S": {
+    "who": "The one who takes written orders and finds it easier than out loud.",
+    "how": "Carry out and send proof. Answer every confession with a confession. Ask one question in writing you would not ask out loud.",
+    "secret": "Secret goal: make {D} write a message they would never say out loud. Keep it. Then invite them to your room, do not go to theirs.",
+    "opener": "Message: \"Read it. Now what?\""
+   },
+   "beats": [
+    "The first messages: small orders, photo proofs, one confession.",
+    "Written escalation: what is not said out loud gets written. One question, one answer.",
+    "The last order: where you meet. The door. From here the scene continues wherever the two of you take it, in character. The limits you marked on the \"Limits\" screen apply to the characters too, and the stop word ends the scene in a second. When it is over, move on to \"Out of character\". The photos are deleted together."
+   ]
+  }
+ },
+ "ti01": {
+  "he": {
+   "title": "הפעם הראשונה, מחדש",
+   "premise": "חזרה לדייט הראשון שלכם, אבל הפעם שניכם יודעים מה יקרה. אותו מקום, אותם משפטים שאתם זוכרים, ומה שלא העזתם אז.",
+   "setting": "לשחזר כמה שאפשר: מה שתיתם, איפה ישבתם, מה לבשתם. כל אחד אומר משפט אחד שהוא זוכר מהערב ההוא.",
+   "props": "המשקה של אז, שיר של אז, בגד שדומה.",
+   "D": {
+    "who": "את/ה, בערב ההוא, עם כל מה שאת/ה יודע/ת היום.",
+    "how": "לשחזר את ההתחלה בדיוק. ואז, ברגע שאת/ה זוכר/ת שהיססת, לעשות את ההפך. להגיד את מה שרצית להגיד אז.",
+    "secret": "המטרה הסודית: לגרום לשני/ה להודות מה הוא/היא חשב/ה עליך באותו ערב ולא אמר/ה. ואז לעשות את זה.",
+    "opener": "המשפט הראשון שאמרת באותו ערב, מילה במילה אם אפשר."
+   },
+   "S": {
+    "who": "את/ה, בערב ההוא, עם כל מה שאת/ה יודע/ת היום.",
+    "how": "לשחק את עצמך של אז: הביישנות או הביטחון. להיות מופתע/ת מה שהשני/ה עושה אחרת. להסכים למה שלא הסכמת אז, אם את/ה רוצה.",
+    "secret": "המטרה הסודית: לעשות דבר אחד שרצית לעשות בערב ההוא ולא העזת, בלי להסביר. לראות אם השני/ה מזהה.",
+    "opener": "המשפט הראשון שענית באותו ערב."
+   },
+   "beats": [
+    "השחזור: אותם משפטים, אותו מקום, אותו משקה. לזכור יחד איפה הייתה ההיסוס.",
+    "הסטייה: מה שלא נאמר אז נאמר. מה שלא נעשה אז נעשה, בלי להסביר.",
+    "הסוף שהיה צריך להיות. מכאן הסצנה ממשיכה לאן ששניכם לוקחים אותה, בתוך הדמויות. הגבולות שסימנתם במסך ״גבולות״ תקפים גם לדמויות, ומילת העצירה מוציאה מהסצנה בשנייה. כשנגמר, עוברים ל״יציאה מהדמות״."
+   ]
+  },
+  "en": {
+   "title": "The first time, again",
+   "premise": "Back to your first date, but this time you both know what will happen. The same place, the lines you remember, and what you did not dare then.",
+   "setting": "Recreate as much as possible: what you drank, where you sat, what you wore. Each says one line they remember from that evening.",
+   "props": "The drink from then, a song from then, similar clothes.",
+   "D": {
+    "who": "You, on that evening, with everything you know today.",
+    "how": "Recreate the start exactly. Then, the moment you remember hesitating, do the opposite. Say what you wanted to say then.",
+    "secret": "Secret goal: make the other admit what they thought about you that evening and did not say. Then do it.",
+    "opener": "The first line you said that evening, word for word if you can."
+   },
+   "S": {
+    "who": "You, on that evening, with everything you know today.",
+    "how": "Play yourself of then: the shyness or the confidence. Be surprised by what the other does differently. Agree to what you did not agree to then, if you want.",
+    "secret": "Secret goal: do one thing you wanted to do that evening and did not dare, without explaining. See if the other recognizes it.",
+    "opener": "The first line you answered with that evening."
+   },
+   "beats": [
+    "The reenactment: the same lines, the same place, the same drink. Remember together where the hesitation was.",
+    "The deviation: what was not said then is said. What was not done then is done, without explaining.",
+    "The ending that should have been. From here the scene continues wherever the two of you take it, in character. The limits you marked on the \"Limits\" screen apply to the characters too, and the stop word ends the scene in a second. When it is over, move on to \"Out of character\"."
+   ]
+  }
+ },
+ "ti02": {
+  "he": {
+   "title": "בר חשאי, 1926",
+   "premise": "איסור משקאות. בר מחתרתי מאחורי דלת מכולת. {D} {d:מנהל|מנהלת} את המקום, {S} {s:לקוח|לקוחה} חדש/ה שהביא/ה סיסמה נכונה ושאלות לא נכונות.",
+   "setting": "אור צהוב, ג׳אז ישן, כוסות קטנות. {S} ״דופק/ת״ בדלת עם סיסמה. {D} פותח/ת חריץ ובודק/ת.",
+   "props": "מוזיקת ג׳אז, כובע או מגבעת, צעיף, ״משקה אסור״.",
+   "D": {
+    "who": "בעל/ת הבר, שמריח/ה שוטר/ת סמוי/ה מרחוק, ומסתקרן/ת בכל זאת.",
+    "how": "לדבר בסלנג של פעם. לבדוק את הלקוח/ה: מי שלח, מה שותים. להכניס רק אחרי ״חיפוש״. למזוג ולהשאיר את היד על הכוס עוד רגע.",
+    "secret": "המטרה הסודית: לגרום ללקוח/ה להודות שהוא/היא ״מהמשטרה״, בצחוק או ברצינות, ואז להחליט מה עושים עם שוטר/ת בבר חשאי.",
+    "opener": "״סיסמה. ומי שלח אותך, כי הפרצוף שלך לא מוכר לי.״"
+   },
+   "S": {
+    "who": "לקוח/ה חדש/ה, אולי שוטר/ת סמוי/ה, אולי סתם סקרן/ית.",
+    "how": "להגיד את הסיסמה ולטעות במילה אחת. להסתכל יותר מדי על הבר, ועל בעל/ת הבר. להציע ״לשמור על הסוד״ תמורת משהו.",
+    "secret": "המטרה הסודית: לקבל מבעל/ת הבר את המשקה ״שלא מגישים״, שהוא פתק עם מה שהוא/היא רוצה הלילה. ואז לשתות אותו.",
+    "opener": "״ציפור אמרה לי שיש כאן משהו טוב יותר ממיץ.״"
+   },
+   "beats": [
+    "הדלת: סיסמה, חשד, ״חיפוש״, כניסה. משקה ראשון, היד על הכוס.",
+    "הסוד: ההצעה ״לשמור על הסוד״, ההודאה, ההחלטה מה עושים עם זה.",
+    "המשקה שלא מגישים. מכאן הסצנה ממשיכה לאן ששניכם לוקחים אותה, בתוך הדמויות. הגבולות שסימנתם במסך ״גבולות״ תקפים גם לדמויות, ומילת העצירה מוציאה מהסצנה בשנייה. כשנגמר, עוברים ל״יציאה מהדמות״."
+   ]
+  },
+  "en": {
+   "title": "Speakeasy, 1926",
+   "premise": "Prohibition. An underground bar behind a grocery door. {D} runs the place, {S} is a new customer who brought the right password and the wrong questions.",
+   "setting": "Yellow light, old jazz, small glasses. {S} \"knocks\" on the door with a password. {D} opens a slit and checks.",
+   "props": "Jazz music, a hat or a fedora, a scarf, a \"forbidden drink\".",
+   "D": {
+    "who": "The bar owner, who can smell an undercover cop from afar, and gets curious anyway.",
+    "how": "Speak in old slang. Test the customer: who sent them, what they drink. Let them in only after a \"search\". Pour and leave your hand on the glass a moment longer.",
+    "secret": "Secret goal: make the customer admit they are \"with the police\", joking or serious, then decide what to do with a cop in a speakeasy.",
+    "opener": "\"Password. And who sent you, because I don't know your face.\""
+   },
+   "S": {
+    "who": "A new customer, maybe an undercover cop, maybe just curious.",
+    "how": "Say the password and get one word wrong. Look too long at the bar, and at the owner. Offer to \"keep the secret\" in exchange for something.",
+    "secret": "Secret goal: get from the owner the drink \"they don't serve\", which is a note with what they want tonight. Then drink it.",
+    "opener": "\"A little bird told me there is something better than juice here.\""
+   },
+   "beats": [
+    "The door: password, suspicion, a \"search\", entry. A first drink, a hand on the glass.",
+    "The secret: the offer to \"keep the secret\", the admission, the decision what to do with it.",
+    "The drink they don't serve. From here the scene continues wherever the two of you take it, in character. The limits you marked on the \"Limits\" screen apply to the characters too, and the stop word ends the scene in a second. When it is over, move on to \"Out of character\"."
+   ]
+  }
  }
 };

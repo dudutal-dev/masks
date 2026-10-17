@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const KEY = 'masks.v1';
-  const APP_VERSION = '2026.10.17.2';
+  const APP_VERSION = '2026.10.17.3';
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -486,7 +486,7 @@
   $('#btn-resume').addEventListener('click', () => startPlay('session'));
 
   // חום של קטגוריה: סדר הערב בתוך כל רמה הולך מהעדין אל הלוהט
-  const CAT_HEAT = { strangers: 0, service: 1, care: 2, work: 3, authority: 4, fantasy: 5, forbidden: 6, control: 7 };
+  const CAT_HEAT = { strangers: 0, time: 1, silent: 2, art: 3, service: 4, care: 5, remote: 6, work: 7, game: 8, spy: 9, authority: 10, swap: 11, fantasy: 12, forbidden: 13, control: 14 };
   const heatOf = (c) => c.lvl * 1000 + (CAT_HEAT[c.cat] !== undefined ? CAT_HEAT[c.cat] : 6) * 10 + (c.min ? Math.min(c.min, 9) * 0.1 : 0);
   function buildSession() {
     const p = shuffle(pool());
