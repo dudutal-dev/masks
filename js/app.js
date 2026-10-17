@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const KEY = 'masks.v1';
-  const APP_VERSION = '2026.10.17.6';
+  const APP_VERSION = '2026.10.17.7';
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -165,7 +165,7 @@
         <div class="sc-cast"><div class="who"><span>${illus('key')}</span><div><b>${nD}</b><small>${L(g(D, 'יוזם. פותח את הסצנה', 'יוזמת. פותחת את הסצנה'), 'initiator, opens the scene')}</small></div></div>
           <div class="who"><span>${illus('mask')}</span><div><b>${nS}</b><small>${L(g(Sb, 'מגיב. עונה מתוך הדמות', 'מגיבה. עונה מתוך הדמות'), 'responder, answers in character')}</small></div></div></div>
         <div class="sc-meta"><p><span class="lbl">${L('הבמה', 'The stage')}</span>${render(sd.setting)}</p><p><span class="lbl">${L('אביזרים', 'Props')}</span>${render(sd.props)}</p>${c.min ? `<p><span class="lbl">${L('משך', 'Duration')}</span>${L(`כ-${c.min} דקות`, `about ${c.min} minutes`)}</p>` : ''}</div>
-        ${now(L('קראו את הדף הזה <b>יחד</b>. הכינו את החדר והאביזרים. בצעד הבא כל אחד מקבל קלף סודי, בתורו.', 'Read this page <b>together</b>. Set up the room and the props. In the next step each of you gets a secret card, one at a time.'))}`;
+        ${now(L('קראו את הדף הזה <b>יחד</b>. הכינו את החדר והאביזרים. בצעד הבא כל אחד מקבל קלף סודי, בתורו.<br><span class="tv-tip">📺 טלוויזיה? מחברים רק בצעד 4, אחרי שהקלפים הסודיים נקראו.</span>', 'Read this page <b>together</b>. Set up the room and the props. In the next step each of you gets a secret card, one at a time.<br><span class="tv-tip">📺 TV? Connect it only at step 4, after the secret cards have been read.</span>'))}`;
       btns = `<button class="btn primary big" data-sc="roles">${L('החדר מוכן. לקלפים הסודיים ←', 'Room is ready. To the secret cards →')}</button>
         <div class="row gap"><button class="btn ghost" data-sc="guide">${L('? איך משחקים', '? How to play')}</button><button class="btn ghost" data-sc="skiproles">${L('בלי קלפים סודיים הפעם', 'No secret cards this time')}</button></div>`;
     } else if (scn.stage === 'hand') {
@@ -173,6 +173,7 @@
       body = `<div class="handoff"><div class="home-emblem">${illus('phone')}</div><h1>${esc(scName(who))}, ${L('הטלפון שלך', 'your phone')}</h1>
         <p class="lead">${L(`<b>${esc(scName(o))}</b>, ${g(o, 'תסתכל', 'תסתכלי')} הצידה רגע. הקלף הבא מיועד ל${esc(scName(who))} בלבד.`, `<b>${esc(scName(o))}</b>, look away for a moment. The next card is for ${esc(scName(who))} only.`)}</p></div>
         ${now(L(`${esc(scName(o))} ${g(o, 'מוסר', 'מוסרת')} את הטלפון ל${esc(scName(who))}. ${esc(scName(who))} ${g(who, 'לוחץ', 'לוחצת')} על הכפתור רק כש${esc(scName(o))} לא ${g(o, 'רואה', 'רואה')}.`, `${esc(scName(o))} hands the phone to ${esc(scName(who))}. ${esc(scName(who))} taps the button only once ${esc(scName(o))} cannot see.`))}`;
+      body += tvConn ? `<p class="tv-warn ok">📡 ${L('השידור לטלוויזיה ממשיך להראות רק את הבמה. הקלף נשאר בטלפון.', 'The cast keeps showing only the stage. The card stays on the phone.')}</p>` : `<p class="tv-warn">📺 ${L('מסך הטלפון משוקף לטלוויזיה (AirPlay / Smart View)? נתקו את השיקוף לפני ההקשה. מה שעל הטלפון יופיע גם שם.', 'Is the phone screen mirrored to the TV (AirPlay / Smart View)? Stop mirroring before you tap. Whatever is on the phone shows there too.')}</p>`;
       btns = `<button class="btn primary big" data-sc="show">${L(`אני ${esc(scName(who))}. ${g(who, 'הצג', 'הציגי')} את הקלף שלי`, `I am ${esc(scName(who))}. Show my card`)}</button>`;
     } else if (scn.stage === 'role') {
       const who = scn.who, o = other(who), r = roleOfPartner(who), rc = sd[r];
@@ -188,7 +189,7 @@
       body = `<div class="handoff"><div class="home-emblem">${illus('mask')}</div><h1>${L('שניכם מוכנים', 'You are both ready')}</h1>
         <p class="lead">${L('מכאן הטלפון כבר לא מנהל, הוא רק מזכיר באיזה שלב אתם.', 'From here the phone no longer leads, it only reminds you which beat you are in.')}</p></div>
         <ul class="checks">
-          <li>${L('הניחו את הטלפון במקום ששניכם רואים, או שלחו לטלוויזיה.', 'Put the phone where you both can see it, or send it to the TV.')}</li>
+          <li>${L('הניחו את הטלפון במקום ששניכם רואים, או <b>עכשיו</b> לטלוויזיה: היא מראה את הבמה ואת הפעימות, אף פעם לא את הקלפים.', 'Put the phone where you both can see it, or send it to the TV <b>now</b>: it shows the stage and the beats, never the cards.')}</li>
           <li>${L(`<b>${nD}</b> ${g(D, 'פותח', 'פותחת')} במשפט הפתיחה. <b>${nS}</b> ${g(Sb, 'עונה', 'עונה')} מתוך הדמות.`, `<b>${nD}</b> opens with the opening line. <b>${nS}</b> answers in character.`)}</li>
           <li>${L('שמות בדויים בקול. השמות האמיתיים חוזרים רק ביציאה מהדמות.', 'Made-up names out loud. Real names come back only at the exit.')}</li>
           <li>${L(`מילת העצירה <b>${esc(S.safeword)}</b> מוציאה מהסצנה בשנייה, בלי דיון.`, `The stop word <b>${esc(S.safeword)}</b> ends the scene in a second, no discussion.`)}</li>
@@ -244,13 +245,20 @@
       [L('אקשן', 'Action'), L('מניחים את הטלפון. היוזם/ת אומר/ת את משפט הפתיחה, והמגיב/ה עונה מתוך הדמות. שמות בדויים בלבד.', 'Put the phone down. The initiator says the opening line and the responder answers in character. Made-up names only.')],
       [L('שלוש פעימות', 'Three beats'), L('הטלפון רק מזכיר באיזה שלב אתם: מתח, חציית קו, פתוח. עוברים הלאה כשהרגע מיצה את עצמו.', 'The phone only reminds you which beat you are in: tension, crossing a line, open. Move on when the moment has run its course.')],
       [L('יציאה מהדמות', 'Out of character'), L('בסוף חוזרים לשמות האמיתיים בקול, מים, ומשפט אחד כל אחד. מילת העצירה עובדת תמיד, גם בתוך הדמות.', 'At the end, real names out loud, water, one sentence each. The stop word always works, even in character.')],
+      [L('📺 ואם יש טלוויזיה', '📺 And if there is a TV'), L('מחברים רק מצעד האקשן. המסך הגדול מראה את הבמה ואת הפעימות, אף פעם לא את הקלפים הסודיים. מציצים שוב בקלף? קודם מנתקים את שיקוף המסך.', 'Connect it only from the action step. The big screen shows the stage and the beats, never the secret cards. Want to peek at your card again? Stop screen mirroring first.')],
     ];
     dialog(`<h2>${L('איך משחקים סצנה', 'How to play a scene')}</h2><ol class="guide">${steps.map(([h, p]) => `<li><b>${h}</b><span>${p}</span></li>`).join('')}</ol>`,
       [{ label: first ? L('הבנתי, מתחילים', 'Got it, let\'s start') : L('סגירה', 'Close'), cls: 'primary', onClick: () => { S.guideSeen = true; save(); } }]);
   }
   // טקסט הסצנה לטלוויזיה: תקציר, ובזמן השלבים השלב הנוכחי. קלפי התפקיד לעולם לא מוצגים על המסך הגדול.
-  function tvSceneHtml(c) { const sd = sceneOf(c); if (!sd) return cardText(c); if (scn.id === c.id && scn.stage === 'beats') return `<small class="tv-beat">${esc(sd.title)} · ${isEn() ? 'Beat' : 'פעימה'} ${scn.beat + 1}/${sd.beats.length}</small>${render(sd.beats[scn.beat])}`;
-    if (scn.id === c.id && scn.stage === 'exit') return `<small class="tv-beat">${esc(sd.title)}</small>${isEn() ? 'Out of character. Real names out loud, water, one sentence each.' : 'יציאה מהדמות. השמות האמיתיים בקול, מים, ומשפט אחד כל אחד.'}`; return `<small class="tv-beat">${esc(sd.title)}</small>${render(sd.premise)}`; }
+  function tvSceneHtml(c) {
+    const sd = sceneOf(c); if (!sd) return cardText(c);
+    const en = isEn(); scnFor(c.id);
+    if (scn.stage === 'beats') return `<small class="tv-beat">${esc(sd.title)} · ${en ? 'Beat' : 'פעימה'} ${scn.beat + 1}/${sd.beats.length}</small>${render(sd.beats[scn.beat])}`;
+    if (scn.stage === 'exit') return `<small class="tv-beat">${esc(sd.title)}</small>${en ? 'Out of character. Real names out loud, water, one sentence each.' : 'יציאה מהדמות. השמות האמיתיים בקול, מים, ומשפט אחד כל אחד.'}`;
+    // לפני הפעימות: התקציר בלבד. הקלפים הסודיים לעולם לא מגיעים למסך הגדול.
+    return `<small class="tv-beat">${esc(sd.title)}</small>${render(sd.premise)}<small class="tv-note">🤫 ${en ? 'The secret cards are read on the phone only. The TV shows the stage and the beats.' : 'הקלפים הסודיים נקראים בטלפון בלבד. הטלוויזיה מראה את הבמה ואת הפעימות.'}</small>`;
+  }
   const diceSentence = (r) => isEn()
     ? `<b>${esc(t(r.body.t))}</b> in <b>${esc(t(r.action.t))}</b>. Twist: ${esc(t(r.time.t))}. ${roleName('D')} opens the scene.`
     : `<b>${esc(r.body.t)}</b> ב<b>${esc(r.action.t)}</b>. טוויסט: ${esc(r.time.t)}. ${roleName('D')} פותח/ת את הסצנה.`;
@@ -644,7 +652,7 @@
     if (sceneOf(c)) sceneCardHtml(c, host); else { host.innerHTML = cardHtml(c); hydrateCard(host); }
     $$('[data-vp]', host).forEach((b) => b.addEventListener('click', () => { S.vidPref = b.dataset.vp; save(); renderPlay(); }));
     const fav = S.favorites.includes(c.id);
-    const tools = `<div class="row gap tools">${S.tts.mode !== 'off' ? '<button class="btn ghost small" id="pa-speak">🔊 הקראה</button>' : ''}<button class="btn ghost small" id="pa-tv">📺 טלוויזיה</button></div>`;
+    const tools = `<div class="row gap tools">${S.tts.mode !== 'off' ? '<button class="btn ghost small" id="pa-speak">🔊 הקראה</button>' : ''}<button class="btn ghost small" id="pa-tv">📺 טלוויזיה</button>${tvConn ? `<button class="btn ghost small" id="pa-cast">📡 ${isEn() ? 'Casting' : 'משודר'}</button>` : ''}</div>`;
     acts.innerHTML = playMode === 'session'
       ? `${sceneOf(c) ? '' : '<button class="btn primary big" id="pa-done">בוצע, הבא</button>'}
          <div class="row gap">
@@ -658,6 +666,8 @@
            <button class="btn ghost" id="pa-hide">לא שוב</button>
          </div>${tools}`;
     $('#pa-tv').addEventListener('click', enterTv);
+    $('#pa-cast') && $('#pa-cast').addEventListener('click', tvCast);
+    if (tvConn && !tvOn) renderTv(); // המקלט מקבל את הבמה המעודכנת, בלי הקלפים
     $('#pa-speak') && $('#pa-speak').addEventListener('click', () => speak(plainText(c)));
     const next = () => { sessionAdvance(); renderPlay(); };
     $('#pa-done') && $('#pa-done').addEventListener('click', next);
@@ -1289,8 +1299,9 @@ EXAMPLE corset:
     tvOn = false; document.body.classList.remove('tv-on');
     try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch { /* */ }
     try { if (document.fullscreenElement) document.exitFullscreen(); } catch { /* */ }
-    if (tvConn) { try { tvConn.terminate(); } catch { /* */ } tvConn = null; }
-    show(playMode === 'random' && randomCard ? 'play' : (S.session ? 'play' : 'home'));
+    // שידור Chromecast נשאר פעיל: הטלוויזיה ממשיכה להראות את הבמה בזמן שהטלפון מציג קלפים סודיים. ניתוק דרך כפתור ״משודר״.
+    const dest = playMode === 'random' && randomCard ? 'play' : (S.session ? 'play' : 'home');
+    show(dest); if (dest === 'play') renderPlay();
   }
   function tvCardView(c) {
     const cat = c.cat === AFTERCARE_ID ? { name: 'יציאה מהדמות', img: 'blanket' } : catOf(c.cat);
@@ -1304,8 +1315,8 @@ EXAMPLE corset:
           <p class="tv-p">${tvSceneHtml(c)}</p>${c.safe && S.showSafety ? `<p class="tv-safe-note">⚠ ${esc(c.safe)}</p>` : ''}</div></div>
       <div class="tv-bar">
         <button class="tv-btn stop" data-tv="stop">עצור</button>
-        <button class="tv-btn primary" data-tv="next">${playMode === 'session' ? 'בוצע, הבא' : 'סצנה אחרת'}</button>
-        ${playMode === 'session' ? '<button class="tv-btn" data-tv="skip">דילוג</button>' : ''}
+        ${tvMainBtn(c)}
+        ${playMode === 'session' && !(sceneOf(c) && scn.stage !== 'brief') ? '<button class="tv-btn" data-tv="skip">דילוג</button>' : ''}
         ${c.min ? `<button class="tv-btn" data-tv="timer" data-min="${c.min}">⏱ ${c.min} דק׳</button>` : ''}
         ${typeAvailable(S.media[c.id] || {}, 'personal') && typeAvailable(S.media[c.id] || {}, 'demo') ? `<button class="tv-btn" data-tv="vidpref">${activeVidType(S.media[c.id] || {}) === 'personal' ? 'להדגמה' : 'לסרטון האישי'}</button>` : ''}
         ${hasMedia(c.id) ? `<button class="tv-btn" data-tv="vfull">${tvVideoFull ? 'חזרה לכרטיס' : (activeVidSlot(S.media[c.id] || {}) ? '⛶ סרטון במסך מלא' : '⛶ תמונה במסך מלא')}</button>` : ''}
@@ -1313,6 +1324,14 @@ EXAMPLE corset:
         <button class="tv-btn" data-tv="cast" ${'PresentationRequest' in window ? '' : 'hidden'}>${tvConn ? '📡 משודר' : '📡 Chromecast'}</button>
         <button class="tv-btn" data-tv="exit">יציאה</button>
       </div>`;
+  }
+  function tvMainBtn(c) {
+    const sd = sceneOf(c), en = isEn();
+    if (!sd) return `<button class="tv-btn primary" data-tv="next">${playMode === 'session' ? 'בוצע, הבא' : 'סצנה אחרת'}</button>`;
+    scnFor(c.id);
+    if (scn.stage === 'beats') { const last = scn.beat + 1 >= sd.beats.length; return `<button class="tv-btn primary" data-tv="beat">${last ? (en ? 'Out of character' : 'יציאה מהדמות') : (en ? 'Next beat' : 'הפעימה הבאה')}</button>`; }
+    if (scn.stage === 'exit') return `<button class="tv-btn primary" data-tv="next">${playMode === 'session' ? (en ? 'Done, onward' : 'סיימנו, הלאה') : (en ? 'Another scene' : 'סצנה אחרת')}</button>`;
+    return `<button class="tv-btn primary" data-tv="beat">${en ? 'Cards were read. Action' : 'הקלפים נקראו. אקשן'}</button>`;
   }
   function tvDiceView() {
     const sets = diceSets(), r = diceResult || { action: sets.action[0], body: sets.body[0], time: sets.time[0] };
@@ -1358,6 +1377,7 @@ EXAMPLE corset:
     if (a === 'stop') return openStop();
     if (a === 'next') { if (playMode === 'session') sessionAdvance(); else pickRandom(); tvView = 'card'; return renderTv(); }
     if (a === 'skip') { if (c) sessionSkip(c); return renderTv(); }
+    if (a === 'beat') { const sd = c && sceneOf(c); if (!sd) return; scnFor(c.id); if (scn.stage === 'beats') { if (scn.beat + 1 < sd.beats.length) scnSet({ beat: scn.beat + 1 }); else scnSet({ stage: 'exit' }); } else scnSet({ stage: 'beats', beat: 0, back: null }); return renderTv(); }
     if (a === 'timer') { timerSet(b.dataset.sec ? +b.dataset.sec : +b.dataset.min * 60); timerStart(); return; }
     if (a === 'dice') { tvView = 'dice'; return renderTv(); }
     if (a === 'card') { if (!S.session && !randomCard) { playMode = 'random'; pickRandom(); } tvView = 'card'; return renderTv(); }
