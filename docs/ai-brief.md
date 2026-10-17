@@ -11,7 +11,9 @@ Masks is a private role-play app for one couple (two adults), used on a phone, i
 1. **Stage**: what the room pretends to be, props, approximate duration.
 2. **Two secret role cards**, one per partner. The phone is handed over so each partner reads only their own card: who the character is, how to play it, a **secret goal** the other partner does not know, and an opening line. The secret goals should pull in different directions so the scene has tension without a script.
 3. **Beats**: three stages shown one at a time with a "next beat" button. Beat 1 builds tension, beat 2 crosses one line, beat 3 is the climax of the scene. The couple plays each beat in character before moving on.
-4. The evening always ends with an "out of character" card (built in; do not write it).
+4. Every scene ends with a short built-in "out of character" step, and the evening ends with an "out of character" card (both built in; do not write them).
+
+How the app presents a scene (so the texts fit the screens): step 1 shows `title`, `premise`, `setting`, `props` and `min` to both partners together. Steps 2 and 3 show each role card alone, labelled "How to play" (`how`), "Secret. Only you know" (`secret`) and, for D, "Your opening line. The scene starts with it" (`opener`); for S the opener is labelled "Your first line, as a reply", so S's opener must work as an answer to D's. Step 4 tells the couple to put the phone down and that D opens, then shows the beats one at a time with a timer of about `min` / 3 minutes per beat (write `min` as the total for all three beats). Beat 1 is labelled "tension", beat 2 "crossing a line", beat 3 "open"; these labels appear only when there are exactly three beats, so always write three.
 
 Roles: **D** is the initiator (the partner who opens the scene), **S** is the responder. Which real partner is D changes from scene to scene, so every text must work for either gender on either side (see placeholders).
 
