@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const KEY = 'masks.v1';
-  const APP_VERSION = '2026.10.17.4';
+  const APP_VERSION = '2026.10.17.5';
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -19,7 +19,7 @@
     tts: { mode: 'off', key: '', voiceId: '', model: 'eleven_v3' },
     ai: { key: '', model: 'claude-opus-5-5', effort: 'medium' },
     showSafety: false, eveningAlt: false, vidPref: 'personal',
-    promptStyle: '', promptVideo: '', promptAct: '', promptKeep: '', promptImg: '', en: {}, scenes: {}, shots: {},
+    promptStyle: '', promptVideo: '', promptAct: '', promptKeep: '', promptImg: '', en: {}, scenes: {}, shots: {}, prompts: {},
     customIllus: {},
   });
   let S = load();
@@ -731,17 +731,18 @@
   // ---------- ייבוא סצנות מקובץ JSON (נכתבות מחוץ לאפליקציה) ----------
   const SCENE_FIELDS = ['title', 'premise', 'setting', 'props', 'D', 'S', 'beats'];
   function sceneTemplate() {
-    return { _help: 'מערך של סצנות. ids חייבים להיות ייחודיים (מקבלים קידומת u_ אוטומטית). cat: אחד ממזהי הקטגוריות. lvl: 1-3. min: דקות. he/en: אותו מבנה בשתי השפות, en לא חובה. {D}=שם היוזם/ת, {S}=שם המגיב/ה, {d:זכר|נקבה} לפי מין היוזם/ת, {s:זכר|נקבה} לפי מין המגיב/ה. shot: תיאור צילומי באנגלית לפרומפטים של תמונה וסרטון (לא חובה).',
+    return { _help: 'מערך של סצנות. ids חייבים להיות ייחודיים (מקבלים קידומת u_ אוטומטית). cat: אחד ממזהי הקטגוריות. lvl: 1-3. min: דקות. he/en: אותו מבנה בשתי השפות, en לא חובה. {D}=שם היוזם/ת, {S}=שם המגיב/ה, {d:זכר|נקבה} לפי מין היוזם/ת, {s:זכר|נקבה} לפי מין המגיב/ה. shot: תיאור צילומי באנגלית לפרומפטים של תמונה וסרטון (לא חובה). prompts.image / prompts.video: פרומפטים מוכנים באנגלית שמחליפים את הבנייה האוטומטית (לא חובה).',
       categories: CATEGORIES.map((c) => ({ id: c.id, name: c.name })),
       scenes: [{ id: 'my-scene-1', cat: CATEGORIES[0].id, lvl: 2, min: 25, img: 'mask',
         he: { title: 'שם הסצנה', premise: 'תקציר של משפט-שניים: מי, איפה, מה קורה. {D} ו{S}.', setting: 'הבמה: החדר, האור, מי איפה בתחילת הסצנה.', props: 'אביזרים.', D: { who: 'מי הדמות של היוזם/ת', how: 'איך לשחק אותה', secret: 'המטרה הסודית: ...', opener: '״משפט פתיחה״' }, S: { who: 'מי הדמות של המגיב/ה', how: 'איך לשחק אותה', secret: 'המטרה הסודית: ...', opener: '״משפט פתיחה״' }, beats: ['שלב 1', 'שלב 2', 'שלב 3'] },
         en: { title: 'Scene title', premise: 'One or two sentences. {D} and {S}.', setting: 'The stage.', props: 'Props.', D: { who: '', how: '', secret: '', opener: '' }, S: { who: '', how: '', secret: '', opener: '' }, beats: ['Beat 1', 'Beat 2', 'Beat 3'] },
-        shot: 'Cinematic description in English of the scene for image/video prompts: who stands where, what moves, how it ends. End frame: ...' }] };
+        shot: 'Cinematic description in English of the scene for image/video prompts: who stands where, what moves, how it ends. End frame: ...',
+        prompts: { image: 'Optional: a complete, ready image prompt in English. If present it is used as-is (with {D}/{S} filled in).', video: 'Optional: a complete, ready video prompt in English. If present it is used as-is.' } }] };
   }
   function importScenes(json) {
     let arr = Array.isArray(json) ? json : (json && Array.isArray(json.scenes) ? json.scenes : null);
     if (!arr) throw new Error('הקובץ צריך להכיל מערך scenes');
-    S.scenes = S.scenes || {}; S.shots = S.shots || {};
+    S.scenes = S.scenes || {}; S.shots = S.shots || {}; S.prompts = S.prompts || {};
     let added = 0, updated = 0, bad = [];
     arr.forEach((sc, i) => {
       try {
@@ -757,13 +758,14 @@
         if (ex >= 0) { S.custom[ex] = card; updated++; } else { S.custom.push(card); added++; }
         S.scenes[id] = { he: pick(he), en: sc.en && sc.en.premise ? pick(sc.en) : null };
         if (sc.shot) S.shots[id] = String(sc.shot); else delete S.shots[id];
+        if (sc.prompts && (sc.prompts.image || sc.prompts.video)) S.prompts[id] = { image: sc.prompts.image ? String(sc.prompts.image) : '', video: sc.prompts.video ? String(sc.prompts.video) : '' }; else delete S.prompts[id];
         S.hidden = S.hidden.filter((h) => h !== id);
       } catch (e) { bad.push(`#${i + 1}: ${e.message}`); }
     });
     save(); return { added, updated, bad };
   }
   function exportScenes() {
-    const scenes = S.custom.filter((c) => (S.scenes || {})[c.id]).map((c) => ({ id: c.id, cat: c.cat, lvl: c.lvl, min: c.min, img: c.img, he: S.scenes[c.id].he, en: S.scenes[c.id].en || undefined, shot: (S.shots || {})[c.id] || undefined }));
+    const scenes = S.custom.filter((c) => (S.scenes || {})[c.id]).map((c) => ({ id: c.id, cat: c.cat, lvl: c.lvl, min: c.min, img: c.img, he: S.scenes[c.id].he, en: S.scenes[c.id].en || undefined, shot: (S.shots || {})[c.id] || undefined, prompts: (S.prompts || {})[c.id] || undefined }));
     return { categories: CATEGORIES.map((c) => ({ id: c.id, name: c.name })), scenes };
   }
   const dlJson = (obj, name) => { const b = new Blob([JSON.stringify(obj, null, 1)], { type: 'application/json' }); Backup.download(b, name); };
@@ -1394,6 +1396,8 @@ EXAMPLE corset:
   const DEFAULT_PROMPT_KEEP = 'Keep from the reference image, unchanged: the two people exactly as they are (faces, hair, skin tone, body shape, body hair, tattoos, jewelry); the full anatomy of both, the man\'s penis and testicles and the woman\'s breasts and vulva, present and visible whenever the pose shows them, never erased, hidden, blurred or covered; and the same room, background, furniture, lighting, colors and props. Change only what the action requires. Forbidden: a different room or background, added or removed objects, added clothing, missing or censored genitals, altered body proportions, extra people.';
   const DEFAULT_PROMPT_ACT = 'Show exactly the ACTION above and nothing else: the same two people, the same positions, the same body parts, the same movement, the same end frame. Do not add people, objects or a different activity; do not cut away, do not change position mid-shot. Both bodies stay complete and anatomically intact throughout, genitals included. The action and the body parts involved stay in frame and unobstructed from the first frame to the last. Any fluid comes from the body part named and nowhere else: urine flows from the genitals (the tip of the cock, or from between the labia), saliva falls from the mouth and lips, semen spurts from the tip of the cock; show the source, the stream or string in the air, and where it lands.';
   function buildPrompt(c, v, kind) {
+    // פרומפט מוכן שיובא עם הסצנה (image / video) גובר על הבנייה האוטומטית
+    const pre = (S.prompts || {})[c.id]; if (pre && pre[kind === 'video' ? 'video' : 'image']) return capEn(toPlain(render(pre[kind === 'video' ? 'video' : 'image'], EN_CTX[v.key])));
     const e = entryText(c, v);
     const man = v.key === 'm', giver = man ? 'the man' : 'the woman', recv = man ? 'the woman' : 'the man';
     const shot = shotFor(c, v), en = enFor(c, v), cap = (t) => t[0].toUpperCase() + t.slice(1);
