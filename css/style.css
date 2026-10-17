@@ -491,3 +491,37 @@ html[dir=ltr] .vid-sound{inset-inline-end:10px}
 .card.scene .handoff h1{font-size:1.5rem}
 .tv-beat{display:block;color:var(--gold);font-size:1.6cqw;margin-bottom:.6cqw;letter-spacing:.04em}
 .tv-stage.vfull .tv-beat{font-size:1.5cqw}
+
+/* מהלך הסצנה: מד צעדים, "מה עושים עכשיו", רשימות, פעימות, מדריך */
+.stepper{list-style:none;margin:0 0 10px;padding:0;display:flex;justify-content:space-between;gap:2px;counter-reset:s}
+.stepper li{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.66rem;color:var(--muted);text-align:center;position:relative}
+.stepper li i{font-style:normal;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:.72rem;background:var(--panel2)}
+.stepper li.on{color:var(--gold2)}
+.stepper li.on i{border-color:var(--gold2);background:var(--gold2);color:#1a1030;font-weight:700}
+.stepper li.done{color:var(--gold-dim)}
+.stepper li.done i{border-color:var(--gold-dim);color:var(--gold-dim)}
+.stepper li span{max-width:64px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.now{margin:12px 0 2px;padding:10px 12px;border-radius:14px;background:rgba(155,107,255,.1);border:1px solid rgba(155,107,255,.35);line-height:1.5}
+.now .lbl{display:block;color:var(--red2);font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+.phone-at{display:flex;align-items:center;gap:6px;margin:0 0 8px;color:var(--muted);font-size:.85rem}
+.phone-at svg{width:18px;height:18px}
+.sc-cast{display:flex;gap:8px;margin:10px 0 4px}
+.sc-cast .who{flex:1;display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:14px;background:var(--panel2);border:1px solid var(--line)}
+.sc-cast .who span{width:28px;height:28px;flex:0 0 auto;color:var(--gold)}
+.sc-cast .who span svg{width:28px;height:28px}
+.sc-cast .who b{display:block;font-size:.95rem}
+.sc-cast .who small{color:var(--muted);font-size:.72rem;line-height:1.3;display:block}
+.checks{margin:6px 0 0;padding:0 18px;line-height:1.55}
+.checks li{margin:6px 0}
+.checks li::marker{color:var(--gold)}
+.beat-pills{display:flex;align-items:center;gap:6px;margin:4px 0 8px}
+.beat-pills span{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:.8rem;color:var(--muted)}
+.beat-pills span.on{background:var(--red);border-color:var(--red2);color:#fff;font-weight:700}
+.beat-pills span.done{color:var(--gold-dim);border-color:var(--gold-dim)}
+.beat-pills small{color:var(--muted);margin-inline-start:4px}
+.guide{margin:8px 0 0;padding:0 20px;display:flex;flex-direction:column;gap:10px;text-align:start}
+.guide li::marker{color:var(--gold2);font-weight:700}
+.guide b{display:block;color:var(--gold2)}
+.guide span{color:var(--text);font-size:.92rem;line-height:1.5}
+.card.scene .handoff{padding-top:10px}
+.card.scene .handoff .lead{margin-bottom:0}

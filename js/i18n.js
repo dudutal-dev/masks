@@ -216,6 +216,7 @@ const I18N = {
 "לגבר": "the man",
 "לאשה": "the woman",
 "מסור/י את הטלפון": "Hand over the phone",
+"? איך משחקים סצנה (דקה)": "? How to play a scene (one minute)",
 "סיימתי, מסתיר את התשובות": "Done, hiding my answers",
 "מה מותר הערב": "What is allowed tonight",
 "רק מה ששניכם סימנתם ״כן״ נכנס למשחק. לא מוצג מי סימן מה.": "Only what you both marked \"yes\" enters play. It is not shown who marked what.",

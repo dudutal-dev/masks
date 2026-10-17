@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const KEY = 'masks.v1';
-  const APP_VERSION = '2026.10.17.5';
+  const APP_VERSION = '2026.10.17.6';
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -142,49 +142,115 @@
   function sceneCardHtml(c, host) {
     const sd = sceneOf(c); scnFor(c.id);
     const cat = catOf(c.cat) || { name: '', img: 'mask' };
+    const en = isEn();
+    const L = (he, eng) => (en ? eng : he);
+    const g = (who, m, f) => (S.partners[who].g === 'm' ? m : f);
+    const D = S.dom, Sb = sub(), nD = esc(scName(D)), nS = esc(scName(Sb));
+    const other = (who) => (who === 'a' ? 'b' : 'a');
+    const n = sd.beats.length;
+    // חמשת הצעדים של סצנה: הסצנה → הקלף של היוזם/ת → הקלף של המגיב/ה → משחק → יציאה מהדמות
+    const stepIdx = { brief: 0, hand: scn.who === D ? 1 : 2, role: scn.who === D ? 1 : 2, action: 3, beats: 3, exit: 4 };
+    if (scn.back === 'beats' && (scn.stage === 'hand' || scn.stage === 'role')) stepIdx.hand = stepIdx.role = 3;
+    const cur = stepIdx[scn.stage] || 0;
+    const labels = [L('הסצנה', 'Scene'), L('קלף', 'Card') + ' ' + nD, L('קלף', 'Card') + ' ' + nS, L('משחק', 'Play'), L('יציאה', 'Exit')];
+    const stepper = `<ol class="stepper">${labels.map((l, i) => `<li class="${i < cur ? 'done' : ''} ${i === cur ? 'on' : ''}"><i>${i < cur ? '✓' : i + 1}</i><span>${l}</span></li>`).join('')}</ol>`;
     const dots = c.lvl ? '<span class="lvl">' + [1, 2, 3].map((i) => `<i class="${i <= c.lvl ? 'on' : ''}"></i>`).join('') + '</span>' : '';
     const art = scn.stage === 'brief' ? (mediaArtHtml(c, 'art') || `<div class="art">${illus(c.img || cat.img)}</div>`) : '';
-    const head = `<header><span class="chip to">${scn.stage === 'beats' ? `שלב ${scn.beat + 1}/${sd.beats.length}` : 'סצנה'}</span><span class="chip cat">${cat.name}</span>${dots}</header>`;
+    const head = `<header><span class="chip to">${L('צעד', 'Step')} ${cur + 1}/5</span><span class="chip cat">${esc(cat.name)}</span>${dots}</header>`;
+    const now = (html) => `<div class="now"><span class="lbl">${L('מה עושים עכשיו', 'What to do now')}</span>${html}</div>`;
+    const phoneAt = (who) => `<p class="phone-at">${illus('phone')} ${L('הטלפון אצל', 'Phone with')} <b>${esc(scName(who))}</b></p>`;
     let body = '', btns = '';
     if (scn.stage === 'brief') {
       body = `<h2 class="sc-title">${esc(sd.title)}</h2><p class="text">${render(sd.premise)}</p>
-        <div class="sc-meta"><p><span class="lbl">הבמה</span>${render(sd.setting)}</p><p><span class="lbl">אביזרים</span>${render(sd.props)}</p><p><span class="lbl">משך</span>${c.min ? `כ-${c.min} דקות` : ''} · <b>${scName(S.dom)}</b> ${S.partners[S.dom].g === 'm' ? 'יוזם' : 'יוזמת'}, <b>${scName(sub())}</b> ${S.partners[sub()].g === 'm' ? 'מגיב' : 'מגיבה'}</p></div>`;
-      btns = `<button class="btn primary big" data-sc="roles">🎭 קלפי התפקיד הסודיים</button><button class="btn ghost" data-sc="skiproles">דילוג ישר לשלבים</button>`;
+        <div class="sc-cast"><div class="who"><span>${illus('key')}</span><div><b>${nD}</b><small>${L(g(D, 'יוזם. פותח את הסצנה', 'יוזמת. פותחת את הסצנה'), 'initiator, opens the scene')}</small></div></div>
+          <div class="who"><span>${illus('mask')}</span><div><b>${nS}</b><small>${L(g(Sb, 'מגיב. עונה מתוך הדמות', 'מגיבה. עונה מתוך הדמות'), 'responder, answers in character')}</small></div></div></div>
+        <div class="sc-meta"><p><span class="lbl">${L('הבמה', 'The stage')}</span>${render(sd.setting)}</p><p><span class="lbl">${L('אביזרים', 'Props')}</span>${render(sd.props)}</p>${c.min ? `<p><span class="lbl">${L('משך', 'Duration')}</span>${L(`כ-${c.min} דקות`, `about ${c.min} minutes`)}</p>` : ''}</div>
+        ${now(L('קראו את הדף הזה <b>יחד</b>. הכינו את החדר והאביזרים. בצעד הבא כל אחד מקבל קלף סודי, בתורו.', 'Read this page <b>together</b>. Set up the room and the props. In the next step each of you gets a secret card, one at a time.'))}`;
+      btns = `<button class="btn primary big" data-sc="roles">${L('החדר מוכן. לקלפים הסודיים ←', 'Room is ready. To the secret cards →')}</button>
+        <div class="row gap"><button class="btn ghost" data-sc="guide">${L('? איך משחקים', '? How to play')}</button><button class="btn ghost" data-sc="skiproles">${L('בלי קלפים סודיים הפעם', 'No secret cards this time')}</button></div>`;
     } else if (scn.stage === 'hand') {
-      const who = scn.who, other = who === 'a' ? 'b' : 'a';
-      body = `<div class="handoff"><div class="home-emblem">${illus('phone')}</div><h1>${esc(scName(who))}, תורך</h1><p class="lead">מסור/י את הטלפון. ${esc(scName(other))} לא מסתכל/ת עכשיו. הקלף הבא הוא רק שלך.</p></div>`;
-      btns = `<button class="btn primary big" data-sc="show">זה אני, ${esc(scName(who))}</button>`;
+      const who = scn.who, o = other(who);
+      body = `<div class="handoff"><div class="home-emblem">${illus('phone')}</div><h1>${esc(scName(who))}, ${L('הטלפון שלך', 'your phone')}</h1>
+        <p class="lead">${L(`<b>${esc(scName(o))}</b>, ${g(o, 'תסתכל', 'תסתכלי')} הצידה רגע. הקלף הבא מיועד ל${esc(scName(who))} בלבד.`, `<b>${esc(scName(o))}</b>, look away for a moment. The next card is for ${esc(scName(who))} only.`)}</p></div>
+        ${now(L(`${esc(scName(o))} ${g(o, 'מוסר', 'מוסרת')} את הטלפון ל${esc(scName(who))}. ${esc(scName(who))} ${g(who, 'לוחץ', 'לוחצת')} על הכפתור רק כש${esc(scName(o))} לא ${g(o, 'רואה', 'רואה')}.`, `${esc(scName(o))} hands the phone to ${esc(scName(who))}. ${esc(scName(who))} taps the button only once ${esc(scName(o))} cannot see.`))}`;
+      btns = `<button class="btn primary big" data-sc="show">${L(`אני ${esc(scName(who))}. ${g(who, 'הצג', 'הציגי')} את הקלף שלי`, `I am ${esc(scName(who))}. Show my card`)}</button>`;
     } else if (scn.stage === 'role') {
-      const who = scn.who, rc = sd[roleOfPartner(who)];
-      body = `<div class="role-card"><small>הקלף הסודי של ${esc(scName(who))} · ${roleOfPartner(who) === 'D' ? 'היוזם/ת' : 'המגיב/ה'}</small>
+      const who = scn.who, o = other(who), r = roleOfPartner(who), rc = sd[r];
+      const nextTxt = scn.back === 'beats' ? L('חזרה לסצנה', 'Back to the scene') : (r === 'D' ? L(`הבנתי את הדמות. ${g(who, 'מוסר', 'מוסרת')} ל${esc(scName(o))} ←`, `Got my character. Handing over to ${esc(scName(o))} →`) : L('הבנתי את הדמות. שנינו מוכנים ←', 'Got my character. We are both ready →'));
+      body = `${phoneAt(who)}<div class="role-card"><small>${L('הקלף הסודי של', 'The secret card of')} ${esc(scName(who))} · ${r === 'D' ? L(g(who, 'היוזם', 'היוזמת'), 'the initiator') : L(g(who, 'המגיב', 'המגיבה'), 'the responder')}</small>
         <h2>${render(rc.who)}</h2>
-        <p><span class="lbl">איך לשחק</span>${render(rc.how)}</p>
-        <p class="secret"><span class="lbl">🤫 סודי</span>${render(rc.secret)}</p>
-        <p class="opener"><span class="lbl">משפט פתיחה</span>${render(rc.opener)}</p></div>`;
-      btns = `<button class="btn primary big" data-sc="hide">קראתי. להסתיר את הקלף</button>`;
+        <p><span class="lbl">${L('איך לשחק', 'How to play')}</span>${render(rc.how)}</p>
+        <p class="secret"><span class="lbl">${L('🤫 סודי. רק את/ה יודע/ת', '🤫 Secret. Only you know')}</span>${render(rc.secret)}</p>
+        <p class="opener"><span class="lbl">${r === 'D' ? L('משפט הפתיחה שלך. הסצנה מתחילה בו', 'Your opening line. The scene starts with it') : L('המשפט הראשון שלך, כתשובה', 'Your first line, as a reply')}</span>${render(rc.opener)}</p></div>
+        ${scn.back === 'beats' ? '' : now(L(`${g(who, 'קרא', 'קראי')} בשקט, פעמיים. ${g(who, 'זכור', 'זכרי')} שני דברים: המטרה הסודית ומשפט הפתיחה. כש${g(who, 'סיימת', 'סיימת')}, הכפתור מסתיר את הקלף.`, 'Read it quietly, twice. Remember two things: the secret goal and the opening line. When you are done, the button hides the card.'))}`;
+      btns = `<button class="btn primary big" data-sc="hide">${nextTxt}</button>`;
+    } else if (scn.stage === 'action') {
+      body = `<div class="handoff"><div class="home-emblem">${illus('mask')}</div><h1>${L('שניכם מוכנים', 'You are both ready')}</h1>
+        <p class="lead">${L('מכאן הטלפון כבר לא מנהל, הוא רק מזכיר באיזה שלב אתם.', 'From here the phone no longer leads, it only reminds you which beat you are in.')}</p></div>
+        <ul class="checks">
+          <li>${L('הניחו את הטלפון במקום ששניכם רואים, או שלחו לטלוויזיה.', 'Put the phone where you both can see it, or send it to the TV.')}</li>
+          <li>${L(`<b>${nD}</b> ${g(D, 'פותח', 'פותחת')} במשפט הפתיחה. <b>${nS}</b> ${g(Sb, 'עונה', 'עונה')} מתוך הדמות.`, `<b>${nD}</b> opens with the opening line. <b>${nS}</b> answers in character.`)}</li>
+          <li>${L('שמות בדויים בקול. השמות האמיתיים חוזרים רק ביציאה מהדמות.', 'Made-up names out loud. Real names come back only at the exit.')}</li>
+          <li>${L(`מילת העצירה <b>${esc(S.safeword)}</b> מוציאה מהסצנה בשנייה, בלי דיון.`, `The stop word <b>${esc(S.safeword)}</b> ends the scene in a second, no discussion.`)}</li>
+        </ul>`;
+      btns = `<button class="btn primary big" data-sc="go">🎬 ${L('אקשן', 'Action')}</button><button class="btn ghost" data-sc="tv">📺 ${L('להציג בטלוויזיה', 'Show on TV')}</button>`;
     } else if (scn.stage === 'beats') {
-      const n = sd.beats.length, last = scn.beat + 1 >= n;
-      body = `<h2 class="sc-title">${esc(sd.title)}</h2><p class="text">${render(sd.beats[scn.beat])}</p>`;
-      btns = `<button class="btn primary big" data-sc="next">${last ? 'הסצנה נגמרה, הלאה' : 'השלב הבא'}</button>
-        <div class="row gap">${scn.beat > 0 ? '<button class="btn ghost" data-sc="prev">שלב קודם</button>' : ''}<button class="btn ghost" data-sc="mine-a">🎭 הקלף של ${esc(scName('a'))}</button><button class="btn ghost" data-sc="mine-b">🎭 הקלף של ${esc(scName('b'))}</button></div>`;
+      const last = scn.beat + 1 >= n;
+      const beatNames = [L('מתח', 'Tension'), L('חציית קו', 'Crossing a line'), L('פתוח', 'Open')];
+      const bn = n === 3 ? beatNames[scn.beat] : '';
+      const per = c.min ? Math.max(3, Math.round(c.min / n)) : 0;
+      body = `<h2 class="sc-title">${esc(sd.title)}</h2>
+        <div class="beat-pills">${sd.beats.map((_, i) => `<span class="${i < scn.beat ? 'done' : ''} ${i === scn.beat ? 'on' : ''}">${i + 1}</span>`).join('')}<small>${L('פעימה', 'Beat')} ${scn.beat + 1}/${n}${bn ? ' · ' + bn : ''}</small></div>
+        <p class="text">${render(sd.beats[scn.beat])}</p>
+        ${scn.beat === 0 ? `<p class="muted tiny">${L(`<b>${nD}</b> ${g(D, 'פותח', 'פותחת')}. ממשיכים לפעימה הבאה כשהרגע הזה מיצה את עצמו, לא לפי השעון.`, `<b>${nD}</b> opens. Move to the next beat when this moment has run its course, not by the clock.`)}</p>` : ''}
+        ${per ? `<button class="btn timer-btn" data-min="${per}">${illus('stopwatch')} ${L(`טיימר ${per} דקות לפעימה`, `${per} minute timer for this beat`)}</button>` : ''}`;
+      btns = `<button class="btn primary big" data-sc="next">${last ? L('הסצנה נגמרה. יציאה מהדמות ←', 'Scene over. Out of character →') : L('לפעימה הבאה ←', 'Next beat →')}</button>
+        <div class="row gap">${scn.beat > 0 ? `<button class="btn ghost" data-sc="prev">${L('פעימה קודמת', 'Previous beat')}</button>` : ''}<button class="btn ghost" data-sc="mine-a">🎭 ${L('הקלף של', 'Card of')} ${esc(scName('a'))}</button><button class="btn ghost" data-sc="mine-b">🎭 ${L('הקלף של', 'Card of')} ${esc(scName('b'))}</button></div>`;
+    } else if (scn.stage === 'exit') {
+      body = `<div class="handoff"><div class="home-emblem">${illus('blanket')}</div><h1>${L('יציאה מהדמות', 'Out of character')}</h1>
+        <p class="lead">${L('הסצנה נגמרה. חוזרים להיות אתם, בקול.', 'The scene is over. Back to being yourselves, out loud.')}</p></div>
+        <ul class="checks">
+          <li>${L(`השמות האמיתיים: ״אני ${nD}. ${g(Sb, 'אתה', 'את')} ${nS}.״`, `Real names: "I am ${nD}. You are ${nS}."`)}</li>
+          <li>${L('מים, ומגע שאינו חלק מהסצנה: חיבוק, יד על הגב.', 'Water, and a touch that is not part of the scene: a hug, a hand on the back.')}</li>
+          <li>${L('משפט אחד כל אחד: מה הדמות של השני עשתה והפתיעה אותך.', 'One sentence each: what the other\'s character did that surprised you.')}</li>
+        </ul>`;
+      btns = `<button class="btn primary big" data-sc="done">${playMode === 'session' ? L('סיימנו. הלאה ←', 'Done. Onward →') : L('סיימנו. סצנה אחרת ←', 'Done. Another scene →')}</button>`;
     }
-    host.innerHTML = `<article class="card big scene cat-${c.cat}">${head}${art}${body}<div class="sc-btns">${btns}</div>
-      <div class="card-timer" hidden><span class="t"></span><button class="btn small ghost stop-t">עצירת טיימר</button></div></article>`;
+    host.innerHTML = `<article class="card big scene cat-${c.cat}">${stepper}${head}${art}${body}<div class="sc-btns">${btns}</div>
+      <div class="card-timer" hidden><span class="t"></span><button class="btn small ghost stop-t">${L('עצירת טיימר', 'Stop timer')}</button></div></article>`;
     hydrateCard(host);
     $$('[data-sc]', host).forEach((b) => b.addEventListener('click', () => {
       const a = b.dataset.sc;
+      if (a === 'guide') return showGuide(false);
+      if (a === 'tv') return enterTv();
       if (a === 'roles') scnSet({ stage: 'hand', who: S.dom, back: null });
-      else if (a === 'skiproles') scnSet({ stage: 'beats', beat: 0 });
+      else if (a === 'skiproles') scnSet({ stage: 'action', beat: 0 });
       else if (a === 'show') scnSet({ stage: 'role' });
-      else if (a === 'hide') { if (scn.back === 'beats') scnSet({ stage: 'beats', back: null }); else if (scn.who === S.dom) scnSet({ stage: 'hand', who: sub() }); else scnSet({ stage: 'beats', beat: 0 }); }
+      else if (a === 'hide') { if (scn.back === 'beats') scnSet({ stage: 'beats', back: null }); else if (scn.who === S.dom) scnSet({ stage: 'hand', who: sub() }); else scnSet({ stage: 'action', beat: 0 }); }
+      else if (a === 'go') scnSet({ stage: 'beats', beat: 0 });
       else if (a === 'mine-a' || a === 'mine-b') scnSet({ stage: 'hand', who: a.slice(-1), back: 'beats' });
       else if (a === 'prev') scnSet({ beat: Math.max(0, scn.beat - 1) });
-      else if (a === 'next') { if (scn.beat + 1 < sd.beats.length) scnSet({ beat: scn.beat + 1 }); else { if (playMode === 'session') sessionAdvance(); else pickRandom(); } }
+      else if (a === 'next') { if (scn.beat + 1 < n) scnSet({ beat: scn.beat + 1 }); else scnSet({ stage: 'exit' }); }
+      else if (a === 'done') { if (playMode === 'session') sessionAdvance(); else pickRandom(); }
       renderPlay(); window.scrollTo(0, 0);
     }));
   }
+  // מדריך קצר: איך משחקים סצנה. מוצג אוטומטית לפני הסצנה הראשונה, וזמין מהבית ומתוך הסצנה.
+  function showGuide(first) {
+    const en = isEn(), L = (he, eng) => (en ? eng : he);
+    const steps = [
+      [L('קוראים יחד', 'Read together'), L('הסצנה, הבמה והאביזרים מוצגים לשניכם. מכינים את החדר: אור, בגד, חפץ.', 'The scene, the stage and the props are shown to both of you. Set up the room: a light, a garment, an object.')],
+      [L('קלף סודי, בתורו', 'A secret card, in turn'), L('הטלפון עובר ליוזם/ת ואז למגיב/ה. כל אחד קורא רק את הקלף שלו: מי הדמות, איך לשחק, מטרה סודית ומשפט פתיחה.', 'The phone goes to the initiator, then to the responder. Each reads only their own card: who the character is, how to play, a secret goal and an opening line.')],
+      [L('אקשן', 'Action'), L('מניחים את הטלפון. היוזם/ת אומר/ת את משפט הפתיחה, והמגיב/ה עונה מתוך הדמות. שמות בדויים בלבד.', 'Put the phone down. The initiator says the opening line and the responder answers in character. Made-up names only.')],
+      [L('שלוש פעימות', 'Three beats'), L('הטלפון רק מזכיר באיזה שלב אתם: מתח, חציית קו, פתוח. עוברים הלאה כשהרגע מיצה את עצמו.', 'The phone only reminds you which beat you are in: tension, crossing a line, open. Move on when the moment has run its course.')],
+      [L('יציאה מהדמות', 'Out of character'), L('בסוף חוזרים לשמות האמיתיים בקול, מים, ומשפט אחד כל אחד. מילת העצירה עובדת תמיד, גם בתוך הדמות.', 'At the end, real names out loud, water, one sentence each. The stop word always works, even in character.')],
+    ];
+    dialog(`<h2>${L('איך משחקים סצנה', 'How to play a scene')}</h2><ol class="guide">${steps.map(([h, p]) => `<li><b>${h}</b><span>${p}</span></li>`).join('')}</ol>`,
+      [{ label: first ? L('הבנתי, מתחילים', 'Got it, let\'s start') : L('סגירה', 'Close'), cls: 'primary', onClick: () => { S.guideSeen = true; save(); } }]);
+  }
   // טקסט הסצנה לטלוויזיה: תקציר, ובזמן השלבים השלב הנוכחי. קלפי התפקיד לעולם לא מוצגים על המסך הגדול.
-  function tvSceneHtml(c) { const sd = sceneOf(c); if (!sd) return cardText(c); if (scn.id === c.id && scn.stage === 'beats') return `<small class="tv-beat">${esc(sd.title)} · שלב ${scn.beat + 1}/${sd.beats.length}</small>${render(sd.beats[scn.beat])}`; return `<small class="tv-beat">${esc(sd.title)}</small>${render(sd.premise)}`; }
+  function tvSceneHtml(c) { const sd = sceneOf(c); if (!sd) return cardText(c); if (scn.id === c.id && scn.stage === 'beats') return `<small class="tv-beat">${esc(sd.title)} · ${isEn() ? 'Beat' : 'פעימה'} ${scn.beat + 1}/${sd.beats.length}</small>${render(sd.beats[scn.beat])}`;
+    if (scn.id === c.id && scn.stage === 'exit') return `<small class="tv-beat">${esc(sd.title)}</small>${isEn() ? 'Out of character. Real names out loud, water, one sentence each.' : 'יציאה מהדמות. השמות האמיתיים בקול, מים, ומשפט אחד כל אחד.'}`; return `<small class="tv-beat">${esc(sd.title)}</small>${render(sd.premise)}`; }
   const diceSentence = (r) => isEn()
     ? `<b>${esc(t(r.body.t))}</b> in <b>${esc(t(r.action.t))}</b>. Twist: ${esc(t(r.time.t))}. ${roleName('D')} opens the scene.`
     : `<b>${esc(r.body.t)}</b> ב<b>${esc(r.action.t)}</b>. טוויסט: ${esc(r.time.t)}. ${roleName('D')} פותח/ת את הסצנה.`;
@@ -458,6 +524,7 @@
     $('#home-roles').innerHTML = `<div class="role dom">${S.avatars[S.dom] ? avatarHtml(S.dom, 'lg') : illus('key')}<small>${c.dg === 'm' ? 'יוזם' : 'יוזמת'}</small><b>${c.D}</b></div>
       <div class="role sub">${S.avatars[sub()] ? avatarHtml(sub(), 'lg') : illus('collar')}<small>${c.sg === 'm' ? 'מגיב' : 'מגיבה'}</small><b>${c.S}</b></div>`;
     hydrateAvatars($('#home-roles'));
+    $('#btn-guide').textContent = isEn() ? '? How to play a scene (one minute)' : '? איך משחקים סצנה (דקה)';
     $('#home-mode').innerHTML = `<div class="seg" id="home-mode-seg"><button type="button" data-v="fixed">קבוע כל הערב</button><button type="button" data-v="alternate">מתחלף כל סצנה</button><button type="button" data-v="random">הגרלה בכל ערב</button></div>
       <p class="muted tiny center" id="home-mode-help"></p>`;
     const help = { fixed: `${c.D} ${c.dg === 'm' ? 'יוזם' : 'יוזמת'} את כל הערב. ״החלפת תפקידים״ מחליף ידנית.`, alternate: `סצנה אחת ${c.D} ${c.dg === 'm' ? 'יוזם' : 'יוזמת'}, הבאה ${c.S}, וחוזר חלילה. גם בסצנה אקראית ובקוביות.`, random: 'בכל ערב חדש האפליקציה מגרילה גם מי יוזם וגם אם זה קבוע או מתחלף כל סצנה.' + (S.session ? ` הערב: ${c.D} ${c.dg === 'm' ? 'יוזם' : 'יוזמת'}, ${S.eveningAlt ? 'מתחלף' : 'קבוע'}.` : '') };
@@ -486,6 +553,7 @@
     else go();
   });
   $('#btn-resume').addEventListener('click', () => startPlay('session'));
+  $('#btn-guide').addEventListener('click', () => showGuide(false));
 
   // חום של קטגוריה: סדר הערב בתוך כל רמה הולך מהעדין אל הלוהט
   const CAT_HEAT = { strangers: 0, time: 1, silent: 2, art: 3, service: 4, care: 5, remote: 6, work: 7, game: 8, spy: 9, authority: 10, swap: 11, fantasy: 12, forbidden: 13, control: 14 };
@@ -516,7 +584,7 @@
 
   // ---------- משחק ----------
   let playMode = 'session', randomCard = null, cardTimer = null;
-  function startPlay(mode) { playMode = mode; show('play'); renderPlay(); requestWake(); }
+  function startPlay(mode) { playMode = mode; show('play'); renderPlay(); requestWake(); if (!S.guideSeen && sceneOf(currentCard() || {})) showGuide(true); }
   function pickRandom() {
     const p = pool();
     if (!p.length) { dialog('<h2>אין סצנות</h2><p>שניכם צריכים לסמן לפחות קטגוריה אחת ״כן״, או להפעיל ״לכלול אולי״.</p>', [{ label: 'לגבולות', cls: 'primary', onClick: () => show('limits') }, { label: 'סגירה' }]); return null; }
