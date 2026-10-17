@@ -1,0 +1,841 @@
+/* תרגום הממשק לאנגלית. נוצר אוטומטית (i18n_masks.py). */
+// eslint-disable-next-line no-unused-vars
+const I18N = {
+"dict": {
+"מסכות לא עלתה כמו שצריך": "Masks did not start properly",
+"התמונות, הסרטונים וההגדרות שלכם לא נמחקים באף אחת מהאפשרויות האלה, חוץ מהאחרונה שמאפסת רק הגדרות.": "None of these options delete your photos, videos or settings, except the last one, which resets settings only.",
+"רענון מלא": "Full reload",
+"פתיחה במצב בטוח (בלי להציג תמונות וסרטונים)": "Open in safe mode (without showing photos and videos)",
+"ניקוי המטמון של האפליקציה וטעינה מחדש": "Clear the app cache and reload",
+"איפוס ההגדרות בלבד (המדיה נשארת)": "Reset settings only (media stays)",
+"מסכות": "Masks",
+"הזינו קוד": "Enter code",
+"שכחתי את הקוד (מחיקת כל הנתונים)": "I forgot the code (delete all data)",
+"בחרו קוד בן 4 ספרות": "Choose a 4-digit code",
+"עוד פעם, לאימות": "Once more, to confirm",
+"קוד שגוי, נסו שוב": "Wrong code, try again",
+"לא תואם": "No match",
+"הקודים לא היו זהים. נסו שוב.": "The codes were not identical. Try again.",
+"קוד נעילה": "Lock code",
+"הקוד פעיל. האפליקציה נפתחת רק איתו.": "The code is on. The app opens only with it.",
+"הסרת הקוד": "Remove the code",
+"קוד נעילה: כבוי": "Lock code: off",
+"קוד נעילה: פעיל": "Lock code: on",
+"מילת העצירה": "Stop word",
+"אפשר לשנות הכול אחר כך ב״עוד״.": "You can change everything later in \"More\".",
+"סיימנו, לערב": "Done, to the evening",
+"מילת עצירה": "Stop word",
+"{d:קשור|קשרי} את {S} ו...": "{D} ties {S} and...",
+"יוזם": "initiates",
+"יוזמת": "initiates",
+"מגיב": "responds",
+"מגיבה": "responds",
+"קבוע כל הערב": "Fixed all evening",
+"מתחלף כל סצנה": "Switches every scene",
+"הגרלה בכל ערב": "Drawn each evening",
+"התחל ערב חדש": "Start a new evening",
+"המשך ערב": "Continue evening",
+"החלפת תפקידים": "Swap roles",
+"מה זה BDSM: הסבר מעמיק": "What BDSM is: an in-depth guide",
+"מה זה BDSM": "What BDSM is",
+"מה זה בעצם BDSM? הסבר מעמיק": "What is BDSM, really? An in-depth guide",
+"‹ חזרה": "‹ Back",
+"‹ עוד": "‹ More",
+"‹ ביטול": "‹ Cancel",
+"עצור": "Stop",
+"בכל ערב חדש האפליקציה מגרילה גם מי יוזם וגם אם זה קבוע או מתחלף כל סצנה.": "Each new evening the app draws who initiates and whether that is fixed or switches every scene.",
+"בכל ערב חדש האפליקציה מגרילה גם מי יוזם וגם אם ההובלה קבועה או מתחלפת כל סצנה.": "Each new evening the app draws who initiates and whether that is fixed or switches every scene.",
+"מי שנבחר יוזם את כל הערב. אפשר להחליף ידנית בדף הבית.": "Whoever is chosen initiates the whole evening. You can swap manually on the home screen.",
+"סצנה אחת יוזם/ת א׳, הבאה ב׳, וחוזר חלילה. מי שנבחר למעלה מתחיל. הערב עדיין מתחמם לאט מעוצמה 1 ל-3.": "One scene partner A initiates, the next partner B, and so on. Whoever is selected above starts. The evening still warms up slowly from level 1 to 3.",
+"ההגרלה": "The draw",
+"מתחילים": "Let's begin",
+"ראשון": "first",
+"את כל הערב": "all evening",
+"יוזם ראשון": "initiates first",
+"יוזמת ראשון": "initiates first",
+"יוזם את כל הערב": "initiates all evening",
+"יוזמת את כל הערב": "initiates all evening",
+"מתחלף": "switching",
+"קבוע": "fixed",
+"קוביות": "Dice",
+"פעולה × איבר × משך. מגלגלים, ומבצעים בדיוק מה שיצא. מי שמבצע: היוזם/ת על המגיב/ה, אלא אם כן היוזם/ת מחליט/ה אחרת.": "Action × body part × duration. Roll, and do exactly what comes up. Who performs: the initiator on the responder, unless the initiator decides otherwise.",
+"גלגלו": "Roll",
+"פעולה": "Action",
+"איפה": "Where",
+"כמה": "How long",
+"לחצו ״גלגלו״.": "Tap \"Roll\".",
+"הפעלת טיימר": "Start timer",
+"טיימר": "Timer",
+"30 שנ׳": "30 sec",
+"התחל": "Start",
+"אפס": "Reset",
+"השהיה": "Pause",
+"המשך": "Resume",
+"הזמן נגמר": "Time's up",
+"עצירת טיימר": "Stop timer",
+"עוד": "More",
+"סצנה אקראית": "Random scene",
+"כל הסצנות לפי קטגוריות: הוספה, מועדפים, הסתרה": "All scenes by category: add, favorites, hide",
+"להעתקה ופרומפטים + העלאת תמונות וסרטונים לכל סצנה": "Copy and prompts + upload photos and videos per scene",
+"גבולות ועוצמה": "Limits and intensity",
+"שמות, תפקידים ומילת עצירה": "Names, roles and stop word",
+"קאסט לטלוויזיה (מצב 16:9)": "Cast to TV (16:9 mode)",
+"איורים ב-AI (Claude)": "AI illustrations (Claude)",
+"הקראת כרטיסים": "Read cards aloud",
+"הקראת כרטיסים: כבויה": "Read cards aloud: off",
+"תמונות וסרטונים שלכם": "Your photos and videos",
+"גיבוי מלא לקובץ: תמונות, סרטונים והגדרות": "Full backup to a file: photos, videos and settings",
+"שחזור מקובץ גיבוי": "Restore from a backup file",
+"מסך דולק בזמן משחק": "Keep screen on while playing",
+"סרטונים עם קול": "Videos with sound",
+"לכלול קטגוריות שסומנו ״אולי״": "Include categories marked \"maybe\"",
+"הערות בטיחות על הכרטיסים": "Safety notes on cards",
+"בטיחות: מה כן ומה בשום אופן לא": "Safety: what is fine and what is never",
+"רענון לגרסה החדשה (בלי למחוק כלום)": "Refresh to the new version (nothing is deleted)",
+"מחיקת כל הנתונים": "Delete all data",
+"הכול נשמר במכשיר הזה בלבד. שום דבר לא נשלח לשום מקום.": "Everything is stored on this device only. Nothing is sent anywhere.",
+"שפה / Language": "Language / שפה",
+"עברית": "עברית",
+"הסצנות": "Scenes",
+"+ חדש": "+ New",
+"כרטיס חדש": "New card",
+"עריכת כרטיס": "Edit card",
+"שמירה": "Save",
+"קטגוריה": "Category",
+"עוצמה": "Intensity",
+"1 חימום": "1 warm-up",
+"2 בינוני": "2 medium",
+"3 אינטנסיבי": "3 intense",
+"3 הכול": "3 everything",
+"מופנה אל": "Addressed to",
+"היוזם/ת": "the initiator",
+"המגיב/ה": "the responder",
+"יוזם/ת": "initiator",
+"מגיב/ה": "responder",
+"שניכם": "both of you",
+"שניהם": "both",
+"לשניכם": "For both of you",
+"לשניהם": "both",
+"משך בדקות (לא חובה)": "Duration in minutes (optional)",
+"איור": "Illustration",
+"✨ איור ב-AI": "✨ AI illustration",
+"תמונה וסרטון לכרטיס מצרפים אחרי השמירה, מרשימת הסצנות.": "Attach a photo and video to the card after saving, from the scene list.",
+"הטקסט": "Text",
+"איך כותבים כרטיס שמתאים לשניכם": "How to write a card that fits you both",
+"= שם היוזם/ת,": "= the initiator's name,",
+"= שם המגיב/ה.": "= the responder's name.",
+"{d:זכר|נקבה}": "{d:male|female}",
+"בוחר לפי מין היוזם/ת,": "picks by the initiator's gender,",
+"{s:זכר|נקבה}": "{s:male|female}",
+"לפי מין המגיב/ה.": "by the responder's gender.",
+"דוגמה:": "Example:",
+"{d:תן|תני} ל{S} פקודה. {s:הוא מבצע|היא מבצעת} מיד.": "{D} gives {S} an order. {S} obeys at once.",
+"תצוגה מקדימה": "Preview",
+"הטקסט יופיע כאן כפי שייראה במשחק.": "The text will appear here as it will look in play.",
+"חסר טקסט": "Missing text",
+"הכול": "All",
+"🖼 עם מדיה": "🖼 With media",
+"★ מועדפים": "★ Favorites",
+"מוסתרים": "Hidden",
+"שלנו": "Ours",
+"🖼🎬 יש מדיה · העלאת תמונות וסרטונים: ב״להעתקה ופרומפטים״": "🖼🎬 Has media · Upload photos and videos in \"Copy and prompts\"",
+"העלאת תמונות וסרטונים: ב״להעתקה ופרומפטים״": "Upload photos and videos in \"Copy and prompts\"",
+"מועדף": "Favorite",
+"★ מועדף": "★ Favorite",
+"☆ מועדף": "☆ Favorite",
+"הסתרה": "Hide",
+"עריכה": "Edit",
+"מחיקה": "Delete",
+"ביטול": "Cancel",
+"סגירה": "Close",
+"החלפה": "Replace",
+"הסרה": "Remove",
+"להסתיר את הכרטיס?": "Hide this card?",
+"הוא לא יופיע יותר. אפשר להחזיר אותו מ״החפיסה״.": "It will not appear again. You can bring it back from \"Scenes\".",
+"למחוק את הכרטיס?": "Delete this card?",
+"למחוק את האיור?": "Delete this illustration?",
+"נמחק": "Deleted",
+"אין כרטיסים בסינון הזה.": "No cards in this filter.",
+"אחרי": "After",
+"עוצמה אחרי": "Intensity: after",
+"בוצע, הבא": "Done, next",
+"דילוג": "Skip",
+"סצנה אחרת": "Another scene",
+"לא שוב": "Not again",
+"📺 טלוויזיה": "📺 TV",
+"🔊 הקראה": "🔊 Read aloud",
+"🔊 הפעלת קול": "🔊 Turn sound on",
+"זה היה הערב": "That was the evening",
+"מים, שמיכה, ומילה טובה אחד לשני. הערב הבא מחכה כשתרצו.": "Water, a blanket, and a kind word to each other. The next evening is waiting whenever you want it.",
+"מים, שמיכה, ומילה טובה.": "Water, a blanket, and a kind word.",
+"לדף הבית": "Home",
+"סיום": "Finish",
+"ערב חדש?": "New evening?",
+"הערב הנוכחי יימחק ותיבנה חפיסה חדשה.": "The current evening will be discarded and a new deck built.",
+"כן, ערב חדש": "Yes, new evening",
+"אין סצנות": "No scenes",
+"שניכם צריכים לסמן לפחות קטגוריה אחת ״כן״, או להפעיל ״לכלול אולי״.": "Both of you need to mark at least one category \"yes\", or turn on \"include maybe\".",
+"אין סצנות זמינות": "No scenes available",
+"כרגע אף קטגוריה לא מותרת, אז הערב היה מכיל רק את כרטיס הסגירה. סמנו ״כן״ או ״אולי״ בקטגוריות (״אולי״ נכלל כברירת מחדל) או הגדילו את העומק.": "No category is allowed right now, so the evening would contain only the closing card. Mark categories \"yes\" or \"maybe\" (\"maybe\" is included by default) or raise the depth.",
+"לגבולות ועומק": "To limits and depth",
+"להגדרות": "To settings",
+"אדום": "Red",
+"הכול עוצר עכשיו. מורידים כל קשירה, קולר ואביזר. מים. נשימה.": "Everything stops now. Remove every tie, collar and toy. Water. Breathe.",
+"סיום הערב ומעבר ל״אחרי״": "End the evening and go to \"After\"",
+"הייתה רק הפסקה, חזרה": "It was just a pause, back",
+"סיום בלי כלום": "End without anything",
+"ערב": "Evening",
+"קלף": "Card",
+"פתיחה": "Welcome",
+"מי אתם": "Who you are",
+"גבולות": "Limits",
+"סיכום": "Summary",
+"שליטה. אמון. אש.": "Control. Trust. Fire.",
+"ערב זוגי של משחק כוח: חפיסת סצנות שמתחממת לאט, קוביות, טיימר, ומילת עצירה אחת שעוצרת הכול.": "A power-play evening for two: a deck of scenes that warms up slowly, dice, a timer, and one stop word that stops everything.",
+"הובלה": "Leading",
+"קבוע, מתחלף או הגרלה": "Fixed, switching or drawn",
+"כל אחד מסמן לבד": "Each marks alone",
+"עוצרת הכול, מיד": "Stops everything, at once",
+"הכול נשמר רק בטלפון הזה. אין חשבון, אין שרת, אין איסוף נתונים.": "Everything stays on this phone only. No account, no server, no data collection.",
+"בן/בת זוג א׳": "Partner A",
+"בן/בת זוג ב׳": "Partner B",
+"בן/בת הזוג": "your partner",
+"תמונת פרופיל": "Profile photo",
+"זכר": "Male",
+"נקבה": "Female",
+"מי יוזם": "Who initiates",
+"א׳": "A",
+"ב׳": "B",
+"שם": "Name",
+"מילה שלא תגידו במקרה. ״אדום״ = הכול עוצר. ״צהוב״ = להאט ולבדוק.": "A word you would not say by accident. \"Red\" = everything stops. \"Yellow\" = slow down and check.",
+"הלאה: הגבולות של כל אחד": "Next: each one's limits",
+"הגבר": "the man",
+"האשה": "the woman",
+"הגבר יוזם": "Man initiates",
+"האשה יוזמת": "Woman initiates",
+"לגבר": "the man",
+"לאשה": "the woman",
+"מסור/י את הטלפון": "Hand over the phone",
+"סיימתי, מסתיר את התשובות": "Done, hiding my answers",
+"מה מותר הערב": "What is allowed tonight",
+"רק מה ששניכם סימנתם ״כן״ נכנס למשחק. לא מוצג מי סימן מה.": "Only what you both marked \"yes\" enters play. It is not shown who marked what.",
+"לכלול גם קטגוריות ש״אולי״": "Also include \"maybe\" categories",
+"במשחק": "In play",
+"במשחק (״אולי״)": "In play (\"maybe\")",
+"מחוץ למשחק": "Out of play",
+"רק אם מסמנים ״אולי״": "Only if \"maybe\" is included",
+"עוצמה מרבית": "Maximum intensity",
+"אין קטגוריות מותרות": "No categories allowed",
+"כל אחד עורך לבד. מוצג רק החיתוך.": "Each edits alone. Only the overlap is shown.",
+"כן": "Yes",
+"אולי": "Maybe",
+"לא": "No",
+"עד איזו עוצמה": "Up to which intensity",
+"יציאה": "Exit",
+"סובבו את הטלפון לרוחב.": "Turn the phone sideways.",
+"כך הטלוויזיה מתמלאת: הסצנה והסרטון יחד.": "That fills the TV: the scene and the video together.",
+"להמשיך כך": "Continue like this",
+"יציאה ממצב טלוויזיה": "Exit TV mode",
+"חזרה לכרטיס": "Back to card",
+"⛶ תמונה במסך מלא": "⛶ Photo full screen",
+"⛶ סרטון במסך מלא": "⛶ Video full screen",
+"הקשה על המסך מסתירה את הטקסט והכפתורים. הקשה נוספת מחזירה אותם.": "Tap the screen to hide the text and buttons. Tap again to bring them back.",
+"התחל ערב": "Start evening",
+"📡 משודר": "📡 Casting",
+"שידור פעיל": "Casting is active",
+"ניתוק": "Disconnect",
+"לא הצלחתי לשדר": "Could not cast",
+"הדרך שעובדת בכל טלפון: שיקוף מסך (AirPlay באייפון, Smart View / Cast באנדרואיד) כשהטלפון במצב טלוויזיה ובאופק.": "The way that works on every phone: screen mirroring (AirPlay on iPhone, Smart View / Cast on Android) with the phone in TV mode and held sideways.",
+"ממתין לחיבור מהטלפון...": "Waiting for the phone to connect...",
+"החיבור נסגר.": "The connection closed.",
+"להדגמה": "Demo",
+"לסרטון האישי": "Personal video",
+"סרטון אישי": "Personal video",
+"הדגמה": "Demo",
+"להעתקה ופרומפטים": "Copy and prompts",
+"העתקת הכול": "Copy all",
+"העתקה": "Copy",
+"הועתק ✓": "Copied ✓",
+"העתקת הקטגוריה": "Copy category",
+"פרומפט תמונה": "Image prompt",
+"פרומפט סרטון": "Video prompt",
+"🖼 העלאת תמונה": "🖼 Upload photo",
+"🖼 תמונה משותפת ✓ · להחליף רק כאן": "🖼 Shared photo ✓ · replace only here",
+"🖼 תמונה לנוסח זה ✓": "🖼 Photo for this version ✓",
+"תמונה לנוסח זה ✓": "Photo for this version ✓",
+"תמונה משותפת ✓ · להחליף רק כאן": "Shared photo ✓ · replace only here",
+"🎬 העלאת סרטון אישי": "🎬 Upload personal video",
+"🎬 העלאת הדגמה": "🎬 Upload demo",
+"🎬 סרטון אישי ✓": "🎬 Personal video ✓",
+"🎬 הדגמה ✓": "🎬 Demo ✓",
+"כל סצנה פעמיים: פעם ״הגבר יוזם״ ופעם ״האשה יוזמת״, בלי שמות. מתחת לכל נוסח: העלאת התמונה של הסצנה, הסרטון האישי וסרטון ההדגמה לאותו נוסח (למשל ״הגבר יוזם״ נשמר לערב שבו הגבר יוזם); מה שהועלה מוצג בכרטיס במשחק. סינון לפי קטגוריה בשורת הצ׳יפים; ״העתקת הכול״ והורדה פועלות על מה שמסונן. ״פרומפט תמונה״ קצר וממצה: הפריים (תנוחה + הפעולה), שורה על שני האנשים והאנטומיה, וסגנון במילים ספורות. ״פרומפט סרטון״ מפורט יותר ומתחיל בתיאור צילומי של האקט בשלושה שלבים (מי איפה, מה זז, איך הקליפ נגמר; מוצג בכל שורה כ-Shot), ואחריו האנשים, הסגנון שלמטה + מי יוזם ומי מבצע + נושא ועוצמה + הנחיית ההדגמה + טקסט הסצנה כסצנה באנגלית. לכל הסצנות המובנות יש נוסח אנגלי קבוע בתוך האפליקציה (מוצג מתחת לעברית, עם כפתור English). סצנות שתוסיפו בעצמכם אפשר לתרגם בלחיצה עם Claude דרך המפתח שב״איורים ב-AI״.": "Every scene twice: once \"Man initiates\" and once \"Woman initiates\", without names. Under each version: upload the scene photo, the personal video and the demo video for that version (for example \"Man initiates\" is kept for an evening where the man initiates); what you upload is shown on the card in play. Filter by category with the chips; \"Copy all\" and download work on what is filtered. The \"Image prompt\" is short and to the point: the frame (pose + action), one line about the two people and anatomy, and a few words of style. The \"Video prompt\" is more detailed and starts with a cinematic description of the act in three beats (who is where, what moves, how the clip ends; shown on each row as Shot), followed by the people, the style below + who initiates and who performs + topic and intensity + the demo guidance + the scene text as a scene in English. All built-in scenes have a fixed English version inside the app. Scenes you add yourself can be translated with one tap using Claude through the key in \"AI illustrations\".",
+"בסיס הפרומפט (אפשר לערוך, נשמר במכשיר)": "Prompt base (editable, saved on the device)",
+"מעלים למחולל תמונת ייחוס של שתי הדמויות (או שתי תמונות). הפרומפט מתייחס אל ״הגבר״ ו״האשה״ מתמונת הייחוס, ולא נוגע בלבוש בכלל. מה שתכתבו כאן יקבע את הסגנון ואת רמת המפורשות; טקסט הסצנה בעברית מצורף אחרי זה כסצנה.": "Upload a reference image of the two characters (or two images) to the generator. The prompt refers to \"the man\" and \"the woman\" from the reference image and never touches clothing. What you write here sets the style and the explicitness; the scene text is appended after it as the scene.",
+"סגנון לתמונה (קצר; פרומפט התמונה הוא הפריים + שורת אנשים ואנטומיה + זה)": "Image style (short; the image prompt is the frame + the people and anatomy line + this)",
+"סגנון לסרטון": "Video style",
+"תוספת לסרטון": "Video addition",
+"הנחיית הדגמה (איך להראות את האקט)": "Demo guidance (how to show the act)",
+"מה לשמר מתמונת הייחוס (אנשים, אנטומיה, רקע, אביזרים)": "What to preserve from the reference image (people, anatomy, background, props)",
+"חזרה לברירת המחדל": "Back to default",
+"תרגום לאנגלית (Claude)": "Translate to English (Claude)",
+"העתקת כל פרומפטי הסרטון": "Copy all video prompts",
+"הורדה כקובץ טקסט": "Download as a text file",
+"העתקה ידנית": "Manual copy",
+"חסר מפתח API": "Missing API key",
+"התרגום נעשה עם Claude דרך המפתח שמוגדר ב״איורים ב-AI״. המפתח נשמר רק בטלפון.": "Translation uses Claude through the key set in \"AI illustrations\". The key stays on the phone only.",
+"להגדרת המפתח": "Set up the key",
+"התרגום נכשל": "Translation failed",
+"המודל סירב לתרגם קבוצה של סצנות": "The model refused to translate a group of scenes",
+"מספר התרגומים לא תואם": "The number of translations does not match",
+"תשובה לא תקינה מהמודל": "Invalid response from the model",
+"אפשר ללחוץ שוב כדי לנסות את החסרים.": "Tap again to retry the missing ones.",
+"הפרומפטים לתמונה ולסרטון באנגלית מלאה.": "Image and video prompts are fully in English.",
+"בחירת תמונה": "Choose photo",
+"בחירת סרטון": "Choose video",
+"העלאת תמונה": "Upload photo",
+"החלפת התמונה": "Replace photo",
+"החלפת הסרטון": "Replace video",
+"🖼 תמונה משותפת לשני הנוסחים": "🖼 Shared photo for both versions",
+"מוקטנת אוטומטית ל-1600 פיקסל. תמונה זו מוצגת בכרטיס כשזה מי שיוזם/יוזמת; הנוסח השני שומר על התמונה שלו. אם יש גם תמונה וגם סרטון, שניהם יופיעו בכרטיס. נשמר רק במכשיר הזה.": "Resized automatically to 1600 px. This photo is shown on the card when this is who initiates; the other version keeps its own photo. Stored on this device only.",
+"מוקטנת אוטומטית ל-1600 פיקסל. תמונה אחת לשני הנוסחים; מתוך נוסח מסוים אפשר להעלות תמונה נפרדת רק לו. אם יש גם תמונה וגם סרטון, שניהם יופיעו בכרטיס. נשמר רק במכשיר הזה.": "Resized automatically to 1600 px. One photo for both versions; from a specific version you can upload a separate photo just for it. Stored on this device only.",
+"עד 200MB. מוצג בכרטיס כשזה מי שיוזם/יוזמת. נשמר רק במכשיר הזה.": "Up to 200MB. Shown on the card when this is who initiates. Stored on this device only.",
+"רק תמונות וסרטונים": "Photos and videos only",
+"קובץ גדול מדי": "File too large",
+"עד 200MB לסרטון. קצרו אותו או בחרו אחר.": "Up to 200MB per video. Trim it or choose another.",
+"לא נשמר": "Not saved",
+"אולי אין מספיק מקום במכשיר. נסו קובץ קטן יותר.": "There may not be enough space on the device. Try a smaller file.",
+"שומר...": "Saving...",
+"תמונות מוקטנות אוטומטית. סרטונים נשמרים כמו שהם.": "Photos are resized automatically. Videos are saved as they are.",
+"תמונות וסרטונים": "Photos and videos",
+"הקבצים נשמרים רק במכשיר הזה (IndexedDB). מחיקת האפליקציה או ניקוי נתוני האתר מוחקים אותם. ״גיבוי מלא לקובץ״ שומר את כולם לקובץ אחד.": "Files are stored on this device only (IndexedDB). Deleting the app or clearing site data deletes them. \"Full backup to a file\" saves all of them into one file.",
+"מחיקת כל התמונות והסרטונים": "Delete all photos and videos",
+"הגדלה": "Enlarge",
+"מכין גיבוי…": "Preparing backup…",
+"אוסף קבצים": "Collecting files",
+"זה יכול לקחת כמה דקות אם יש הרבה סרטונים. אל תסגרו את האפליקציה.": "This can take a few minutes if there are many videos. Do not close the app.",
+"הגיבוי מוכן": "Backup ready",
+"הקובץ כולל גם את כל ההגדרות, הגבולות והסצנות שהוספתם.": "The file also includes all settings, limits and the scenes you added.",
+"שמרו את הקובץ בענן או במחשב. לשחזור במכשיר אחר: ״עוד ← שחזור מקובץ גיבוי״ ובחירת הקובץ (בגיבוי מחולק: כל חלק בנפרד).": "Save the file to the cloud or a computer. To restore on another device: \"More → Restore from a backup file\" and choose the file (for a split backup: each part separately).",
+"הגיבוי נכשל": "Backup failed",
+"שחזור מגיבוי": "Restore from backup",
+"בחרו קובץ גיבוי (.zip) שנוצר באפליקציה. התמונות והסרטונים יתווספו למכשיר הזה.": "Choose a backup file (.zip) created by the app. The photos and videos will be added to this device.",
+"״הכול״ מחזיר גם הגדרות, שמות, גבולות וסצנות שהוספתם, ומחליף את מה שיש עכשיו. ״רק מדיה״ משאיר את ההגדרות הנוכחיות.": "\"Everything\" also restores settings, names, limits and the scenes you added, replacing what is here now. \"Media only\" keeps the current settings.",
+"שחזור הכול": "Restore everything",
+"רק מדיה": "Media only",
+"משחזר…": "Restoring…",
+"קורא את הקובץ": "Reading the file",
+"השחזור הושלם": "Restore complete",
+"השחזור נכשל": "Restore failed",
+"טעינה מחדש": "Reload",
+"זה לא קובץ ZIP תקין": "This is not a valid ZIP file",
+"קובץ ZIP פגום": "Corrupt ZIP file",
+"הקובץ דחוס. השתמשו בקובץ הגיבוי כפי שנוצר באפליקציה, בלי לכווץ מחדש": "The file is compressed. Use the backup file as the app created it, without re-zipping",
+"בקובץ אין manifest.json. זה לא גיבוי של האפליקציה": "There is no manifest.json in the file. This is not a backup of the app",
+"למחוק הכול?": "Delete everything?",
+"שמות, גבולות, כרטיסים שהוספתם, מועדפים וקוד הנעילה יימחקו מהמכשיר. אין דרך חזרה.": "Names, limits, cards you added, favorites and the lock code will be deleted from the device. There is no way back.",
+"כן, מחק הכול": "Yes, delete everything",
+"מרענן...": "Refreshing...",
+"מוריד את הגרסה החדשה. ההגדרות, התמונות והסרטונים נשארים.": "Downloading the new version. Settings, photos and videos stay.",
+"גרסה חדשה ירדה": "A new version was downloaded",
+"רענון": "Refresh",
+"מצב בטוח: תמונות וסרטונים לא מוצגים.": "Safe mode: photos and videos are not shown.",
+"חזרה למצב רגיל": "Back to normal mode",
+"שגיאה לא ידועה": "Unknown error",
+"איורים ב-AI": "AI illustrations",
+"איורים חדשים לכרטיסים שלכם, מצוירים על ידי Claude בסגנון הקווים של האפליקציה. דורש מפתח API של Anthropic ורשת. המפתח נשמר רק בטלפון ונשלח ישירות ל-api.anthropic.com. כל איור הוא בקשה אחת, בדרך כלל כמה אגורות עד כמה עשרות אגורות, לפי המודל.": "New illustrations for your cards, drawn by Claude in the line style of the app. Requires an Anthropic API key and a network. The key stays on the phone and is sent directly to api.anthropic.com. Each illustration is one request, usually a few cents, depending on the model.",
+"מפתח API של Anthropic": "Anthropic API key",
+"מודל": "Model",
+"Opus 5.5 (ברירת מחדל, הכי טוב)": "Opus 5.5 (default, best)",
+"Sonnet 5.5 (זול יותר)": "Sonnet 5.5 (cheaper)",
+"Haiku 5.5 (הכי זול)": "Haiku 5.5 (cheapest)",
+"מאמץ (איכות מול מחיר)": "Effort (quality vs. price)",
+"נמוך": "Low",
+"בינוני": "Medium",
+"גבוה": "High",
+"✨ ניסיון: לצייר ״קולר עם רצועה״": "✨ Try it: draw \"a collar with a leash\"",
+"לחיצה על איור מוחקת אותו. כרטיסים שהשתמשו בו יחזרו לאיור ברירת המחדל.": "Tapping an illustration deletes it. Cards that used it go back to the default illustration.",
+"עדיין אין. יוצרים מתוך טופס כרטיס חדש: ״✨ איור ב-AI״.": "None yet. Create one from the new card form: \"✨ AI illustration\".",
+"איור ב-AI": "AI illustration",
+"תארו מה לצייר. המודל מצייר בסגנון הקווים של האפליקציה. כל ניסיון עולה כסף בחשבון ה-API שלכם.": "Describe what to draw. The model draws in the line style of the app. Each attempt costs money on your API account.",
+"✨ לצייר": "✨ Draw",
+"לצייר שוב": "Draw again",
+"לשמור ולהשתמש באיור": "Save and use the illustration",
+"SVG לא תקין": "Invalid SVG",
+"לא נמצאו צורות באיור": "No shapes found in the illustration",
+"המודל סירב לצייר את זה. נסו ניסוח אחר, פחות מפורש.": "The model refused to draw this. Try a different, less explicit wording.",
+"המפתח לא תקין (401).": "The key is invalid (401).",
+"יותר מדי בקשות או נגמר האשראי (429). נסו שוב עוד רגע.": "Too many requests or out of credit (429). Try again in a moment.",
+"אין חיבור לרשת, או שהרשת חוסמת את api.anthropic.com / esm.sh.": "No network connection, or the network blocks api.anthropic.com / esm.sh.",
+"חסר מפתח API של Anthropic. אפשר להגדיר ב״עוד ← איורים ב-AI״.": "Missing Anthropic API key. Set it in \"More → AI illustrations\".",
+"למשל: אישה כורעת עם קולר, ידיים מאחורי הגב": "For example: a kneeling woman with a collar, hands behind her back",
+"הקראה": "Read aloud",
+"הקראה של הכרטיס בלחיצה על 🔊. קול הדפדפן עובד אופליין וחינם. ElevenLabs נותן קול הרבה יותר טוב, דורש רשת ומפתח API משלכם, והקלטות נשמרות במכשיר כדי לא לשלם פעמיים על אותו כרטיס.": "Read the card aloud by tapping 🔊. The browser voice works offline and is free. ElevenLabs gives a much better voice, needs a network and your own API key, and recordings are kept on the device so you never pay twice for the same card.",
+"כבוי": "Off",
+"כבויה": "off",
+"קול הדפדפן": "Browser voice",
+"הקראה בקול הדפדפן": "Browser voice",
+"מפתח API (xi-api-key)": "API key (xi-api-key)",
+"מזהה קול (Voice ID)": "Voice ID",
+"eleven_v3 (תומך עברית, מומלץ)": "eleven_v3 (supports Hebrew, recommended)",
+"המפתח נשמר רק בטלפון הזה ונשלח ישירות ל-ElevenLabs. כדאי ליצור ב-ElevenLabs מפתח נפרד עם הרשאת Text to Speech בלבד. את ה-Voice ID לוקחים מספריית הקולות (My Voices ← ⋯ ← Copy voice ID). קול שיצרתם משלכם או מהספרייה, גם קול שמדבר עברית.": "The key stays on this phone and is sent directly to ElevenLabs. It is best to create a separate ElevenLabs key with Text to Speech permission only. Take the Voice ID from the voice library (My Voices → ⋯ → Copy voice ID). A voice you created or one from the library.",
+"בדיקת קול": "Test voice",
+"מחיקת הקלטות שמורות": "Delete saved recordings",
+"למשל 21m00Tcm4TlvDq8ikWAM": "e.g. 21m00Tcm4TlvDq8ikWAM",
+"אין הקראה": "No speech",
+"הדפדפן הזה לא תומך בהקראה.": "This browser does not support speech.",
+"חסר מפתח או קול": "Missing key or voice",
+"הגדירו מפתח API ומזהה קול במסך ההקראה.": "Set an API key and a Voice ID on the read-aloud screen.",
+"ElevenLabs לא ענה": "ElevenLabs did not respond",
+"בודקים: מפתח תקין, מזהה קול נכון, יתרת תווים, חיבור לרשת.": "Check: valid key, correct Voice ID, character balance, network connection.",
+"בטיחות": "Safety",
+"שלושת החוקים": "The three rules",
+"מילת העצירה עוצרת הכול, מיד, בלי דיון.": "The stop word stops everything, at once, without discussion.",
+"גם באמצע משפט, גם באמצע סצנה. ״צהוב״ = להאט, לבדוק.": "Even mid-sentence, even mid-scene. \"Yellow\" = slow down, check in.",
+"פה סתום או ידיים קשורות = סימן מוסכם במקום מילה.": "Gagged mouth or tied hands = an agreed signal instead of a word.",
+"למשל: שלוש נקישות, או להפיל חפץ שמחזיקים ביד.": "For example: three taps, or dropping an object held in the hand.",
+"משהו שלא סוכם מראש לא קורה הערב.": "Anything not agreed in advance does not happen tonight.",
+"רעיון חדש באמצע? שומרים לפעם הבאה ומדברים עליו בבוקר.": "A new idea mid-way? Save it for next time and talk about it in the morning.",
+"לא באפליקציה הזאת, בכוונה": "Not in this app, on purpose",
+"חניקה אמיתית ומשחקי נשימה (לחץ על קנה הנשימה או סחיטה של צידי הצוואר), מכות על הצוואר, הגב התחתון, הבטן או המפרקים, קשירה סביב הצוואר, דברים שמשאירים לבד אדם קשור, ואלכוהול או סמים כחלק מהמשחק. הסיכון בהם לא פרופורציונלי למשחק ערב.": "Real choking and breath play (pressure on the windpipe or squeezing the sides of the neck), blows to the neck, lower back, belly or joints, anything tied around the neck, leaving a tied person alone, and alcohol or drugs as part of the game. Their risk is out of proportion for an evening of play.",
+"יד על הצוואר": "Hand on the throat",
+"יש קטגוריה כזאת, בקבוצת ״מתקדם״. היא מחווה של שליטה: כף יד מונחת, אחיזה בעורף או בלסת. בלי לחץ שמפריע לנשימה, בלי סחיטה של הצדדים. לחץ על צידי הצוואר סוגר את העורקים למוח ומפיל אדם תוך שניות, לפעמים עם נזק קבוע, בלי שום אזהרה מוקדמת. לכן: הגרון תמיד חופשי, סימן יד מוסכם מראש, לא בשילוב עם ידיים קשורות או פה חסום, ובכל סחרחורת או שינוי בקול היד יורדת והקטגוריה נגמרת לערב.": "There is such a category, in the \"advanced\" group. It is a gesture of control: a resting palm, a grip on the nape or the jaw. No pressure that interferes with breathing, no squeezing of the sides. Pressure on the sides of the neck closes the arteries to the brain and drops a person within seconds, sometimes with permanent damage, with no warning. So: the throat is always free, a hand signal agreed in advance, never combined with tied hands or a blocked mouth, and at any dizziness or change in voice the hand comes off and the category is over for the evening.",
+"קשירה": "Bondage",
+"שתי אצבעות נכנסות בקלות מתחת לכל קשר. מספריים בטוחות בהישג יד. בדיקה כל 10 דקות: אצבעות חמות, צבע רגיל, אפשר להזיז. עקצוץ או קור = משחררים מיד.": "Two fingers slide easily under every knot. Safety scissors within reach. Check every 10 minutes: warm fingers, normal color, can move. Tingling or cold = release at once.",
+"מכות": "Impact",
+"רק ישבן וירכיים אחוריות. מתחילים קל ומעלים לאט. אדום אחיד = טוב. פסים לבנים, נפיחות או כאב חד = עוצרים.": "Buttocks and back of the thighs only. Start light and build slowly. Even redness = good. White stripes, swelling or sharp pain = stop.",
+"שעווה, קרח, אטבים": "Wax, ice, clamps",
+"שעווה רק מנר עיסוי ייעודי, בדיקה על עצמכם קודם. קרח לא נשאר במקום אחד יותר מכמה שניות. אטבים עד 5 דקות, ההסרה כואבת יותר מההצמדה.": "Wax only from a dedicated massage candle, test on yourself first. Ice never stays in one spot for more than a few seconds. Clamps up to 5 minutes, removal hurts more than placing.",
+"תמיד. מים, חום, מגע רך, ומילה טובה. גם מי שהוביל צריך את זה. ״נפילה״ רגשית יום-יומיים אחרי היא נורמלית, מדברים עליה.": "Always. Water, warmth, soft touch, and a kind word. The one who led needs it too. An emotional \"drop\" a day or two later is normal; talk about it.",
+"גרסה": "Version",
+"מתקדם": "Advanced",
+"תורך": "your turn",
+"פרומפטי הסרטון": "Video prompts",
+"הוראה": "Instruction",
+"מסונן": "filtered",
+"סצנות": "Scenes",
+"נוסחים": "versions",
+"הורדה שוב": "Download again",
+"מסכות – פרומפטים לסרטונים": "Masks – video prompts",
+"מתרגם…": "Translating…",
+"הגבולות של": "Limits of",
+"יוזם,": "initiates,",
+"יוזמת,": "initiates,",
+"דמות. סצנה. אמת.": "Character. Scene. Truth.",
+"ערב של משחקי תפקידים לשניים: סצנה עם במה ואביזרים, קלף תפקיד סודי לכל אחד, שלבים שמסלימים, מחולל סצנות, ומילת עצירה אחת שמוציאה מהדמות.": "An evening of role play for two: a scene with a stage and props, a secret role card for each of you, beats that escalate, a scene generator, and one stop word that breaks character.",
+"קלף סודי": "Secret card",
+"רק את/ה רואה את שלך": "Only you see yours",
+"שלבים": "Beats",
+"הסצנה מסלימה לאט": "The scene escalates slowly",
+"מוציאה מהדמות, מיד": "Breaks character, at once",
+"איך משחקים תפקידים? הסבר מעמיק": "How does role play work? An in-depth guide",
+"איך משחקים תפקידים: הסבר מעמיק": "How role play works: an in-depth guide",
+"איך משחקים תפקידים": "How role play works",
+"סצנה": "Scene",
+"מחולל": "Generator",
+"מחולל סצנות": "Scene generator",
+"מקום": "Place",
+"דמויות": "Characters",
+"טוויסט": "Twist",
+"מחולל סצנה מהירה: מקום × דמויות × טוויסט. מגלגלים, מסכימים על מילת העצירה, והיוזם/ת פותח/ת. בלי תסריט, רק המסגרת.": "A quick scene generator: place × characters × twist. Roll, agree on the stop word, and the initiator opens. No script, just the frame.",
+"הבמה": "The stage",
+"אביזרים": "Props",
+"משך": "Duration",
+"🎭 קלפי התפקיד הסודיים": "🎭 The secret role cards",
+"דילוג ישר לשלבים": "Skip straight to the beats",
+"איך לשחק": "How to play",
+"🤫 סודי": "🤫 Secret",
+"משפט פתיחה": "Opening line",
+"קראתי. להסתיר את הקלף": "Read it. Hide the card",
+"השלב הבא": "Next beat",
+"הסצנה נגמרה, הלאה": "Scene over, onward",
+"שלב קודם": "Previous beat",
+"יציאה מהדמות": "Out of character",
+"עוצמה יציאה מהדמות": "Intensity: out of character",
+"הכול עוצר עכשיו. יוצאים מהדמויות, בשמות האמיתיים. מים. נשימה.": "Everything stops now. Step out of the characters, real names. Water. Breathe.",
+"סיום הערב ומעבר ל״יציאה מהדמות״": "End the evening and go to \"Out of character\"",
+"מילת העצירה היא מחוץ לדמות.": "The stop word is outside the character.",
+"היא עוצרת הכול, מיד, בלי דיון, גם באמצע משפט של הדמות. ״צהוב״ = להאט ולבדוק, בלי לצאת מהסצנה.": "It stops everything, at once, without discussion, even mid-sentence of the character. \"Yellow\" = slow down and check, without leaving the scene.",
+"״לא״ של הדמות הוא ״לא״ אמיתי, אלא אם סיכמתם אחרת.": "A character's \"no\" is a real \"no\", unless you agreed otherwise.",
+"סצנות שבהן הדמות מתנגדת (חקירה, מכירה פומבית) דורשות הסכמה מראש, במילים, לפני שמתחילים, ומילת עצירה שונה מ״לא״.": "Scenes where the character resists (interrogation, auction) require consent in advance, in words, before starting, and a stop word different from \"no\".",
+"מה שלא סוכם לא קורה הערב.": "What was not agreed does not happen tonight.",
+"הגבולות שסימנתם במסך ״גבולות״ תקפים גם לדמויות. רעיון חדש באמצע? שומרים לפעם הבאה ומדברים עליו בבוקר.": "The limits you marked on the \"Limits\" screen apply to the characters too. A new idea mid-way? Save it for next time and talk about it in the morning.",
+"כניסה ויציאה": "Entering and leaving",
+"נכנסים לדמות בקול: שם חדש, משפט פתיחה. יוצאים ממנה בקול: השמות האמיתיים, ״זה אני״. בלי היציאה המפורשת, חלק מהדמות נשאר בחדר בלי שמתכוונים. לכן כל ערב כאן מסתיים בכרטיס ״יציאה מהדמות״.": "Enter the character out loud: a new name, an opening line. Leave it out loud: real names, \"it's me\". Without the explicit exit, part of the character stays in the room unintended. That is why every evening here ends with an \"Out of character\" card.",
+"תוכן רגיש": "Sensitive content",
+"דמויות של סמכות, השפלה מוסכמת או כפייה מדומה יכולות להעלות דברים אמיתיים. אם אחד מכם מרגיש משהו שהוא לא ״משחק״, זה בדיוק הרגע למילת העצירה, ואחריה שיחה, לא המשך. מילת העצירה שנאמרת היא הצלחה: מישהו סמך מספיק כדי להשתמש בה.": "Characters of authority, agreed humiliation or pretend coercion can bring up real things. If one of you feels something that is not \"play\", that is exactly the moment for the stop word, followed by a talk, not a continuation. A stop word that is said is a success: someone trusted enough to use it.",
+"צילום": "Photos",
+"סצנות עם ״מצלמה״ מצלמות רק בטלפון שלכם, ומחליטים יחד מראש אם שומרים או מוחקים. התמונות והסרטונים שמעלים לאפליקציה נשמרים רק במכשיר.": "Scenes with a \"camera\" shoot only on your own phone, and you decide together in advance whether to keep or delete. Photos and videos uploaded to the app stay on the device only.",
+"תמיד. מים, אור חלש, מגע רך, ושלוש שאלות: מה היה הרגע הכי טוב, איפה כמעט יצאת מהדמות, ומה רוצים שוב. ״נפילה״ רגשית יום-יומיים אחרי סצנה חזקה היא נורמלית, מדברים עליה.": "Always. Water, low light, soft touch, and three questions: what was the best moment, where did you almost break character, and what do you want again. An emotional \"drop\" a day or two after a strong scene is normal; talk about it.",
+"זרים ופיתוי": "Strangers and seduction",
+"בר, רכבת, מלון, דייט עיוור. להכיר מחדש מאפס.": "A bar, a train, a hotel, a blind date. Meeting again from zero.",
+"עבודה וכוח": "Work and power",
+"ריאיון, בוס, שעות נוספות, עוזר/ת אישי/ת.": "An interview, a boss, overtime, a personal assistant.",
+"שירות ולקוחות": "Service and clients",
+"מעסה, צלם/ת, חייט/ת, מאמן/ת.": "A masseur, a photographer, a tailor, a trainer.",
+"סמכות ומדים": "Authority and uniforms",
+"שוטר/ת, מכס, שומר/ת, חוקר/ת.": "A police officer, customs, a guard, an interrogator.",
+"בדיקה וטיפול": "Examination and care",
+"רופא/ה, פיזיותרפיה, אח/ות במשמרת לילה.": "A doctor, physiotherapy, a night-shift nurse.",
+"פנטזיה ותחפושות": "Fantasy and costumes",
+"ערפד/ית, מלכה ומשרת, שודד/ת ים, ג׳יני.": "A vampire, a queen and a servant, a pirate, a genie.",
+"אסור": "Forbidden",
+"שכן/ה, אקס במפגש מחזור, החדר הלא נכון.": "A neighbor, an ex at the reunion, the wrong room.",
+"משחק כוח": "Power play",
+"חקירה, מכירה פומבית, הבובה, חיית המחמד.": "An interrogation, an auction, the doll, the pet.",
+"מילת העצירה עובדת גם כשהדמות אומרת ״לא״. ״לא״ של הדמות הוא חלק מהמשחק רק אם סיכמתם את זה מראש, במילים.": "The stop word works even when the character says \"no\". A character's \"no\" is part of the game only if you agreed on that in advance, in words.",
+"בר במלון": "a hotel bar",
+"תא ברכבת לילה": "a night train compartment",
+"משרד אחרי שעות העבודה": "an office after hours",
+"חדר כושר ריק": "an empty gym",
+"חדר המתנה של רופא": "a doctor's waiting room",
+"מעלית תקועה": "a stuck elevator",
+"ספרייה בשעת סגירה": "a library at closing time",
+"טירה עתיקה": "an ancient castle",
+"חדר כביסה בבניין": "the building's laundry room",
+"מונית בגשם": "a taxi in the rain",
+"שני זרים": "two strangers",
+"בוס/ית ועובד/ת": "a boss and an employee",
+"רופא/ה ומטופל/ת": "a doctor and a patient",
+"שוטר/ת ונהג/ת": "an officer and a driver",
+"צלם/ת ודוגמן/ית": "a photographer and a model",
+"מלכות ומשרת/ת": "royalty and a servant",
+"אקסים שנפגשו במקרה": "exes who met by chance",
+"שכנים": "neighbors",
+"מעסה ולקוח/ה": "a masseur and a client",
+"חוקר/ת וחשוד/ה": "an interrogator and a suspect",
+"אסור לדבר, רק מבטים ומגע": "no talking, only looks and touch",
+"אחד מכם לא רשאי לגעת ראשון": "one of you may not touch first",
+"כל משפט חייב להתחיל ב״אני רוצה״": "every sentence must start with \"I want\"",
+"יש עשר דקות לפני שמישהו חוזר": "there are ten minutes before someone comes back",
+"אחד מכם מעמיד פנים שלא מכיר": "one of you pretends not to know the other",
+"הדמויות מחליפות תפקידים באמצע": "the characters swap roles halfway",
+"הכול בלחש": "everything in a whisper",
+"עיניים מכוסות לאחד מכם": "one of you is blindfolded"
+},
+"rx": [
+[
+"^שלב (\\d+)/(\\d+)$",
+"Beat $1/$2"
+],
+[
+"^(.+?) · שלב (\\d+)/(\\d+)$",
+"$1 · Beat $2/$3"
+],
+[
+"^כ-(\\d+) דקות ·$",
+"about $1 minutes ·"
+],
+[
+"^כ-(\\d+) דקות$",
+"about $1 minutes"
+],
+[
+"^מסור/י את הטלפון\\. (.+?) לא מסתכל/ת עכשיו\\. הקלף הבא הוא רק שלך\\.$",
+"Hand over the phone. $1 is not looking now. The next card is yours alone."
+],
+[
+"^הקלף הסודי של (.+?) · (היוזם/ת|המגיב/ה)$",
+"The secret card of $1 · $2"
+],
+[
+"^🎭 הקלף של (.+)$",
+"🎭 $1's card"
+],
+[
+"^(.+?) (?:יוזם|יוזמת), (.+?) (?:מגיב|מגיבה)$",
+"$1 initiates, $2 responds"
+],
+[
+"^מילת העצירה: (.+?) · (.+)$",
+"Stop word: $1 · $2"
+],
+[
+"^מילת העצירה: (.+)$",
+"Stop word: $1"
+],
+[
+"^(.+) (?:מוביל|מובילה|יוזם|יוזמת) את כל הערב\\. ״החלפת תפקידים״ מחליף ידנית\\.$",
+"$1 initiates the whole evening. \"Swap roles\" switches manually."
+],
+[
+"^סצנה אחת (.+?) (?:מוביל|מובילה|יוזם|יוזמת), הבאה (.+?), וחוזר חלילה\\. גם בסצנה אקראית ובקוביות\\.$",
+"One scene $1 initiates, the next $2, and so on. Also for random cards and dice."
+],
+[
+"^(.+?) (?:מוביל|מובילה|יוזם|יוזמת) · הבא: (.+)$",
+"$1 initiates · next: $2"
+],
+[
+"^· הבא: (.+)$",
+"· next: $1"
+],
+[
+"^(.+?) (?:מוביל|מובילה|יוזם|יוזמת) · (.+?) (?:מובל|מובלת|מגיב|מגיבה)$",
+"$1 initiates · $2 responds"
+],
+[
+"^הערב: (.+?) (?:מוביל|מובילה|יוזם|יוזמת), (מתחלף|קבוע)\\.$",
+"Tonight: $1 initiates, $2."
+],
+[
+"^המשך ערב \\((\\d+)/(\\d+)\\)$",
+"Continue evening ($1/$2)"
+],
+[
+"^(\\d+) סצנות זמינות · עוצמה עד (\\d+)$",
+"$1 scenes available · intensity up to $2"
+],
+[
+"^(\\d+) דק׳$",
+"$1 min"
+],
+[
+"^⏱ (\\d+) דק׳$",
+"⏱ $1 min"
+],
+[
+"^(\\d+) דקות$",
+"$1 minutes"
+],
+[
+"^(\\d+) שניות$",
+"$1 seconds"
+],
+[
+"^(\\d+) נשימות$",
+"$1 breaths"
+],
+[
+"^⏱ (\\d+) נשימות$",
+"⏱ $1 breaths"
+],
+[
+"^(\\d+) פעמים$",
+"$1 times"
+],
+[
+"^גרסה (\\S+)$",
+"Version $1"
+],
+[
+"^גרסה (\\S+) · זמינה (\\S+)$",
+"Version $1 · available $2"
+],
+[
+"^גרסה חדשה \\((\\S+)\\) זמינה$",
+"New version ($1) available"
+],
+[
+"^(\\d+) סצנות · (\\d+) עם מדיה$",
+"$1 scenes · $2 with media"
+],
+[
+"^(\\d+) סצנות$",
+"$1 scenes"
+],
+[
+"^(\\d+) סצנות × 2$",
+"$1 scenes × 2"
+],
+[
+"^(\\d+) סצנות, (\\d+) נוסחים$",
+"$1 scenes, $2 versions"
+],
+[
+"^(\\d+) סצנות, (\\d+) נוסחים · מסונן: (.+)$",
+"$1 scenes, $2 versions · filtered: $3"
+],
+[
+"^עוצמה (\\d|אחרי) · (.+)$",
+"Intensity $1 · $2"
+],
+[
+"^עומק (\\d|סגירה) · (.+)$",
+"Depth $1 · $2"
+],
+[
+"^הוראה (לגבר|לאשה|לשניהם) · (עוצמה|עומק) (\\d|אחרי|סגירה)$",
+"Instruction for $1 · $2 $3"
+],
+[
+"^הגבר (מוביל|נותן)$",
+"Man $1"
+],
+[
+"^האשה (מובילה|נותנת)$",
+"Woman $1"
+],
+[
+"^תרגום לאנגלית של הסצנות שהוספתם \\(Claude\\) · (\\d+)$",
+"Translate the scenes you added to English (Claude) · $1"
+],
+[
+"^כל (\\d+) הנוסחים( בקטגוריה)? באנגלית\\. הפרומפטים לתמונה ולסרטון באנגלית מלאה\\.$",
+"All $1 versions$2 in English. Image and video prompts are fully in English."
+],
+[
+"^בקטגוריה$",
+"in this category"
+],
+[
+"^(\\d+) מתוך (\\d+) נוסחים באנגלית( בקטגוריה)?\\. (\\d+) נוסחים של סצנות שהוספתם עדיין בעברית\\.$",
+"$1 of $2 versions in English$3. $4 versions of scenes you added are still in Hebrew."
+],
+[
+"^פרומפטי הסרטון: (.+)$",
+"Video prompts: $1"
+],
+[
+"^מתרגם… (\\d+)/(\\d+)$",
+"Translating… $1/$2"
+],
+[
+"^תורגמו (\\d+), נכשלו (\\d+)$",
+"$1 translated, $2 failed"
+],
+[
+"^הבקשה נדחתה \\(400\\): (.*)$",
+"Request rejected (400): $1"
+],
+[
+"^🖼 תמונה כש(.+?) (?:מוביל|מובילה|יוזם|יוזמת)$",
+"🖼 Photo when $1 initiates"
+],
+[
+"^🎬 (.+?) כש(.+?) (?:מוביל|מובילה|יוזם|יוזמת)$",
+"🎬 $1 when $2 initiates"
+],
+[
+"^הגבולות של (.+)$",
+"Limits of $1"
+],
+[
+"^(.+): הגבולות שלי$",
+"$1: my limits"
+],
+[
+"^(.+), תורך$",
+"$1, your turn"
+],
+[
+"^זה אני, (.+)$",
+"It's me, $1"
+],
+[
+"^(.+?) לא (?:מסתכל|מסתכלת) עכשיו\\. (?:סמן|סמני) לבד מה בא לך, מה אולי, ומה בשום אופן לא\\. התשובות שלך לא יוצגו, רק החיתוך של שניכם\\.$",
+"$1 is not looking now. Mark on your own what you want, what is a maybe, and what is never. Your answers are not shown, only the overlap of you both."
+],
+[
+"^(.+?), על הברכיים\\. ידיים מאחורי הגב\\. (.+?) (?:מחליט|מחליטה) מתי ממשיכים\\.$",
+"$1, on your knees. Hands behind your back. $2 decides when you continue."
+],
+[
+"^(\\d+) מתוך (\\d+)$",
+"$1 of $2"
+],
+[
+"^תמונות וסרטונים שלכם: (\\d+) קבצים, (.+)$",
+"Your photos and videos: $1 files, $2"
+],
+[
+"^(\\d+) קבצים, (.+?)( \\(.*\\))?$",
+"$1 files, $2$3"
+],
+[
+"^(\\d+) קבצים שוחזרו(.*)$",
+"$1 files restored$2"
+],
+[
+"^הורדה שוב \\((.+)\\)$",
+"Download again ($1)"
+],
+[
+"^הורדת חלק (\\d+) מתוך (\\d+) \\((.+)\\)$",
+"Download part $1 of $2 ($3)"
+],
+[
+"^קורא קובץ (\\d+) מתוך (\\d+)$",
+"Reading file $1 of $2"
+],
+[
+"^אורז (\\d+) מתוך (\\d+)(.*)$",
+"Packing $1 of $2$3"
+],
+[
+"^\\(חלק (\\d+)/(\\d+)\\)$",
+"(part $1/$2)"
+],
+[
+"^משחזר (\\d+) מתוך (\\d+)$",
+"Restoring $1 of $2"
+],
+[
+"^זה גיבוי של אפליקציה אחרת \\((.+)\\)$",
+"This is a backup of another app ($1)"
+],
+[
+"^הקראת כרטיסים: (.+)$",
+"Read cards aloud: $1"
+],
+[
+"^⚠ (.+)$",
+"⚠ $1"
+],
+[
+"^איורים שיצרתם \\((\\d+)\\)$",
+"Illustrations you created ($1)"
+],
+[
+"^(\\d+) (מוביל|מובילה|נותן|נותנת)$",
+"$1 $2"
+],
+[
+"^(.+) · שלנו$",
+"$1 · ours"
+],
+[
+"^הבא: (.+)$",
+"next: $1"
+],
+[
+"^סיימתי, (?:מסתיר|מסתירה) את התשובות$",
+"Done, hiding my answers"
+],
+[
+"^(\\d+) מחזורים$",
+"$1 cycles"
+],
+[
+"^⏱ (.+)$",
+"⏱ $1"
+],
+[
+"^🔊 (.+)$",
+"🔊 $1"
+],
+[
+"^· (.+)$",
+"· $1"
+],
+[
+"^(.+?) (?:מוביל|מובילה|יוזם|יוזמת)$",
+"$1 initiates"
+],
+[
+"^(.+?)( · )(.+)$",
+"$1$2$3"
+]
+],
+"about": {
+"title": "How role play works",
+"html": "    <div class=\"home-emblem\"><svg class=\"il\"><use href=\"#il-mask\"/></svg></div>\n    <p class=\"lead\">Role play is not acting and not \"pretending\". It is permission. When you are strangers at a bar, you may say things you would never say in the first person, want things you are embarrassed to want on an ordinary day, and see your partner as if for the first time. The character is a thin mask, and what is underneath is exactly what gets revealed.</p>\n\n    <h2>Why it works</h2>\n    <p>Our minds get used to things. After years, the touch is familiar, the pace is known, and the ending can be guessed. A character breaks the habit in three places: <b>novelty</b> (\"someone else\" is touching you), <b>tension</b> (it is unclear what will happen, because the other has a secret goal), and <b>permission</b> (\"this is not me, so I may\"). The three together bring back the pulse of the beginning, without changing partners.</p>\n    <div class=\"pull\">The character is an excuse to tell the truth.</div>\n\n    <h2>How a scene is built here</h2>\n    <ul>\n      <li><b>The stage</b>: what the room pretends to be, which props, how long. Three items are enough for the body to believe: a light, a garment, an object.</li>\n      <li><b>A secret role card</b> for each of you: who the character is, how to play them, a <b>secret goal</b> the other does not know about, and an opening line. You hand over the phone, each reads only their own. The secret goals are the engine: they create a tug of war nobody has to stage.</li>\n      <li><b>Beats</b>: three beats that escalate. The first builds tension without touch, the second crosses one line, and the third is open: the scene continues wherever the two of you take it, in character. The app gives the frame, not the script.</li>\n      <li><b>Out of character</b>: every evening ends with a closing card: real names out loud, water, and three questions. It is not an extra, it is part of the scene.</li>\n    </ul>\n\n    <h2>The initiator and the responder</h2>\n    <p>In every scene there is someone who opens (<b>the initiator</b>, {D} in the texts) and someone who responds ({S}). This is not \"strong and weak\": the responder almost always has a secret goal that flips the power halfway. The \"switches every scene\" mode swaps you, so that you both open and you both respond.</p>\n\n    <h2>Five rules of good players</h2>\n    <ul>\n      <li><b>\"Yes, and...\"</b> What the other offers exists. You do not argue with the facts of the scene, you add to them.</li>\n      <li><b>Stay in character even when you laugh.</b> Laughter is not failure. The character laughs, and you go on.</li>\n      <li><b>A new name out loud.</b> The small thing that most helps the body believe. Say it at the start of the scene and stop using real names until the end.</li>\n      <li><b>Slow.</b> The good scene is the one where the first beat is too long. The tension does the work, not the action.</li>\n      <li><b>The stop word is outside the character.</b> The character may say \"no\" as part of the game only if you agreed on that in advance, in words. The real stop word ends the scene in a second, without discussion.</li>\n    </ul>\n\n    <h2>The categories here</h2>\n    <ul>\n      <li><b>Strangers and seduction</b>: the easy entrance. Meeting again from zero.</li>\n      <li><b>Work and power</b>, <b>Service and clients</b>, <b>Authority and uniforms</b>, <b>Examination and care</b>: characters with a clear role, where the power comes from the situation and not the personality. Easy to step into because the script is already written in life.</li>\n      <li><b>Fantasy and costumes</b>: far from reality, and therefore especially freeing.</li>\n      <li><b>Forbidden</b>: the thrill of \"we are not supposed to\". Neighbors, exes, the wrong room.</li>\n      <li><b>Power play</b>: the characters agree on a contract in advance. Here it is especially important to read the category's safety note.</li>\n    </ul>\n\n    <h2>Your own scenes</h2>\n    <p>The built-in scenes are frames. The intimate detail of the last beat is yours to write, in life or in the editor: \"All scenes\" → \"+ New\" gives you a card of your own with your own text, in both versions (who initiates), and you can attach a photo or video to it from the prompts list.</p>\n    <div class=\"pull\">Whoever dared to be someone else for an hour comes back a little more themselves.</div>\n\n    <h2>Where the name comes from</h2>\n    <p>Masks: in Greek theater the actor held a mask in front of the face, and the audience knew that what was said behind it was the truth of the character. Here the mask is thin, and what is behind it is yours.</p>\n"
+},
+"roles": {
+"D": "the initiator",
+"S": "the responder",
+"lead": "initiates",
+"follow": "responds"
+},
+"name": "Masks",
+"stop": "Red"
+};
