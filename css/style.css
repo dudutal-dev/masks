@@ -531,4 +531,3 @@ html[dir=ltr] .vid-sound{inset-inline-end:10px}
 .tv-warn{margin:10px 0 0;padding:8px 10px;border-radius:12px;font-size:.86rem;line-height:1.45;color:var(--text);background:rgba(255,196,0,.08);border:1px solid rgba(255,196,0,.35)}
 .tv-warn.ok{background:rgba(120,220,160,.08);border-color:rgba(120,220,160,.35)}
 
-.prompt-box{width:100%;box-sizing:border-box;margin-top:8px;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:10px;resize:vertical;text-align:left;direction:ltr;unicode-bidi:plaintext}
