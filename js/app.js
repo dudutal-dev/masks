@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const KEY = 'masks.v1';
-  const APP_VERSION = '2026.10.18.16';
+  const APP_VERSION = '2026.10.18.17';
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -543,8 +543,9 @@
       if (pkAudio.ctx.state === 'suspended') pkAudio.ctx.resume();
     } catch (e) { /* בלי פסקול */ }
   }
-  const peekSoundMode = () => S.peekSound || 'teaser'; // teaser = פסקול + קליפים מושתקים · clips = הקול של הקליפים · off = שקט
-  const teaserAudioOn = () => !!pkAudio && peekSoundMode() === 'teaser' && !(window.Music && Music.playing);
+  // בטיזר נשמע רק הפסקול שנוצר כאן: מוזיקת YouTube מושהית לזמן הצפייה, והקליפים מושתקים
+  const teaserAudioOn = () => !!pkAudio;
+  let musicWasPlaying = false;
   function droneStart() {
     if (!teaserAudioOn() || pkAudio.nodes) return;
     try {
@@ -586,34 +587,36 @@
   }
   function peekAudioPause(p) { if (!pkAudio) return; try { if (p) pkAudio.ctx.suspend(); else pkAudio.ctx.resume(); } catch (e) { /* */ } }
 
+  // סיסמאות הטיזר: מתחלפות בכל צפייה, עם השמות, המגדר, מספר המשימות והשעה
+  const PEEK_TAGS = {"open_he": ["הערב אתם מישהו אחר.", "שמות חדשים. אותן עיניים.", "{D} {d:פותח|פותחת} את הסצנה. {S} {s:יודע|יודעת} סוד.", "מוכנים להיות זרים לשעה?", "המסכה דקה. מה שמתחתיה אמיתי.", "{N} סצנות. סוד אחד לכל אחד.", "הערב מותר לכם להגיד הכל. בשם אחר.", "אל תשברו את הדמות. היא תשבור אתכם.", "מי שתהיו הערב לא יספר לאף אחד.", "{S}, {D} לא {d:יודע|יודעת} מה את/ה {s:מתכנן|מתכננת}."], "open_en": ["Tonight you are someone else.", "New names. The same eyes.", "{D} opens the scene. {S} knows a secret.", "Ready to be strangers for an hour?", "The mask is thin. What is under it is real.", "{N} scenes. One secret each.", "Tonight you may say anything. Under another name.", "Do not break character. It will break you.", "Whoever you are tonight will tell no one.", "{S}, {D} has no idea what you are planning."], "late_he": "השעה מאוחרת. הדמויות ערות.", "late_en": "It is late. The characters are awake.", "end_he": ["אורות. מסכות. אקשן.", "{D}, משפט הפתיחה שלך.", "{S}, {s:זכור|זכרי} את הסוד.", "מכאן, אתם לא אתם.", "הסצנה הראשונה מחכה."], "end_en": ["Lights. Masks. Action.", "{D}, your opening line.", "{S}, remember the secret.", "From here, you are not you.", "The first scene is waiting."]};
+  let lastTag = -1;
+  function peekTag(kind) {
+    const en = isEn(), list = (PEEK_TAGS[kind + (en ? '_en' : '_he')] || []).slice();
+    if (kind === 'open' && new Date().getHours() >= 23) list.push(en ? PEEK_TAGS.late_en : PEEK_TAGS.late_he);
+    let k = Math.floor(Math.random() * list.length); if (list.length > 1 && k === lastTag) k = (k + 1) % list.length; if (kind === 'open') lastTag = k;
+    const n = S.session ? S.session.cards.length : 0;
+    return toPlain(render((list[k] || '').replace(/\{N\}/g, String(n)), ctx()));
+  }
   function peekEl() {
     let el = $('#peek'); if (el) return el;
     el = document.createElement('div'); el.id = 'peek'; el.className = 'overlay peek'; el.hidden = true;
-    el.innerHTML = `<div class="peek-stage"></div><div class="peek-word"></div><div class="peek-hint" hidden></div><div class="peek-top"><span class="peek-prog"></span><button type="button" class="btn small ghost" data-pk="close">✕</button></div><div class="peek-dots"></div><div class="peek-bar"><button type="button" class="pk-btn" data-pk="prev">⏮</button><button type="button" class="pk-btn" data-pk="toggle">⏸</button><button type="button" class="pk-btn" data-pk="next">⏭</button><button type="button" class="pk-btn" data-pk="sound">🎬</button></div>`;
+    el.innerHTML = `<div class="peek-stage"></div><div class="peek-word"></div><div class="peek-hint" hidden></div><div class="peek-top"><span class="peek-prog"></span><button type="button" class="btn small ghost" data-pk="close">✕</button></div><div class="peek-dots"></div><div class="peek-bar"><button type="button" class="pk-btn" data-pk="prev">⏮</button><button type="button" class="pk-btn" data-pk="toggle">⏸</button><button type="button" class="pk-btn" data-pk="next">⏭</button></div>`;
     document.body.appendChild(el);
     el.addEventListener('click', (e) => {
       const b = e.target.closest('[data-pk]');
-      if (b) { const a = b.dataset.pk; if (a === 'close') closePeek(); else if (a === 'next') peekGo(peek.i + 1); else if (a === 'prev') { if (peek.done) peekIntro(); else peekGo(Math.max(0, peek.i - 1)); } else if (a === 'toggle') peekToggle(); else if (a === 'sound') peekSoundCycle(); else if (a === 'start') { closePeek(); startPlay('session'); } return; }
+      if (b) { const a = b.dataset.pk; if (a === 'close') closePeek(); else if (a === 'next') peekGo(peek.i + 1); else if (a === 'prev') { if (peek.done) peekIntro(); else peekGo(Math.max(0, peek.i - 1)); } else if (a === 'toggle') peekToggle(); else if (a === 'start') { closePeek(); startPlay('session'); } return; }
       if (e.target.closest('.peek-stage') || e.target.closest('.peek-word')) { if (!peek) return; if (peek.phase === 'intro') peekGo(0); else if (peek.phase === 'media') { clearTimeout(peek.cleanTimer); el.classList.toggle('clean'); } }
     });
     return el;
   }
-  function peekSoundCycle() {
-    const order = ['teaser', 'clips', 'off'], cur = peekSoundMode(), next = order[(order.indexOf(cur) + 1) % order.length];
-    S.peekSound = next; save(); peekAudioInit();
-    if (next === 'teaser') droneStart(); else droneStop();
-    const v = $('#peek .peek-stage video'); if (v) v.muted = next !== 'clips' || !!S.videoMuted || !!(window.Music && Music.playing);
-    paintPeekSound();
-  }
-  function paintPeekSound() { const b = $('#peek [data-pk=sound]'); if (!b) return; const m = peekSoundMode(); b.textContent = m === 'teaser' ? '🎬' : (m === 'clips' ? '🔊' : '🔇'); b.title = m === 'teaser' ? (isEn() ? 'Teaser soundtrack' : 'פסקול טיזר') : (m === 'clips' ? (isEn() ? 'Clip sound' : 'הקול של הקליפים') : (isEn() ? 'Silent' : 'שקט')); }
   function openPeek() {
     const items = peekItems(); if (!items.length) return;
     peekAudioInit();
     closePeek();
     peek = { items, i: 0, timer: null, urls: [], paused: false, done: false, phase: 'intro' };
-    const el = peekEl(); el.hidden = false; el.classList.remove('clean'); document.body.classList.add('peek-on'); requestWake();
+    const el = peekEl(); el.hidden = false; el.classList.remove('clean', 'end'); document.body.classList.add('peek-on'); requestWake();
     $('.peek-dots', el).innerHTML = items.map(() => '<i></i>').join('');
-    paintPeekSound();
+    musicWasPlaying = !!(window.Music && Music.playing); if (musicWasPlaying) Music.pause();
     peekIntro();
   }
   function closePeek() {
@@ -622,6 +625,7 @@
     const el = $('#peek'); if (el) { el.classList.remove('clean'); $('.peek-hint', el).hidden = true; $('.peek-word', el).className = 'peek-word'; const v = $('video', el); if (v) { v.pause(); v.removeAttribute('src'); } $('.peek-stage', el).innerHTML = ''; el.hidden = true; }
     peek.urls.forEach((u) => URL.revokeObjectURL(u)); peek = null; document.body.classList.remove('peek-on');
     droneStop();
+    if (musicWasPlaying) { musicWasPlaying = false; try { Music.toggle(); } catch (e) { /* */ } }
   }
   // מילה על גבי הווידאו: שם הקטגוריה נכנס ויוצא מעל הקליפ עצמו
   function showWord(text, cls, ms) {
@@ -634,26 +638,26 @@
   function peekIntro() {
     const el = peekEl(), stage = $('.peek-stage', el);
     clearTimeout(peek.timer); clearTimeout(peek.cleanTimer);
-    peek.phase = 'intro'; peek.i = 0; peek.done = false; peek.paused = false; el.classList.remove('clean');
+    peek.phase = 'intro'; peek.i = 0; peek.done = false; peek.paused = false; el.classList.remove('clean', 'end');
     $('.peek-prog', el).textContent = ''; $('.peek-bar', el).hidden = false; $('[data-pk=toggle]', el).textContent = '⏸';
     $$('.peek-dots i', el).forEach((d) => { d.classList.remove('on', 'done'); });
     stage.innerHTML = '<div class="peek-black"></div>';
     droneStart(); boom(0.8);
-    showWord(`<small>${isEn() ? 'Tonight' : 'הערב'}</small><b>${esc(roleName('D'))} &amp; ${esc(roleName('S'))}</b>`, 'intro', 2400);
-    peek.timer = setTimeout(() => peekGo(0), 2500);
+    showWord(`<b class="tag">${esc(peekTag('open'))}</b>`, 'intro', 3000);
+    peek.timer = setTimeout(() => { if (!peek || peek.phase !== 'intro') return; boom(0.6); showWord(`<small>${isEn() ? 'Tonight' : 'הערב'}</small><b>${esc(roleName('D'))} &amp; ${esc(roleName('S'))}</b>`, 'intro', 2000); peek.timer = setTimeout(() => peekGo(0), 2100); }, 3100);
   }
   async function peekGo(i) {
     if (!peek) return; clearTimeout(peek.timer); clearTimeout(peek.cleanTimer);
     const el = peekEl(), stage = $('.peek-stage', el), items = peek.items, n = S.session ? S.session.cards.length : items.length;
     if (i >= items.length) {
       peek.i = items.length; peek.done = true; peek.phase = 'end';
-      el.classList.remove('clean'); $('.peek-word', el).className = 'peek-word';
+      el.classList.remove('clean'); el.classList.add('end'); $('.peek-word', el).className = 'peek-word';
       droneStop(); boom(1.1);
-      stage.innerHTML = `<div class="peek-end"><div class="home-emblem">${illus('heart')}</div><h1>${isEn() ? 'Tonight.' : 'הערב.'}</h1><p class="lead">${n} ${PEEK_UNIT()}${isEn() ? ', from gentle to intense.' : ', מהקל אל הכבד.'}</p><button type="button" class="btn primary big" data-pk="start">${isEn() ? 'Begin' : 'מתחילים'}</button><button type="button" class="btn ghost" data-pk="prev">${isEn() ? 'Watch again' : 'לצפות שוב'}</button></div>`;
+      stage.innerHTML = `<div class="peek-end"><div class="home-emblem">${illus('heart')}</div><h1>${isEn() ? 'Tonight.' : 'הערב.'}</h1><p class="lead">${esc(peekTag('end'))}</p><button type="button" class="btn primary big" data-pk="start">${isEn() ? 'Begin' : 'מתחילים'}</button><button type="button" class="btn ghost" data-pk="prev">${isEn() ? 'Watch again' : 'לצפות שוב'}</button></div>`;
       $('.peek-prog', el).textContent = ''; $('.peek-bar', el).hidden = true; $$('.peek-dots i', el).forEach((d) => { d.classList.remove('on'); d.classList.add('done'); }); return;
     }
     if (i < 0) i = 0;
-    peek.i = i; peek.done = false; peek.paused = false; peek.phase = 'media';
+    peek.i = i; peek.done = false; peek.paused = false; peek.phase = 'media'; el.classList.remove('end');
     const it = items[i], c = it.c, cat = catOf(c.cat) || { name: '' };
     $('.peek-prog', el).textContent = `${i + 1} / ${items.length}`;
     $('.peek-bar', el).hidden = false; $('[data-pk=toggle]', el).textContent = '⏸';
@@ -667,12 +671,11 @@
     const wide = tvOn || (window.matchMedia && window.matchMedia('(orientation: landscape)').matches);
     if (wide) peek.cleanTimer = setTimeout(() => { if (peek && peek.phase === 'media') el.classList.add('clean'); }, 2500);
     if (!peek.hinted) { peek.hinted = true; const h = $('.peek-hint', el); h.textContent = isEn() ? 'Tap the screen to hide the buttons. Tap again to bring them back.' : 'הקשה על המסך מסתירה את הכפתורים. הקשה נוספת מחזירה אותם.'; h.hidden = false; setTimeout(() => { h.hidden = true; }, 3200); }
-    const clipSound = peekSoundMode() === 'clips' && !S.videoMuted && !(window.Music && Music.playing);
     boom(1); if (i === items.length - 1) setTimeout(() => { if (peek && peek.i === i) riser(1.6); }, rec.kind === 'image' ? 3200 : 800);
     if (rec.kind === 'video') {
       stage.innerHTML = `<video class="pk-in" src="${u}" playsinline autoplay preload="auto"></video>`;
       const v = $('video', stage);
-      v.muted = !clipSound; v.volume = 1;
+      v.muted = true; // בטיזר נשמע רק הפסקול
       v.addEventListener('ended', () => { if (peek && peek.i === i) peekGo(i + 1); });
       v.addEventListener('error', () => { if (peek && peek.i === i) peek.timer = setTimeout(() => peekGo(i + 1), 1200); });
       const p = v.play(); if (p && p.catch) p.catch(() => { v.muted = true; v.play().catch(() => {}); });
