@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const KEY = 'masks.v1';
-  const APP_VERSION = '2026.10.18.29';
+  const APP_VERSION = '2026.10.18.30';
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -282,7 +282,7 @@
   }
 
   // ---------- ניווט ----------
-  const SCREENS = ['lock', 'setup', 'home', 'play', 'dice', 'timer', 'more', 'editor', 'cardform', 'limits', 'safety', 'tts', 'ai', 'tv', 'list', 'about', 'music'];
+  const SCREENS = ['lock', 'setup', 'home', 'play', 'dice', 'timer', 'more', 'editor', 'cardform', 'limits', 'safety', 'tts', 'ai', 'tv', 'list', 'about', 'music', 'invite', 'ticket', 'live'];
   const TABS = { home: 'home', random: 'play', dice: 'dice', timer: 'timer', more: 'more' };
   let current = 'home';
   function stopCardMedia() {
@@ -307,6 +307,9 @@
     if (name === 'ai') renderAi();
     if (name === 'list') renderCopyList();
     if (name === 'music' && window.Music) Music.render($('#music-body'));
+    if (name === 'invite') renderInvite();
+    if (name === 'ticket') renderTicket();
+    if (name === 'live') renderLive();
     if (name === 'about') { const b = $('#about-back'); b.dataset.go = S.setupDone ? 'more' : 'setup'; b.textContent = S.setupDone ? '‹ עוד' : '‹ חזרה'; window.scrollTo(0, 0); }
   }
   $$('#tabbar button').forEach((b) => b.addEventListener('click', () => {
@@ -817,6 +820,10 @@
     const help = { fixed: `${c.D} ${c.dg === 'm' ? 'יוזם' : 'יוזמת'} את כל הערב. ״החלפת תפקידים״ מחליף ידנית.`, alternate: `סצנה אחת ${c.D} ${c.dg === 'm' ? 'יוזם' : 'יוזמת'}, הבאה ${c.S}, וחוזר חלילה. גם בסצנה אקראית ובקוביות.`, random: 'בכל ערב חדש האפליקציה מגרילה גם מי יוזם וגם אם זה קבוע או מתחלף כל סצנה.' + (S.session ? ` הערב: ${c.D} ${c.dg === 'm' ? 'יוזם' : 'יוזמת'}, ${S.eveningAlt ? 'מתחלף' : 'קבוע'}.` : '') };
     $('#home-mode-help').textContent = help[S.roleMode] || help.fixed;
     seg($('#home-mode-seg'), S.roleMode || 'fixed', (v) => { S.roleMode = v; save(); renderHome(); });
+    $('#home-mode').hidden = true;
+    renderInviteHome();
+    $('#btn-new').textContent = isEn() ? 'Evening of two scenes (no preparation)' : 'ערב של שתי סצנות (בלי הכנה)';
+    $('#btn-random-now').textContent = isEn() ? '🎲 A scene right now' : '🎲 סצנה עכשיו, בלי הכנה';
     const ses = S.session;
     $('#btn-resume').hidden = !(ses && ses.idx < ses.cards.length);
     const pk = $('#btn-peek'); pk.hidden = !(ses && ses.idx < ses.cards.length && peekItems().length); pk.textContent = isEn() ? '👁 Peek at the evening ahead' : '👁 הצצה לערב שמצפה לנו';
@@ -826,6 +833,7 @@
     $('#home-allowed').innerHTML = `<div class="chips">${CATEGORIES.filter((k) => catAllowed(k.id)).map((k) => `<span class="chip">${k.name}</span>`).join('') || '<span class="chip off">אין קטגוריות מותרות</span>'}</div>
       <p class="muted tiny">${n} סצנות זמינות · עוצמה עד ${maxLevel()}</p>`;
   }
+  $('#btn-random-now').addEventListener('click', startRandom);
   $('#btn-swap').addEventListener('click', () => { S.dom = sub(); save(); renderHome(); if (S.session) { /* הכרטיסים מתרנדרים מחדש בעת הצגה */ } });
   $('#btn-new').addEventListener('click', () => {
     const go = () => {
@@ -1576,7 +1584,7 @@ EXAMPLE corset:
   const TV_URL = () => location.origin + location.pathname.replace(/[^/]*$/, '') + 'index.html?tv=1';
   const isReceiver = new URLSearchParams(location.search).get('tv') === '1';
   async function enterTv() {
-    tvOn = true; tvView = diceResult && current === 'dice' ? 'dice' : 'card';
+    tvOn = true; tvView = current === 'live' ? 'live' : (diceResult && current === 'dice' ? 'dice' : 'card');
     document.body.classList.add('tv-on'); show('tv'); renderTv(); requestWake();
     if (!$('#tv-rotate')) { const h = document.createElement('div'); h.id = 'tv-rotate'; h.className = 'tv-rotate'; h.innerHTML = '<div class="ico">↻</div><p>סובבו את הטלפון לרוחב.<br>כך הטלוויזיה מתמלאת: הסצנה והסרטון יחד.</p><div class="tv-rotate-btns"><button type="button" class="btn ghost" data-rot="skip">להמשיך כך</button><button type="button" class="btn primary" data-rot="exit">יציאה ממצב טלוויזיה</button></div>'; $('#scr-tv').appendChild(h); $$('[data-rot]', h).forEach((b) => b.addEventListener('click', () => { if (b.dataset.rot === 'exit') exitTv(); else h.classList.add('off'); })); }
     $('#tv-rotate').classList.remove('off');
@@ -1589,7 +1597,7 @@ EXAMPLE corset:
     try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch { /* */ }
     try { if (document.fullscreenElement) document.exitFullscreen(); } catch { /* */ }
     // שידור Chromecast נשאר פעיל: הטלוויזיה ממשיכה להראות את הבמה בזמן שהטלפון מציג קלפים סודיים. ניתוק דרך כפתור ״משודר״.
-    const dest = playMode === 'random' && randomCard ? 'play' : (S.session ? 'play' : 'home');
+    const dest = tvView === 'live' ? 'live' : (playMode === 'random' && randomCard ? 'play' : (S.session ? 'play' : 'home'));
     show(dest); if (dest === 'play') renderPlay();
   }
   function tvCardView(c) {
@@ -1646,7 +1654,8 @@ EXAMPLE corset:
   function renderTv() {
     const stage = $('#tv-stage'); if (!stage) return;
     let html;
-    if (tvView === 'dice') html = tvDiceView();
+    if (tvView === 'live') { html = tvLiveView(); tvLiveTick(); }
+    else if (tvView === 'dice') html = tvDiceView();
     else {
       const c = currentCard();
       if (c) html = tvCardView(c);
@@ -1665,6 +1674,7 @@ EXAMPLE corset:
   function tvAction(a, b) {
     const c = currentCard();
     if (a === 'exit') return exitTv();
+    if (a === 'livenext') { const d = liveData(); if (d) { d.st.beatOffset = (d.st.beatOffset || 0) + 1; save(); } return renderTv(); }
     if (a === 'peek') return openPeek();
     if (a === 'music') { if (!(window.Music && Music.toggleEvening())) { exitTv(); show('music'); } return; }
     if (a === 'stop') return openStop();
@@ -1724,6 +1734,272 @@ EXAMPLE corset:
       });
     }
   }
+
+  // ---------- הזמנה: הדרך לשחק במסכות ----------
+  // היוזם/ת בוחר/ת סצנה לבד ומכין/ה את החדר. המגיב/ה מקבל/ת רק הזמנה (שעה, לבוש, משפט אחד), ובשעה שנקבעה את הקלף שלו/ה בלבד.
+  // הסצנה עצמה רצה בלי טלפון ביד: מסך ״לייב״ עם טיימר, תמונות לפי שלב, וטלוויזיה. בסוף יציאה מהדמות ו״מי מזמין בפעם הבאה״.
+  const L2 = (he, en) => (isEn() ? en : he);
+  const pName = (k) => S.partners[k].name || (k === 'a' ? 'א׳' : 'ב׳');
+  const gw = (k, m, f) => (S.partners[k].g === 'm' ? m : f);
+  const other = (k) => (k === 'a' ? 'b' : 'a');
+  const NOTE_LINES = {
+    strangers: [['הערב אנחנו לא מכירים. אל תגיד/י לי את שמך.', 'Tonight we have never met. Do not tell me your name.'], ['כיסא אחד ליד הבר יהיה פנוי. זה לא מקרי.', 'One seat at the bar will be free. That is no accident.']],
+    time: [['השעון בבית שלנו יזוז הערב. אל תתפלא/י מכלום.', 'The clocks in our home move tonight. Be surprised by nothing.'], ['תבוא/י כאילו זו שנה אחרת.', 'Come as if it were another year.']],
+    silent: [['מרגע שהדלת נסגרת, אף מילה.', 'From the moment the door closes, not a word.'], ['הערב מדברים רק בעיניים.', 'Tonight we speak only with the eyes.']],
+    art: [['תביא/י את הגוף. את השאר אני מביא/ה.', 'Bring the body. I bring the rest.'], ['הערב את/ה היצירה.', 'Tonight you are the work of art.']],
+    service: [['ההזמנה שלך אושרה. השירות מתחיל בזמן.', 'Your reservation is confirmed. Service begins on time.'], ['הלקוח תמיד צודק. כמעט תמיד.', 'The client is always right. Almost always.']],
+    care: [['התור שלך נקבע. תגיע/י בזמן, ובלי שאלות.', 'Your appointment is set. Arrive on time, no questions.'], ['הבדיקה יסודית. תתכונן/י.', 'The examination is thorough. Be ready.']],
+    remote: [['הערב אני לא בחדר. ובכל זאת.', 'Tonight I am not in the room. And yet.'], ['תחזיק/י את הטלפון קרוב. תקבל/י הוראות.', 'Keep the phone close. Instructions will come.']],
+    work: [['יש לנו שעות נוספות הערב. הדלת של המשרד תהיה סגורה.', 'We have overtime tonight. The office door will be closed.'], ['הישיבה נדחתה לערב. רק שנינו.', 'The meeting moved to tonight. Only the two of us.']],
+    game: [['הערב משחקים. מי שמפסיד/ה, משלם/ת.', 'Tonight we play. The loser pays.'], ['תביא/י משהו להמר עליו.', 'Bring something to bet.']],
+    spy: [['הסיסמה תימסר בדלת. אל תסמוך/י על אף אחד.', 'The password is given at the door. Trust no one.'], ['יש לי מידע עליך. בוא/י לקחת אותו.', 'I have information on you. Come and get it.']],
+    authority: [['תתייצב/י בזמן. במדים, אם יש.', 'Report on time. In uniform, if you have one.'], ['הערב יש כללים. ומי שאוכף/ת אותם.', 'Tonight there are rules. And someone who enforces them.']],
+    swap: [['הערב את/ה אני, ואני את/ה. תלמד/י את התפקיד.', 'Tonight you are me and I am you. Learn the part.'], ['תגיע/י כמוני. אני אגיע כמוך.', 'Arrive as me. I will arrive as you.']],
+    fantasy: [['הדלת הערב לא מובילה לסלון.', 'Tonight the door does not lead to the living room.'], ['תביא/י דמיון. את השאר תמצא/י בפנים.', 'Bring imagination. The rest is inside.']],
+    forbidden: [['אף אחד לא צריך לדעת על הערב.', 'No one needs to know about tonight.'], ['זה לא החדר הנכון. תיכנס/י בכל זאת.', 'This is not the right room. Come in anyway.']],
+    control: [['הערב יש חוזה. תקרא/י אותו היטב לפני שתחתום/תחתמי.', 'Tonight there is a contract. Read it well before you sign.'], ['מי שמחזיק/ה את המפתח הערב, זה לא את/ה.', 'Whoever holds the key tonight, it is not you.']],
+    _: [['בשעה שנקבעה. הדלת תהיה פתוחה. אל תדבר/י קודם.', 'At the appointed hour. The door will be open. Do not speak first.'], ['תגיע/י בזמן. תגיע/י כמישהו/י אחר/ת.', 'Arrive on time. Arrive as someone else.'], ['הערב יש לי שם אחר. גם לך.', 'Tonight I have another name. So do you.']],
+  };
+  const DRESS_LINES = {
+    strangers: ['משהו שלא היית לובש/ת בבית', 'Something you would never wear at home'], time: ['משהו מתקופה אחרת, או שחור כולו', 'Something from another era, or all black'], silent: ['משהו רך, בלי רעש', 'Something soft, without a sound'], art: ['משהו שקל להוריד', 'Something easy to take off'], service: ['לבוש של אורח/ת מכובד/ת', 'Dressed like a distinguished guest'], care: ['משהו שקל לפתוח', 'Something that opens easily'], remote: ['מה שתרצה/י. אני לא אראה. או כן.', 'Whatever you like. I will not see. Or will I.'], work: ['חולצה מכופתרת. עד למעלה.', 'A buttoned shirt. All the way up.'], game: ['משהו שאפשר להפסיד בשכבות', 'Something you can lose in layers'], spy: ['שחור, ומשהו שמסתיר את העיניים', 'Black, and something that hides the eyes'], authority: ['מגוהץ. כאילו יבדקו.', 'Pressed. As if it will be inspected.'], swap: ['משהו מהארון שלי', 'Something from my closet'], fantasy: ['משהו שלא קיים ברחוב', 'Something that does not exist on the street'], forbidden: ['משהו שאף אחד לא אמור לראות', 'Something no one is supposed to see'], control: ['מה שיגידו לך', 'What you are told'], _: ['משהו שלא לובשים ביום-יום', 'Something you do not wear on an ordinary day'],
+  };
+  const pickLine = (map, cat, idx) => { const list = map[cat] || map._; const it = list[(idx || 0) % list.length]; return Array.isArray(it[0]) ? it[0] : it; };
+  const noteFor = (cat, idx) => { const list = NOTE_LINES[cat] || NOTE_LINES._; const it = list[(idx || 0) % list.length]; return isEn() ? it[1] : it[0]; };
+  const dressFor = (cat) => { const it = DRESS_LINES[cat] || DRESS_LINES._; return isEn() ? it[1] : it[0]; };
+  const invSceneText = (id) => { const d = sceneData(id); return d ? ((isEn() && d.en) ? d.en : d.he) : null; };
+  function invCtx(inv) { const D = inv.hostRole === 'D' ? inv.host : other(inv.host), Sk = other(D); return { D: pName(D), S: pName(Sk), dg: S.partners[D].g, sg: S.partners[Sk].g }; }
+  function defaultAt() { const d = new Date(); d.setSeconds(0, 0); if (d.getHours() < 20) d.setHours(21, 0); else { d.setHours(d.getHours() + 2); d.setMinutes(0); } return d.getTime(); }
+  const fmtAt = (ts) => { const d = new Date(ts); const today = new Date(); const same = d.toDateString() === today.toDateString(); const tmr = new Date(today.getTime() + 864e5).toDateString() === d.toDateString(); const day = same ? L2('הערב', 'Tonight') : (tmr ? L2('מחר', 'Tomorrow') : d.toLocaleDateString(isEn() ? 'en-GB' : 'he-IL', { weekday: 'long', day: 'numeric', month: 'long' })); return `${day} · ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; };
+  const toLocalInput = (ts) => { const d = new Date(ts); const p = (n) => String(n).padStart(2, '0'); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`; };
+  const CARD_PATH = (inv) => `${location.origin}${location.pathname}`;
+
+  function newInvite() {
+    const host = S.nextHost || S.dom;
+    S.invite = { id: Date.now().toString(36), sceneId: null, host, hostRole: 'D', at: defaultAt(), dress: '', note: '', noteIdx: 0, status: 'draft', step: 'scene', lvl: 0, cat: 'all', prep: {}, startedAt: null, beatOffset: 0, guestOpened: false };
+    save(); show('invite');
+  }
+  function cancelInvite() { dialog(`<h2>${L2('לבטל את ההזמנה?', 'Cancel the invitation?')}</h2>`, [{ label: L2('ביטול ההזמנה', 'Cancel it'), cls: 'danger', onClick: () => { S.invite = null; save(); renderHome(); } }, { label: L2('להשאיר', 'Keep it') }]); }
+
+  // --- בונה ההזמנה (היוזם/ת) ---
+  function renderInvite() {
+    const host = $('#invite-body'), inv = S.invite; if (!inv) { show('home'); return; }
+    const sc = inv.sceneId ? invSceneText(inv.sceneId) : null, card = inv.sceneId ? cardById(inv.sceneId) : null;
+    const hostName = pName(inv.host), guestName = pName(other(inv.host));
+    const steps = ['scene', 'details', 'ticket'], si = steps.indexOf(inv.step);
+    const stepper = `<ol class="stepper inv"><li class="${si > 0 ? 'done' : ''} ${si === 0 ? 'on' : ''}"><i>${si > 0 ? '✓' : 1}</i><span>${L2('סצנה', 'Scene')}</span></li><li class="${si > 1 ? 'done' : ''} ${si === 1 ? 'on' : ''}"><i>${si > 1 ? '✓' : 2}</i><span>${L2('פרטים', 'Details')}</span></li><li class="${si === 2 ? 'on' : ''}"><i>3</i><span>${L2('הזמנה', 'Invitation')}</span></li></ol>`;
+    let body = '';
+    if (inv.step === 'scene') {
+      const list = pool().filter((c) => sceneOf(c)).filter((c) => (inv.lvl ? c.lvl === inv.lvl : true) && (inv.cat === 'all' || c.cat === inv.cat));
+      const cats = CATEGORIES.filter((k) => catAllowed(k.id));
+      body = `<p class="muted">${L2(`${esc(hostName)}, רק את/ה רואה את המסך הזה. ${esc(guestName)} ${gw(other(inv.host), 'יקבל', 'תקבל')} הזמנה בלבד.`, `${esc(hostName)}, only you see this screen. ${esc(guestName)} gets an invitation only.`)}</p>
+        <div class="row gap inv-role"><span class="lbl">${L2('התפקיד שלי', 'My part')}</span><div class="seg"><button type="button" data-hr="D" class="${inv.hostRole === 'D' ? 'on' : ''}">${L2(gw(inv.host, 'היוזם', 'היוזמת'), 'Initiator')}</button><button type="button" data-hr="S" class="${inv.hostRole === 'S' ? 'on' : ''}">${L2(gw(inv.host, 'המגיב', 'המגיבה'), 'Responder')}</button></div></div>
+        <div class="chips inv-f">${[0, 1, 2, 3].map((l) => `<button type="button" class="chip ${inv.lvl === l ? 'on' : ''}" data-lvl="${l}">${l ? '●'.repeat(l) : L2('כל העוצמות', 'All intensities')}</button>`).join('')}</div>
+        <div class="chips inv-f">${[{ id: 'all', name: L2('הכול', 'All') }].concat(cats).map((k) => `<button type="button" class="chip ${inv.cat === k.id ? 'on' : ''}" data-cat="${k.id}">${esc(k.name)}</button>`).join('')}</div>
+        <button type="button" class="btn ghost" data-inv="surprise">🎲 ${L2('הפתיעו אותי: סצנה אקראית מהסינון', 'Surprise me: a random scene from this filter')}</button>
+        <div class="inv-list">${list.map((c) => { const t = sceneOf(c), k = catOf(c.cat) || { name: '' }; return `<button type="button" class="inv-item ${inv.sceneId === c.id ? 'on' : ''}" data-pick="${c.id}"><b>${esc(t.title)}</b><small>${esc(k.name)} · ${'●'.repeat(c.lvl || 1)}${c.min ? ' · ' + c.min + L2(' דק׳', ' min') : ''}</small></button>`; }).join('') || `<p class="muted tiny">${L2('אין סצנות בסינון הזה', 'No scenes in this filter')}</p>`}</div>`;
+      if (sc && card) {
+        const c2 = invCtx(inv);
+        body += `<div class="card inv-preview"><small class="muted">${L2('הסצנה שבחרת (רק את/ה רואה)', 'Your pick (only you see this)')}</small><h2 class="sc-title">${esc(sc.title)}</h2><p>${render(sc.premise, c2)}</p>
+          <p><span class="lbl">${L2('הבמה', 'The stage')}</span>${render(sc.setting, c2)}</p><p><span class="lbl">${L2('אביזרים', 'Props')}</span>${render(sc.props, c2)}</p>
+          <details><summary>${L2('שני הקלפים הסודיים', 'Both secret cards')}</summary>
+            <div class="role-card mini"><small>${esc(c2.D)} · ${L2('היוזם/ת', 'initiator')}</small><h3>${render(sc.D.who, c2)}</h3><p>${render(sc.D.how, c2)}</p><p class="secret">${render(sc.D.secret, c2)}</p><p class="opener">${render(sc.D.opener, c2)}</p></div>
+            <div class="role-card mini"><small>${esc(c2.S)} · ${L2('המגיב/ה', 'responder')}</small><h3>${render(sc.S.who, c2)}</h3><p>${render(sc.S.how, c2)}</p><p class="secret">${render(sc.S.secret, c2)}</p><p class="opener">${render(sc.S.opener, c2)}</p></div>
+          </details>
+          <button type="button" class="btn primary big" data-inv="todetails">${L2('זו הסצנה. לפרטי ההזמנה ←', 'This is the one. Invitation details →')}</button></div>`;
+      }
+    } else if (inv.step === 'details') {
+      body = `<div class="card"><h2>${L2('מתי', 'When')}</h2><input type="datetime-local" id="inv-at" value="${toLocalInput(inv.at)}"><p class="muted tiny">${L2('הקלף של', 'The card of')} ${esc(guestName)} ${L2('ייפתח בשעה הזו. אפשר גם קודם, בלחיצה.', 'opens at this hour. Earlier is possible, with a tap.')}</p></div>
+        <div class="card"><h2>${L2('לבוש', 'Dress code')}</h2><input type="text" id="inv-dress" value="${esc(inv.dress || dressFor(card ? card.cat : '_'))}"><p class="muted tiny">${L2('רמז בלי לגלות. אפשר לשנות.', 'A hint without telling. Edit freely.')}</p></div>
+        <div class="card"><h2>${L2('משפט אחד', 'One line')}</h2><textarea id="inv-note" rows="2">${esc(inv.note || noteFor(card ? card.cat : '_', inv.noteIdx))}</textarea><div class="row gap"><button type="button" class="btn ghost small" data-inv="shuffle">↻ ${L2('משפט אחר', 'Another line')}</button></div><p class="muted tiny">${L2('זה כל מה שהצד השני יודע על הערב. בלי קטגוריה, בלי תקציר.', 'This is all the other side knows about tonight. No category, no summary.')}</p></div>
+        <div class="sc-btns"><button type="button" class="btn primary big" data-inv="toticket">${L2('ליצירת ההזמנה ←', 'Create the invitation →')}</button><button type="button" class="btn ghost" data-inv="back">${L2('‹ לבחירת סצנה', '‹ Back to the scene')}</button></div>`;
+    } else {
+      body = `${ticketHtml(inv, false)}
+        <div class="sc-btns">
+          <button type="button" class="btn primary big" data-inv="share">📤 ${L2('שליחת ההזמנה (וואטסאפ / הודעה)', 'Send the invitation (WhatsApp / message)')}</button>
+          <button type="button" class="btn ghost" data-inv="showhere">📱 ${L2(`להראות ל${esc(guestName)} בטלפון הזה`, `Show ${esc(guestName)} on this phone`)}</button>
+          <button type="button" class="btn ghost" data-inv="copy">${L2('העתקת הטקסט והקישור', 'Copy text and link')}</button>
+          <button type="button" class="btn ghost" data-inv="done">✓ ${L2('ההזמנה נשלחה. לדף הבית', 'Sent. Back home')}</button>
+          <button type="button" class="btn ghost small" data-inv="back2">${L2('‹ לפרטים', '‹ Details')}</button>
+        </div>
+        <p class="muted tiny">${L2('הקישור פותח את ההזמנה בטלפון של הצד השני, כולל הקלף שלו/ה בשעה שנקבעה. הסצנה עצמה לא נחשפת לפני כן.', 'The link opens the invitation on the other phone, including their card at the appointed hour. The scene itself is not revealed before that.')}</p>`;
+    }
+    host.innerHTML = stepper + body;
+    $$('[data-hr]', host).forEach((b) => b.addEventListener('click', () => { inv.hostRole = b.dataset.hr; save(); renderInvite(); }));
+    $$('[data-lvl]', host).forEach((b) => b.addEventListener('click', () => { inv.lvl = +b.dataset.lvl; save(); renderInvite(); }));
+    $$('[data-cat]', host).forEach((b) => b.addEventListener('click', () => { inv.cat = b.dataset.cat; save(); renderInvite(); }));
+    $$('[data-pick]', host).forEach((b) => b.addEventListener('click', () => { inv.sceneId = b.dataset.pick; save(); renderInvite(); setTimeout(() => { const p = $('.inv-preview', host); if (p) p.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50); }));
+    $$('[data-inv]', host).forEach((b) => b.addEventListener('click', () => invAction(b.dataset.inv)));
+  }
+  function invAction(a) {
+    const inv = S.invite; if (!inv) return;
+    const readDetails = () => { const at = $('#inv-at'), dr = $('#inv-dress'), nt = $('#inv-note'); if (at && at.value) { const ts = new Date(at.value).getTime(); if (!isNaN(ts)) inv.at = ts; } if (dr) inv.dress = dr.value.trim(); if (nt) inv.note = nt.value.trim(); };
+    if (a === 'surprise') { const list = pool().filter((c) => sceneOf(c)).filter((c) => (inv.lvl ? c.lvl === inv.lvl : true) && (inv.cat === 'all' || c.cat === inv.cat)); if (list.length) { inv.sceneId = list[Math.floor(Math.random() * list.length)].id; save(); renderInvite(); setTimeout(() => { const p = $('.inv-preview'); if (p) p.scrollIntoView({ behavior: 'smooth' }); }, 50); } return; }
+    if (a === 'todetails') { inv.step = 'details'; save(); renderInvite(); window.scrollTo(0, 0); return; }
+    if (a === 'back') { inv.step = 'scene'; save(); renderInvite(); return; }
+    if (a === 'back2') { inv.step = 'details'; save(); renderInvite(); return; }
+    if (a === 'shuffle') { readDetails(); inv.noteIdx = (inv.noteIdx || 0) + 1; const card = cardById(inv.sceneId); inv.note = noteFor(card ? card.cat : '_', inv.noteIdx); save(); renderInvite(); return; }
+    if (a === 'toticket') { readDetails(); const card = cardById(inv.sceneId); if (!inv.dress) inv.dress = dressFor(card ? card.cat : '_'); if (!inv.note) inv.note = noteFor(card ? card.cat : '_', inv.noteIdx); inv.step = 'ticket'; inv.status = 'sent'; save(); renderInvite(); window.scrollTo(0, 0); return; }
+    if (a === 'share' || a === 'copy') { const txt = inviteText(inv), url = inviteUrl(inv); if (a === 'share' && navigator.share) { navigator.share({ title: L2('הזמנה', 'An invitation'), text: txt, url }).catch(() => {}); } else copyText(txt + '\n' + url); return; }
+    if (a === 'showhere') { inv.view = 'guest'; save(); show('ticket'); return; }
+    if (a === 'done') { inv.status = 'sent'; save(); show('home'); }
+  }
+  // --- כרטיס ההזמנה ---
+  function ticketHtml(inv, guestView) {
+    const guest = pName(other(inv.host)), hostN = pName(inv.host);
+    return `<div class="ticket"><div class="tk-top"><span>${L2('הזמנה', 'Invitation')}</span><span>${illus('mask')}</span></div>
+      <h1>${esc(guest)}</h1>
+      <p class="tk-from">${L2('מאת', 'From')} ${esc(hostN)}</p>
+      <div class="tk-row"><span class="lbl">${L2('מתי', 'When')}</span><b>${fmtAt(inv.at)}</b></div>
+      <div class="tk-row"><span class="lbl">${L2('לבוש', 'Dress')}</span><b>${esc(inv.dress)}</b></div>
+      <p class="tk-note">״${esc(inv.note)}״</p>
+      <div class="tk-foot">${L2('מילת העצירה תקפה תמיד', 'The stop word always applies')}: <b>${esc(S.safeword)}</b></div></div>`;
+  }
+  function inviteText(inv) { const guest = pName(other(inv.host)), hostN = pName(inv.host); return isEn() ? `An invitation for ${guest}\nFrom ${hostN}\n${fmtAt(inv.at)}\nDress: ${inv.dress}\n"${inv.note}"` : `הזמנה ל${guest}\nמאת ${hostN}\n${fmtAt(inv.at)}\nלבוש: ${inv.dress}\n״${inv.note}״`; }
+  // מטען הקישור: רק מה שהצד השני צריך. הקלף שלו/ה, ולזמן הלייב: הכותרת, הבמה והשלבים. בלי הקלף של היוזם/ת.
+  function invitePayload(inv) {
+    const sc = invSceneText(inv.sceneId), c2 = invCtx(inv), card = cardById(inv.sceneId) || {}, guestRole = inv.hostRole === 'D' ? 'S' : 'D', rc = sc[guestRole];
+    const r = (t) => toPlain(render(t, c2));
+    return { v: 1, id: inv.id, at: inv.at, host: pName(inv.host), guest: pName(other(inv.host)), dress: inv.dress, note: inv.note, stop: S.safeword, role: guestRole, card: { who: r(rc.who), how: r(rc.how), secret: r(rc.secret), opener: r(rc.opener) }, live: { title: sc.title, setting: r(sc.setting), beats: sc.beats.map(r), min: card.min || 20 }, sceneId: inv.sceneId };
+  }
+  const b64u = (s) => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  const unb64u = (s) => decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4))));
+  function inviteUrl(inv) { try { return `${location.origin}${location.pathname}?inv=${b64u(JSON.stringify(invitePayload(inv)))}`; } catch (e) { return `${location.origin}${location.pathname}`; } }
+  function readInviteLink() {
+    const q = new URLSearchParams(location.search).get('inv'); if (!q) return false;
+    try { const p = JSON.parse(unb64u(q)); if (p && p.v === 1 && p.card) { S.inviteIn = p; save(); } } catch (e) { /* קישור לא תקין */ }
+    history.replaceState(null, '', location.pathname); return !!S.inviteIn;
+  }
+  // --- מסך ההזמנה (צד המגיב/ה; או היוזם/ת כשמציגים בטלפון הזה) ---
+  function guestSource() { if (S.invite && S.invite.view === 'guest') return { kind: 'local', inv: S.invite }; if (S.inviteIn) return { kind: 'link', p: S.inviteIn }; if (S.invite) return { kind: 'local', inv: S.invite }; return null; }
+  function guestCard(src) {
+    if (src.kind === 'link') return { role: src.p.role, card: src.p.card, at: src.p.at, guest: src.p.guest, host: src.p.host, dress: src.p.dress, note: src.p.note, stop: src.p.stop, gender: null };
+    const inv = src.inv, sc = invSceneText(inv.sceneId); if (!sc) return null; const c2 = invCtx(inv), role = inv.hostRole === 'D' ? 'S' : 'D', rc = sc[role], r = (t) => render(t, c2);
+    return { role, card: { who: r(rc.who), how: r(rc.how), secret: r(rc.secret), opener: r(rc.opener) }, at: inv.at, guest: pName(other(inv.host)), host: pName(inv.host), dress: inv.dress, note: inv.note, stop: S.safeword };
+  }
+  let tkTimer = null;
+  function renderTicket() {
+    clearInterval(tkTimer);
+    const host = $('#ticket-body'), src = guestSource(); if (!src) { show('home'); return; }
+    const g = guestCard(src); if (!g) { show('home'); return; }
+    const opened = src.kind === 'link' ? !!S.inviteInOpened : !!src.inv.guestOpened;
+    const tk = src.kind === 'link' ? `<div class="ticket"><div class="tk-top"><span>${L2('הזמנה', 'Invitation')}</span><span>${illus('mask')}</span></div><h1>${esc(g.guest)}</h1><p class="tk-from">${L2('מאת', 'From')} ${esc(g.host)}</p><div class="tk-row"><span class="lbl">${L2('מתי', 'When')}</span><b>${fmtAt(g.at)}</b></div><div class="tk-row"><span class="lbl">${L2('לבוש', 'Dress')}</span><b>${esc(g.dress)}</b></div><p class="tk-note">״${esc(g.note)}״</p><div class="tk-foot">${L2('מילת העצירה תקפה תמיד', 'The stop word always applies')}: <b>${esc(g.stop)}</b></div></div>` : ticketHtml(src.inv, true);
+    if (!opened) {
+      host.innerHTML = `${tk}<div class="tk-count" id="tk-count"></div><div class="sc-btns"><button type="button" class="btn primary big" data-tk="open">${L2('🗝 לפתוח את הקלף שלי', '🗝 Open my card')}</button><button type="button" class="btn ghost" data-tk="home">${L2('עוד לא. לדף הבית', 'Not yet. Home')}</button></div>
+        <p class="muted tiny">${L2('הקלף הוא רק שלך. פותחים כשמוכנים להיכנס לדמות, לבד, לפני שנכנסים לחדר.', 'The card is yours alone. Open it when you are ready to become the character, alone, before you enter the room.')}</p>`;
+      const cnt = $('#tk-count'); const tick = () => { const ms = g.at - Date.now(); if (ms <= 0) { cnt.textContent = L2('השעה הגיעה.', 'It is time.'); return; } const h = Math.floor(ms / 36e5), m = Math.floor((ms % 36e5) / 6e4), s = Math.floor((ms % 6e4) / 1000); cnt.textContent = (h ? h + ':' : '') + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0'); }; tick(); tkTimer = setInterval(tick, 1000);
+    } else {
+      host.innerHTML = `<p class="phone-at">${illus('phone')} ${L2('הקלף הסודי של', 'The secret card of')} <b>${esc(g.guest)}</b></p>
+        <div class="role-card"><small>${g.role === 'D' ? L2('את/ה פותח/ת את הסצנה', 'You open the scene') : L2('את/ה עונה מתוך הדמות', 'You answer in character')}</small><h2>${g.card.who}</h2>
+          <p><span class="lbl">${L2('איך לשחק', 'How to play')}</span>${g.card.how}</p>
+          <p class="secret"><span class="lbl">${L2('🤫 סודי. רק את/ה יודע/ת', '🤫 Secret. Only you know')}</span>${g.card.secret}</p>
+          <p class="opener"><span class="lbl">${g.role === 'D' ? L2('משפט הפתיחה שלך', 'Your opening line') : L2('המשפט הראשון שלך, כתשובה', 'Your first line, as a reply')}</span>${g.card.opener}</p></div>
+        <div class="now"><span class="lbl">${L2('מה עושים עכשיו', 'What to do now')}</span>${L2('קרא/י פעמיים. שם חדש בקול. ואז נכנסים לחדר כדמות. מילת העצירה תמיד מחוץ לדמות.', 'Read it twice. A new name out loud. Then enter the room as the character. The stop word is always outside the character.')}</div>
+        <div class="sc-btns"><button type="button" class="btn primary big" data-tk="live">🎭 ${L2('נכנסתי לדמות', 'I am in character')}</button><button type="button" class="btn ghost" data-tk="hide">${L2('להסתיר את הקלף', 'Hide the card')}</button></div>`;
+    }
+    $$('[data-tk]', host).forEach((b) => b.addEventListener('click', () => {
+      const a = b.dataset.tk;
+      if (a === 'open') { if (src.kind === 'link') S.inviteInOpened = true; else src.inv.guestOpened = true; save(); renderTicket(); window.scrollTo(0, 0); }
+      else if (a === 'hide') { if (src.kind === 'link') S.inviteInOpened = false; else src.inv.guestOpened = false; save(); renderTicket(); }
+      else if (a === 'home') { if (S.invite) { S.invite.view = null; save(); } show('home'); }
+      else if (a === 'live') { if (S.invite) S.invite.view = null; startLive(); }
+    }));
+  }
+  // --- הקלף של היוזם/ת, והכנת החדר ---
+  function hostCardDialog() {
+    const inv = S.invite, sc = inv && invSceneText(inv.sceneId); if (!sc) return;
+    const c2 = invCtx(inv), rc = sc[inv.hostRole], r = (t) => render(t, c2);
+    dialog(`<div class="role-card"><small>${esc(pName(inv.host))} · ${inv.hostRole === 'D' ? L2('פותח/ת את הסצנה', 'opens the scene') : L2('עונה מתוך הדמות', 'answers in character')}</small><h2>${r(rc.who)}</h2><p><span class="lbl">${L2('איך לשחק', 'How to play')}</span>${r(rc.how)}</p><p class="secret"><span class="lbl">${L2('🤫 סודי', '🤫 Secret')}</span>${r(rc.secret)}</p><p class="opener"><span class="lbl">${L2('משפט הפתיחה', 'Opening line')}</span>${r(rc.opener)}</p></div>`, [{ label: L2('סגירה', 'Close'), cls: 'primary' }]);
+  }
+  function prepDialog() {
+    const inv = S.invite, sc = inv && invSceneText(inv.sceneId); if (!sc) return;
+    const c2 = invCtx(inv), items = toPlain(render(sc.setting + ' ' + sc.props, c2)).split(/[.,;·]\s*/).map((s) => s.trim()).filter((s) => s.length > 2);
+    const html = `<h2>${L2('הכנת החדר', 'Setting the room')}</h2><p class="muted tiny">${L2('מתוך הבמה והאביזרים של הסצנה. סמנו מה מוכן.', 'From the scene\'s stage and props. Tick what is ready.')}</p><div class="prep">${items.map((s, i) => `<label><input type="checkbox" data-prep="${i}" ${inv.prep[i] ? 'checked' : ''}> <span>${esc(s)}</span></label>`).join('')}</div>`;
+    dialog(html, [{ label: L2('סגירה', 'Close'), cls: 'primary' }]);
+    $$('#dlg-card [data-prep]').forEach((cb) => cb.addEventListener('change', () => { inv.prep[cb.dataset.prep] = cb.checked; save(); }));
+  }
+  // --- לייב: הסצנה רצה. טיימר, שלבים, תמונות לפי שלב, טלוויזיה ---
+  function liveData() {
+    if (S.invite && S.invite.sceneId) { const inv = S.invite, sc = invSceneText(inv.sceneId), card = cardById(inv.sceneId) || {}, c2 = invCtx(inv); return { title: sc.title, setting: toPlain(render(sc.setting, c2)), beats: sc.beats.map((b) => toPlain(render(b, c2))), min: card.min || 20, mediaId: inv.sceneId, st: inv }; }
+    if (S.inviteIn) { S.inviteIn.st = S.inviteIn.st || { startedAt: null, beatOffset: 0 }; return Object.assign({ mediaId: S.inviteIn.sceneId, st: S.inviteIn.st }, S.inviteIn.live); }
+    return null;
+  }
+  const liveBeat = (d) => { const st = d.st; if (!st.startedAt) return 0; const per = (d.min * 60) / d.beats.length, el = (Date.now() - st.startedAt) / 1000; return Math.min(d.beats.length - 1, Math.floor(el / per) + (st.beatOffset || 0)); };
+  const liveLeft = (d) => { const st = d.st, per = (d.min * 60) / d.beats.length; if (!st.startedAt) return per; const el = (Date.now() - st.startedAt) / 1000; return Math.max(0, per - (el % per)); };
+  let liveTimer = null, liveLastBeat = -1;
+  function startLive() { const d = liveData(); if (!d) return; if (!d.st.startedAt) { d.st.startedAt = Date.now(); d.st.beatOffset = 0; } if (S.invite) S.invite.status = 'live'; save(); show('live'); requestWake(); }
+  function liveMediaKeys(d) { const m = S.media[d.mediaId] || {}; return IMG_SLOTS.concat(ALL_VID_SLOTS).filter((k) => m[k]).map((k) => mediaKey(d.mediaId, k)); }
+  function renderLive() {
+    clearInterval(liveTimer);
+    const host = $('#live-body'), d = liveData(); if (!d) { show('home'); return; }
+    const n = d.beats.length;
+    const draw = () => {
+      const b = liveBeat(d), left = liveLeft(d), per = (d.min * 60) / n, m = Math.floor(left / 60), s = Math.floor(left % 60);
+      if (liveLastBeat >= 0 && b !== liveLastBeat) { try { navigator.vibrate && navigator.vibrate([60, 40, 60]); } catch (e) { /* */ } softChime(); }
+      liveLastBeat = b;
+      const keys = liveMediaKeys(d), key = keys.length ? keys[Math.min(keys.length - 1, Math.floor(b * keys.length / n))] : null;
+      const showText = host.dataset.showText === '1';
+      host.innerHTML = `<div class="live-art" data-key="${key || ''}">${key ? `<div class="m-live" data-media="${key}"></div>` : `<div class="art">${illus('mask')}</div>`}<div class="live-ring"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/><circle class="p" cx="50" cy="50" r="45" style="stroke-dasharray:${(283 * (1 - left / per)).toFixed(1)} 283"/></svg><b>${m}:${String(s).padStart(2, '0')}</b></div></div>
+        <h2 class="sc-title">${esc(d.title)}</h2>
+        <div class="beat-pills">${d.beats.map((_, i) => `<span class="${i < b ? 'done' : ''} ${i === b ? 'on' : ''}">${i + 1}</span>`).join('')}<small>${L2('פעימה', 'Beat')} ${b + 1}/${n}</small></div>
+        ${showText ? `<p class="text live-text">${esc(d.beats[b])}</p>` : `<p class="muted tiny center">${L2('הטלפון למטה. הטיימר מרמז בעדינות מתי לעבור פעימה.', 'Phone down. The timer hints gently when to move to the next beat.')}</p>`}
+        <div class="sc-btns"><div class="row gap"><button type="button" class="btn ghost" data-lv="text">${showText ? L2('להסתיר את הטקסט', 'Hide the text') : L2('מה עכשיו?', 'What now?')}</button><button type="button" class="btn ghost" data-lv="next" ${b >= n - 1 ? 'disabled' : ''}>${L2('לפעימה הבאה', 'Next beat')}</button></div>
+        <div class="row gap"><button type="button" class="btn ghost" data-lv="tv">📺 ${L2('טלוויזיה', 'TV')}</button><button type="button" class="btn ghost" data-lv="music">${musicBtnLabel()}</button></div>
+        <button type="button" class="btn primary big" data-lv="exit">${L2('יציאה מהדמות', 'Out of character')}</button></div>`;
+      if (key && !host.dataset.hydrated) { hydrateCard(host); }
+      $$('[data-lv]', host).forEach((bt) => bt.addEventListener('click', () => {
+        const a = bt.dataset.lv;
+        if (a === 'text') { host.dataset.showText = showText ? '0' : '1'; draw(); }
+        else if (a === 'next') { d.st.beatOffset = (d.st.beatOffset || 0) + 1; save(); draw(); }
+        else if (a === 'tv') enterTv();
+        else if (a === 'music') { if (!(window.Music && Music.toggleEvening())) show('music'); }
+        else if (a === 'exit') liveExit();
+      }));
+    };
+    draw(); liveTimer = setInterval(() => { if (current !== 'live') { clearInterval(liveTimer); return; } const ring = $('.live-ring b', host); const left = liveLeft(d), per = (d.min * 60) / n; if (ring) ring.textContent = `${Math.floor(left / 60)}:${String(Math.floor(left % 60)).padStart(2, '0')}`; const pc = $('.live-ring .p', host); if (pc) pc.style.strokeDasharray = `${(283 * (1 - left / per)).toFixed(1)} 283`; if (liveBeat(d) !== liveLastBeat) draw(); }, 1000);
+  }
+  function softChime() { try { const ac = new (window.AudioContext || window.webkitAudioContext)(); const o = ac.createOscillator(), g = ac.createGain(); o.type = 'sine'; o.frequency.value = 528; o.connect(g); g.connect(ac.destination); g.gain.setValueAtTime(0.0001, ac.currentTime); g.gain.exponentialRampToValueAtTime(0.12, ac.currentTime + 0.05); g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + 1.4); o.start(); o.stop(ac.currentTime + 1.5); } catch (e) { /* */ } }
+  function liveExit() {
+    const ex = shuffle(CARDS.filter((c) => c.cat === AFTERCARE_ID))[0];
+    const hostK = S.invite ? S.invite.host : null;
+    dialog(`<h2>${L2('יציאה מהדמות', 'Out of character')}</h2><p>${ex ? cardText(ex) : ''}</p><h2>${L2('מי מזמין/ה בפעם הבאה?', 'Who invites next time?')}</h2>`,
+      [{ label: pName('a'), cls: hostK === 'b' ? 'primary' : 'ghost', onClick: () => finishInvite('a') }, { label: pName('b'), cls: hostK === 'a' ? 'primary' : 'ghost', onClick: () => finishInvite('b') }, { label: L2('אחר כך', 'Later'), onClick: () => finishInvite(null) }]);
+  }
+  function finishInvite(nextHost) { if (nextHost) S.nextHost = nextHost; S.invite = null; S.inviteIn = null; S.inviteInOpened = false; save(); clearInterval(liveTimer); show('home'); }
+  // --- הבית: מצב ההזמנה ---
+  function renderInviteHome() {
+    const box = $('#home-invite'); if (!box) return;
+    const inv = S.invite, inn = S.inviteIn;
+    let html = '';
+    if (inv && inv.sceneId && inv.status !== 'draft') {
+      html = `<div class="card inv-home"><small class="muted">${L2('ההזמנה של הערב', 'Tonight\'s invitation')}</small><h2>${fmtAt(inv.at)}</h2><p class="muted tiny">${esc(pName(inv.host))} ${gw(inv.host, 'מזמין', 'מזמינה')} · ${esc(pName(other(inv.host)))} ${gw(other(inv.host), 'מוזמן', 'מוזמנת')}${inv.status === 'live' ? ' · ' + L2('הסצנה רצה', 'scene running') : ''}</p>
+        <div class="row gap"><button type="button" class="btn ghost" data-ih="ticket">📜 ${L2('ההזמנה', 'Invitation')}</button><button type="button" class="btn ghost" data-ih="card">🗝 ${L2('הקלף שלי', 'My card')}</button><button type="button" class="btn ghost" data-ih="prep">✓ ${L2('החדר', 'The room')}</button></div>
+        <button type="button" class="btn primary big" data-ih="live">${inv.status === 'live' ? L2('▶ חזרה לסצנה', '▶ Back to the scene') : L2('▶ פתיחת הסצנה', '▶ Open the scene')}</button>
+        <div class="row gap"><button type="button" class="btn ghost small" data-ih="edit">${L2('עריכה', 'Edit')}</button><button type="button" class="btn ghost small" data-ih="cancel">${L2('ביטול ההזמנה', 'Cancel')}</button></div></div>`;
+    } else if (inv && inv.status === 'draft') {
+      html = `<button type="button" class="btn primary big" data-ih="edit">✉️ ${L2('להמשיך את ההזמנה', 'Continue the invitation')}</button>`;
+    } else {
+      html = `<button type="button" class="btn primary big" data-ih="new">✉️ ${L2('הזמנה חדשה', 'New invitation')}</button><p class="muted tiny center">${L2(`${esc(pName(S.nextHost || S.dom))} ${gw(S.nextHost || S.dom, 'מזמין', 'מזמינה')} הפעם. הצד השני יקבל רק שעה, לבוש ומשפט אחד.`, `${esc(pName(S.nextHost || S.dom))} invites this time. The other side gets only a time, a dress code and one line.`)}</p>`;
+    }
+    if (inn) html += `<button type="button" class="btn primary big" data-ih="guest">🎭 ${L2(`קיבלתי הזמנה מ${esc(inn.host)}`, `I have an invitation from ${esc(inn.host)}`)}</button>`;
+    box.innerHTML = html;
+    $$('[data-ih]', box).forEach((b) => b.addEventListener('click', () => {
+      const a = b.dataset.ih;
+      if (a === 'new') newInvite(); else if (a === 'edit') { if (S.invite) { S.invite.step = S.invite.sceneId ? S.invite.step : 'scene'; save(); } show('invite'); }
+      else if (a === 'ticket') { S.invite.view = 'guest'; save(); show('ticket'); } else if (a === 'card') hostCardDialog(); else if (a === 'prep') prepDialog(); else if (a === 'live') startLive(); else if (a === 'cancel') cancelInvite();
+      else if (a === 'guest') { if (S.invite) { S.invite.view = null; save(); } show('ticket'); }
+    }));
+  }
+  // טלוויזיה בזמן לייב: תמונה לפי השלב, כותרת וטיימר, בלי טקסט של קלפים
+  function tvLiveView() {
+    const d = liveData(); if (!d) return tvEmptyView();
+    const n = d.beats.length, b = liveBeat(d), keys = liveMediaKeys(d), key = keys.length ? keys[Math.min(keys.length - 1, Math.floor(b * keys.length / n))] : null, left = liveLeft(d);
+    return `<div class="tv-live">${key ? `<div class="tv-live-art" data-media="${key}"></div>` : `<div class="tv-live-art empty">${illus('mask')}</div>`}
+      <div class="tv-live-top"><span class="tv-brand">מסכות</span><span class="tv-safe">${L2('מילת העצירה', 'Stop word')}: ${esc(S.safeword)}</span></div>
+      <div class="tv-live-bottom"><h1>${esc(d.title)}</h1><div class="tv-live-beats">${d.beats.map((_, i) => `<i class="${i < b ? 'done' : ''} ${i === b ? 'on' : ''}"></i>`).join('')}<span>${Math.floor(left / 60)}:${String(Math.floor(left % 60)).padStart(2, '0')}</span></div></div>
+      <div class="tv-bar"><button class="tv-btn stop" data-tv="stop">עצור</button><button class="tv-btn" data-tv="livenext">${L2('הפעימה הבאה', 'Next beat')}</button><button class="tv-btn" data-tv="music">${musicBtnLabel()}</button><button class="tv-btn" data-tv="exit">יציאה</button></div></div>`;
+  }
+  let tvLiveTimer = null;
+  function tvLiveTick() { clearInterval(tvLiveTimer); tvLiveTimer = setInterval(() => { if (!tvOn || tvView !== 'live') { clearInterval(tvLiveTimer); return; } const d = liveData(); if (!d) return; const sp = $('#tv-stage .tv-live-beats span'); if (sp) { const left = liveLeft(d); sp.textContent = `${Math.floor(left / 60)}:${String(Math.floor(left % 60)).padStart(2, '0')}`; } if (liveBeat(d) !== liveLastBeat) { liveLastBeat = liveBeat(d); renderTv(); } }, 1000); }
 
   // ---------- עדכון גרסה בלי להסיר את האפליקציה ----------
   const ASSETS = ['index.html', 'css/style.css', 'js/app.js', 'js/cards-data.js', 'js/illustrations.js', 'js/media.js', 'manifest.webmanifest', 'sw.js'];
@@ -1961,6 +2237,7 @@ EXAMPLE corset:
     if (isReceiver) return tvReceiverInit();
     if (S.pinHash) await unlockFlow();
     if (!S.setupDone) startSetup(0); else show('home');
+    if (readInviteLink() && S.setupDone) show('ticket');
     if (SAFE_MODE) {
       const bar = document.createElement('div'); bar.className = 'safe-bar';
       bar.innerHTML = 'מצב בטוח: תמונות וסרטונים לא מוצגים. <button type="button">חזרה למצב רגיל</button>';
